@@ -61,3 +61,30 @@ print(o)
 k = '我是某某某'
 l = '你是谁'
 print(k+','+l)
+
+#格式化字符串，1、%占位符，2，format
+p = '张三你好，我是卡卡王，今年18岁'
+print(p)
+p = '%s你好，我是%s，今年18岁'%('张三','卡卡王')
+print(p)
+#p = '%s你好，我是%s，今年%d岁'%('张三','卡卡王','18'),会报错
+p = '%s你好，我是%s，今年%d岁'%('张三','卡卡王',18)
+print(p)
+h =  '{},你好,我是{},今年{}岁'.format('张三','卡卡王','18')
+print(h)
+h =  '{1},你好,我是{0},今年{2}岁'.format('张三','卡卡王','18')
+print(h)
+h =  '{1},你好,我是{1},今年{2}岁'.format('张三','卡卡王','18')
+print(h)
+h =  '{1},你好,我是{0},今年{2:d}岁'.format('张三','卡卡王',18)
+print(h)
+
+#py3中，'123'和'abc都是str，encode和decode是转换str和bytes数据类型
+#py2中,a='123'和b=u'abc'不是同样的类型前者str，后者是unicode，
+#可以通过a.encode('gbk')转为str，也可以通过b.decode('gbk')转回
+a = 'abc'
+b = a.encode('gbk')
+print(a)
+print(type(a))
+print(b)
+print(type(b))
