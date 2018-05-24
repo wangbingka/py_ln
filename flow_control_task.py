@@ -1,5 +1,5 @@
 # coding:utf-8
-#author:bingka.wangnum_sum = 0
+#author:bingka.wang
 
 
 """
@@ -7,10 +7,11 @@
 包括有多少个数字，多少个字母，
 以及多少个空格，还有多少个特殊符号。
 """
-#1、接受输入一个字符串
 
-a = input('请任意输入一个字符串，我可以帮你判断它的组成:')
+
+#1、接受输入一个字符串
 # a = 'sfdfghtrfsdf!@#$ @@134 fdh'
+a = input('请任意输入一个字符串，我可以帮你判断它的组成:')
 #2、对字符串拆分，并判断每个字符串的类型，计算数据量，
 def count_strtype(str1):
 	str_sum = 0
@@ -29,4 +30,6 @@ def count_strtype(str1):
 			other_sum +=1
 	#3、输出结果
 	print('你输入的字符里面有%s个字母，%s个数字，%s个空格，%s个其他字符。'%(str_sum,num_sum,flock_sum,other_sum))
-print(count_strtype(a))
+
+
+count_strtype(a)
