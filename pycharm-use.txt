@@ -1,0 +1,9 @@
+'''
+1
+'''
+本质是没有赋值的字符串
+
+注释和去掉注释：ctrl+/
+自由放大字体：1、font,2,settint-general-mouse,change fpmt size
+加库，project,interpreter,右边，+库名
+
