@@ -47,3 +47,7 @@ print('myclass 类的属性为',x.i)
 print('myclass function is',x.f())
 # print('private:',x.__age)
 print('private:',x._size)
+
+
+
+
