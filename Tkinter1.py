@@ -8,7 +8,11 @@ from tkinter import *
 
 root = Tk()
 
-label = Label(root,text='Hello world').pack()
+label = Label(root,text='Hello world')
+label.config(cursor='gumby')
+label.config(width=80,height=10,fg='yellow',bg='dark green')
+label.config(font=('times','28','bold'))
+label.pack()
 label = Label(root,text='Hello world',bg = 'red').pack()
 label = Label(root,text='Hello world',bg = 'blue').pack()
 label = Label(root,text='Hello world',bg = 'green',fg='white').pack()

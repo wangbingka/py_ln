@@ -35,7 +35,8 @@ class Stu_num(Sch_num):
         return '大家好，我是一名学生。'
     def __init__(self,aname,aintro,alnstu):
         #这句是保证子类能继续使用父类的构造方法
-        Sch_num.__init__(self,aname,aintro)
+        super().__init__(aname, aintro)
+        # Sch_num.__init__(self,aname,aintro)同样可以实现
         self.lnstu = alnstu
 
 c =Sch_num('张三','今年50岁')
