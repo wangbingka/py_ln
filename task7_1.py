@@ -36,9 +36,52 @@ i = random.randint(0,10)
 
 def miss1():
     print('')
+
+
+class MyApp(object):
+    """"""
+
+    # ----------------------------------------------------------------------
+    def __init__(self, aroot):
+        """Constructor"""
+        self.root = aroot
+        self.root.title("谁是卧底")
+        self.frame = Frame(aroot)
+        self.frame.pack()
+
+
+        btn = Button(self.frame, text="Open Frame", command=self.openFrame)
+        btn.pack()
+
+    # ----------------------------------------------------------------------
+    def hide(self):
+        """"""
+        self.root.withdraw()
+
+    # ----------------------------------------------------------------------
+    def openFrame(self):
+        """"""
+        self.hide()
+        otherFrame = Toplevel()
+        otherFrame.geometry("400x300")
+        otherFrame.title("otherFrame")
+        handler = lambda: self.onCloseOtherFrame(otherFrame)
+        btn = Button(otherFrame, text="Close", command=handler)
+        btn.pack()
+
+    # ----------------------------------------------------------------------
+    def onCloseOtherFrame(self, otherFrame):
+        """"""
+        otherFrame.destroy()
+        self.show()
+
+    # ----------------------------------------------------------------------
+    def show(self):
+        """"""
+        self.root.update()
+        self.root.deiconify()
+
 bm = PhotoImage(file = 'wodi_pic.png')
-
-
 
 w1 = Frame(height=200, width=500)
 
@@ -68,11 +111,11 @@ label2.pack()
 
 w3.grid(row=2)
 
-w4.pack(side='left')
-
-w5.pack(side='left')
-
-w6.pack(side='right')
+# w4.pack(side='left')
+#
+# w5.pack(side='left')
+#
+# w6.pack(side='right')
 
 
 send_button = Button(w4, text="发送")
@@ -88,7 +131,8 @@ root.mainloop()
 
 def buttonClick():
     print('button clicked')
-button1 = Button(root,text='3',width=8,height=2,command=buttonClick).grid(row=2,column=1)
+button1 = Button(root,text='选择玩家数量',width=8,height=2,command=buttonClick).grid(row=2,column=1)
+
 button = Button(root,text='开始游戏',width=8,height=2,command=buttonClick).grid(row=2,column=2)
 button = Button(root,text='查看单词',command=random1).grid(row=2,column=3)
 button = Button(root,text='选择玩家号码',command=buttonClick).grid(row=2,column=4)
