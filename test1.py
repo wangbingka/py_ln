@@ -4,20 +4,57 @@
 # @Author  : bingka.wang 
 # @Email   : wangbingka@126.com
 
-from tkinter import  *
-win = Tk()
-win.title("My tools")
-win.geometry('300x300+300+300')
-xinyun = StringVar(win)
-xinyun.set("猜猜我是谁")
-banbie.set("10")
-cq_lblxinyun = Label(win, textvariable=xinyun, fg="red",
-                      font=("黑体", 30, "bold"),
-                      relief="sunken", borderwidth=5)
-cq_btstar = Button(win, text="开始抽签", font =("宋体", 14,
-                  "normal"), command=chouqian)
-cq_lblban = Entry(win, textvariable=banbie, width="4",
-                      font=("宋体", 12, "normal"))
-cq_lblban1 = Label(win, text="组", width="2", justify="left",
-                      font=("宋体", 12, "normal"))
-win.mainloop()
+from tkinter  import *
+
+import time
+
+import threading
+
+
+
+def showother():
+
+    otherFrame.update()
+
+    otherFrame.deiconify()
+
+    hide_thd()
+
+
+
+def delaysHideOther():
+
+    time.sleep(5)
+
+    otherFrame.withdraw()
+
+
+
+def hide_thd():
+
+    threading.Thread(target = delaysHideOther).start()
+
+
+
+root = Tk()
+
+
+
+otherFrame = Toplevel()
+
+otherFrame.withdraw()
+
+otherFrame.attributes('-toolwindow', True)
+
+otherFrame.geometry('150x50')
+
+Label(otherFrame, text="5秒后关闭!", width=50).pack()
+
+
+
+root.geometry('150x80')
+
+Button(root, text='显示弹窗', width=10, command=showother).pack()
+
+
+root.mainloop()

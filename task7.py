@@ -25,21 +25,65 @@ def random1():
     else:
         pass
     button['text'] = c
-i = random.randint(0,10)
+
+
 
 def miss1():
     print('')
-bm = PhotoImage(file = 'wodi_pic.png')
-label1 = Label(root,height=300,image=bm,bg='green').pack()
-label2 = Label(root,text=rools,justify=LEFT).pack()
+
 def buttonClick():
     print('button clicked')
-button = Button(text='3',command=buttonClick).pack()
-button = Button(text='开始游戏',command=buttonClick).pack()
-button3 = Button(text='查看单词',command=random1).pack()
-button = Button(text='选择玩家号码',command=buttonClick).pack()
-button = Button(text='投票',command=buttonClick).pack()
-button = Button(text='结束游戏',command=quit).pack()
+
+
+otherFrame = Toplevel()
+
+otherFrame.withdraw()
+
+otherFrame.attributes('-toolwindow', True)
+
+otherFrame.geometry('150x50')
+
+Label(otherFrame, text="5秒后关闭!", width=50).pack()
+
+
+i = random.randint(0,10)
+
+# 创建frame容器
+row1 = Frame(width=1000, height=500, bg='green')
+row2 = Frame(width=1000, height=150, )
+row3 = Frame(width=1000, height=30)
+
+row1.grid(row=0, column=0, padx=1, pady=3)
+row2.grid(row=1, column=0, padx=1, pady=3)
+row3.grid(row=2, column=0)
+
+# row1添加图片
+bm = PhotoImage(file="wodi_pic.png")
+lblImage = Label(row1, image=bm)
+# lblImage.image = bm
+lblImage.grid()
+
+# row2添加规则
+label2 = Label(row2,text=rools,justify=LEFT)
+label2.grid()
+
+# row3容器添加按钮
+button1 = Button(row3,text='3',width=22,command=buttonClick)
+button1.grid(row=2, column=0)
+button2 = Button(row3,text='开始游戏',width=22,command=buttonClick)
+button2.grid(row=2, column=1, sticky=E)
+button3 = Button(row3,text='查看单词',width=22,command=random1)
+button3.grid(row=2, column=2, sticky=E)
+button4 = Button(row3,text='选择玩家号码',width=22,command=buttonClick)
+button4.grid(row=2, column=3, sticky=E)
+button5 = Button(row3,text='投票',width=22,command=buttonClick)
+button5.grid(row=2, column=4, sticky=E)
+button6 = Button(row3,text='结束游戏',width=22,command=quit)
+button6.grid(row=2, column=5, sticky=E)
+
+row1.grid_propagate(0)
+row2.grid_propagate(0)
+row3.grid_propagate(0)
 
 root.mainloop()
 
