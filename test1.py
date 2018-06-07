@@ -1,60 +1,27 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-# @Time    : 2018/6/5 22:06
-# @Author  : bingka.wang 
-# @Email   : wangbingka@126.com
+#!usr/bin/python
+#coding:utf-8
+#author:bingka.wang
 
-from tkinter  import *
+#  F(n)=F(n-1)+F(n-2)（n>=2，n∈N*）
 
-import time
+#方法1
+# list1 = [1, 1]
+# count1 =3
+# for i in range(2,100000):
+#     if i == list1[count1-3] + list1[count1-2]:
+#         list1.append(i)
+#         count1 += 1
+#     else:
+#         continue
+# print(list1)
 
-import threading
+# 方法2
+list1 = [1, 1]
+count1 =3
+i = 0
+while i < 100000:
+    if i == list1[count1-3] + list1[count1-2]:
+        list1.append(i)
+        count1 += 1
+print(list1)
 
-
-
-def showother():
-
-    otherFrame.update()
-
-    otherFrame.deiconify()
-
-    hide_thd()
-
-
-
-def delaysHideOther():
-
-    time.sleep(5)
-
-    otherFrame.withdraw()
-
-
-
-def hide_thd():
-
-    threading.Thread(target = delaysHideOther).start()
-
-
-
-root = Tk()
-
-
-
-otherFrame = Toplevel()
-
-otherFrame.withdraw()
-
-otherFrame.attributes('-toolwindow', True)
-
-otherFrame.geometry('150x50')
-
-Label(otherFrame, text="5秒后关闭!", width=50).pack()
-
-
-
-root.geometry('150x80')
-
-Button(root, text='显示弹窗', width=10, command=showother).pack()
-
-
-root.mainloop()

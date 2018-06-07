@@ -34,9 +34,7 @@ class MyApp(object):
         otherFrame = Toplevel()
         otherFrame.geometry("400x300")
         otherFrame.title("otherFrame")
-
-
-
+        handler = lambda :self.onCloseOtherFrame(otherFrame)
         btn = Button(otherFrame, text="Close", command=handler)
         btn.pack()
 
