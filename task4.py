@@ -93,7 +93,7 @@ while True:
 record1('第二个较大的数字:'+str(num3))
 
 
-print(rules')
+print('rules')
 right_num = random.randint(num2, num3)
 record1('我随机选中的数字：'+str(right_num))
 

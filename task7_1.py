@@ -61,7 +61,7 @@ def list1(a,b):
 # 但这段貌似有点有问题，投票超过10的数字之后，即使玩家是8个人最大号也就是8，判断会出错，也是投票成功，还未找到原因
 def veryf1():
     global sel_num11
-    sel_num1 = comboxlist1.get()
+    sel_num1 = int(number2.get())
     if sel_num1 > get_num1:
         tkinter.messagebox.showinfo('投票', 'sorry，没有此编号的玩家\n目前编号是：1-%d之间。\n请重新投票'%int(get_num1))
     else:
@@ -108,7 +108,7 @@ def get_num():
     global list4
     global id_numlist1
     global get_num1
-    get_num1 = comboxlist.get()
+    get_num1 = int(number1.get())
     list4 = list_4()
     id_numlist1 =id_numlist()
 
@@ -143,8 +143,9 @@ label2 = Label(row2, text=rools, justify=LEFT)
 label2.grid()
 
 # row3容器添加按钮，选择玩家数量的下拉列表
+number1 = StringVar()
 comboxstr = list1(3,21)
-comboxlist = ttk.Combobox(row3,values=comboxstr)  # 初始化
+comboxlist = ttk.Combobox(row3,textvariable=number1,values=comboxstr)  # 初始化
 comboxlist.current(0)  # 选择第一个
 comboxlist["state"] = "readonly"
 comboxlist.bind("<<ComboboxSelected>>",get_num())
@@ -158,8 +159,9 @@ button2 = Button(row3, text='查看编号和单词', width=30, command=openFrame
 button2.grid(row=2, column=2, sticky=E)
 
 #选择玩家号码的下拉列表
+number2 = StringVar()
 comboxstr1 = ['选择玩家号码']+list1(1,21)
-comboxlist1 = ttk.Combobox(row3,values=comboxstr1)  # 初始化
+comboxlist1 = ttk.Combobox(row3,textvariable=number2,values=comboxstr1)  # 初始化
 comboxlist1.current(0)  # 选择第一个
 comboxlist1["state"] = "readonly"
 comboxlist1.grid(row=2,column=3, sticky=E)
