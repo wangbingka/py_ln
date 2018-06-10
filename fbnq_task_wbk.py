@@ -87,38 +87,6 @@
 #     return list2
 # print(fbnq2_list(10))
 
-#对方法2使用迭代器取列表
-def fbnq2(self):
-    list1 = [0, 1]
-    for count1 in range(1,self):
-        if self == 1:
-            break
-        elif self >=2 :
-            i = list1[0] + list1[1]
-            list1.append(i)
-            # list1 = [list1[1],list1[2]] #更新列表方法1，形成新的列表，这样列表中会永远只有两个元素
-            del list1[0] #更新列表方法1，删除第一个元素，这样列表中会永远只有两个元素
-        count1 += 1
-    return list1[0]
-print(fbnq2(1))
-print(fbnq2(2))
-print(fbnq2(3))
-print(fbnq2(4))
-print(fbnq2(5))
-
-print(fbnq2(100000))
-
-iterator1 = iter(str(fbnq2(20)))
-for i in iterator1:
-    print(i)
-
-#方法2list
-# def fbnq2_list(self):
-#     list2 = []
-#     for i in range(1,self+1):
-#         list2.append(fbnq2(i))
-#     return list2
-# print(fbnq2_list(10))
 
 
 #方法3，根据网上看到的，进行优化
@@ -130,16 +98,27 @@ for i in iterator1:
 #         n +=1
 # fab(5)
 #改进
-# def fab(max):
-#     n, a, b = 1, 0, 1
-#     list1 =[]
-#     while n <= max:
-#         list1.append(b)
-#         a, b = b, a + b
-#         n +=1
-#     return list1
-# print(fab(5))
-# print(fab(100000)[99999])
+def fab(max):
+    n, a, b = 1, 0, 1
+    list1 =[]
+    while n <= max:
+        list1.append(b)
+        a, b = b, a + b
+        n +=1
+    return list1
+print(fab(10))
+print(fab(1000)[999])
+print(fab(1000)[-1])
+
+def fab(max):
+    n, a, b = 1, 0, 1
+    # list1 =[]
+    while n <= max:
+        yield b
+        a, b = b, a + b
+        n +=1
+for i in fab(10):
+    print(i)
 
 
 # class Fab(object):
