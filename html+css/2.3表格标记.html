@@ -8,12 +8,15 @@
     1.4,ruls,控制是否显示以及如何显示单元格之间的分割线，
             属性值默认none无分割线，all所有分割线，rows仅有行分割线，clos仅有列分割线，groups尽在行组和列组之间有分割线
 
-2.caption标记，表格的标题，基本在<table>侯曼，<tr>行之前
+2.caption标记，表格的标题，基本在<table>头部，<tr>行之前
      align,属性，对齐方式,默认值在上面，top顶部，bottom底部，left标题在左，right在右，center在中间,
 3.tr标记，定义表格的每一行，对于每一表格行，都是由一对<tr>...</tr>标记，每一行<tr>标记内可以嵌套多个<td>或者<th>
     3.1，bgcolor,背景颜色
-   ,3.2，align，水平对齐方式
-   ,3.3，valign,垂直对齐方式
+    3.2，align，水平对齐方式
+    3.3，valign,垂直对齐方式
+    3.4，tr和td,th设置字体颜色、大小、等需要用<font><b></b><font>
+        例如：大小5号，颜色白色，宋体，粗体
+        <font size="5" color="white"  face="宋体"  <b>内容</b></font>
 4.td和th标记,都是单元格的标记，必须嵌套在<tr>中，th是标头自动加粗，td是内容。
     bgcolor，背景颜色
     align,水平对齐方式
@@ -33,7 +36,7 @@
         <table width="960" height="150" border="1" aligh="bottom"  cellpadding="10" frame="box" rules="all" >
             <caption>表格的标题</caption>
             <tr>
-                <th>班级</th>
+                <th bgcolor="red" aligh="left" rowspan="2" colspan="2"> 班级</th>
                 <th>姓名</th>
                 <th>年龄</th>
                 <th>成绩</th>
