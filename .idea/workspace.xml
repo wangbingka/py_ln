@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="96053ba6-5864-4f72-a389-04ba42385041" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/html+css/2.3表格标记.html" beforeDir="false" afterPath="$PROJECT_DIR$/html+css/2.3表格标记.html" afterDir="false" />
-    </list>
+    <list default="true" id="96053ba6-5864-4f72-a389-04ba42385041" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -74,77 +71,14 @@
     <favorites_list name="py_ln" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="2.3表格标记.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/html+css/2.3表格标记.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="111">
-              <caret line="35" column="107" lean-forward="true" selection-start-line="35" selection-start-column="84" selection-end-line="35" selection-end-column="107" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="2.4简单的网页布局.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/html+css/2.4简单的网页布局.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="21" column="7" lean-forward="true" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="2.5框架详解与标记.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/html+css/2.5框架详解与标记.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="26" column="49" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="49" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="2.5网页的左部.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/html+css/2.5网页的左部.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="11" column="65" selection-start-line="11" selection-start-column="65" selection-end-line="11" selection-end-column="65" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="1.5文本标记.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/html+css/1.5文本标记.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="6" column="22" lean-forward="true" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="2.2超链接的使用.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/html+css/2.2超链接的使用.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="17" column="120" lean-forward="true" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="120" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="1.4格式标记.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/html+css/1.4格式标记.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="8" column="13" lean-forward="true" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
         <option value="HTML File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -168,9 +102,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/type2.py" />
-        <option value="$PROJECT_DIR$/class4.py" />
-        <option value="$PROJECT_DIR$/tkinter2.py" />
         <option value="$PROJECT_DIR$/Tkinter1.py" />
         <option value="$PROJECT_DIR$/task6.py" />
         <option value="$PROJECT_DIR$/tkinter1.py" />
@@ -219,6 +150,9 @@
         <option value="$PROJECT_DIR$/html+css/2.5框架详解与标记.html" />
         <option value="$PROJECT_DIR$/html+css/2.5网页的右部.html" />
         <option value="$PROJECT_DIR$/html+css/2.5网页的左部.html" />
+        <option value="$PROJECT_DIR$/html+css/2.6表单设计.html" />
+        <option value="$PROJECT_DIR$/html+css/style.css" />
+        <option value="$PROJECT_DIR$/html+css/3.1css式样.html" />
       </list>
     </option>
   </component>
@@ -267,6 +201,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="settings.editor.selected.configurable" value="preferences.editor" />
   </component>
   <component name="RecentsManager">
@@ -454,7 +389,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="0" width="1293" height="687" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info active="true" anchor="bottom" id="Event Log" order="12" side_tool="true" visible="true" weight="0.32789856" />
@@ -463,7 +397,7 @@
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.4909091" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.3272727" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48398575" visible="true" weight="0.111560225" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48398575" visible="true" weight="0.11317704" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="5" weight="0.32927817" />
       <window_info anchor="right" id="SciView" order="3" weight="0.32927817" />
@@ -498,21 +432,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/tkmsgbox.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-245">
-          <caret line="5" selection-start-line="5" selection-end-line="5" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/task7_2.py" />
-    <entry file="file://$PROJECT_DIR$/Error1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="51" column="12" lean-forward="true" selection-start-line="51" selection-start-column="12" selection-end-line="51" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test5.py" />
     <entry file="file://$PROJECT_DIR$/test6.py" />
     <entry file="file://$PROJECT_DIR$/test7.py" />
@@ -634,20 +553,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/html+css/2.4简单的网页布局.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="21" column="7" lean-forward="true" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/html+css/2.3表格标记.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="35" column="107" lean-forward="true" selection-start-line="35" selection-start-column="84" selection-end-line="35" selection-end-column="107" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/html+css/2.5网页的右部.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
@@ -662,31 +567,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/html+css/2.5框架详解与标记.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="26" column="49" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/html+css/1.4格式标记.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
-          <caret line="8" column="13" lean-forward="true" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/html+css/2.2超链接的使用.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="17" column="120" lean-forward="true" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="120" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/html+css/1.5文本标记.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="6" column="22" lean-forward="true" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="22" />
+        <state relative-caret-position="357">
+          <caret line="17" column="120" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="120" />
         </state>
       </provider>
     </entry>
@@ -694,6 +585,55 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
           <caret line="11" column="65" selection-start-line="11" selection-start-column="65" selection-end-line="11" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html+css/1.5文本标记.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="6" column="22" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html+css/3.1css式样.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-435">
+          <caret line="24" column="63" lean-forward="true" selection-start-line="24" selection-start-column="63" selection-end-line="24" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html+css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html+css/2.6表单设计.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="762">
+          <caret line="65" column="9" lean-forward="true" selection-start-line="65" selection-start-column="9" selection-end-line="65" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html+css/2.5框架详解与标记.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="25" column="7" lean-forward="true" selection-start-line="25" selection-start-column="7" selection-end-line="25" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html+css/2.4简单的网页布局.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="21" column="7" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html+css/2.3表格标记.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="35" column="107" selection-start-line="35" selection-start-column="84" selection-end-line="35" selection-end-column="107" />
         </state>
       </provider>
     </entry>

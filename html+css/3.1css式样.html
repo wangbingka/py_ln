@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--
+1.<!DOCTYPE>，声明标签，必须是HTML文档的第一行，在<html>标签之前。
+    1).此声明不是html标签,是指示web浏览器关于页面使用哪个html版本进行编写的指令
+    2).在HTML4.01中，声明引用DTD，是因为基因SGML,HTML5.0不基于SGML,所以不用引用DTD。
+2.css样式，内链样式表,嵌入到各个双标记中，例如:<body style="background-color:green;color:red;">
+3.css样式，嵌入式样式表，需要将式样放入<head>...</head>中。
+     用法:<head>
+            <meta charset="utf-8">
+                   <title>css式样</title>
+                   <style type="text/css">
+                   body{
+                   background-color:green;
+                       color:red;
+
+                   }
+                   p{
+                   background-color:red;
+                       color:green;
+
+                   }
+                   </style>
+          </head>
+3.引入式样式表，从外部引入式样，css文件需要和程序在同一个目录下否则和之前的处理方法类似
+    用法：<link rel="stylesheet" type="text/css" href="style.css">
+
+-->
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>css式样</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <!--<style type="text/css">-->
+               <!--body{-->
+               <!--background-color:green;-->
+                   <!--color:red;-->
+
+               <!--}-->
+            <!--p{-->
+               <!--background-color:red;-->
+                   <!--color:green;-->
+
+               <!--}-->
+               <!--</style>-->
+    </head>
+    <!--<body style="background-color:green;color:#fff;">-->
+    <body >
+        <!--<h1 style="color:#fff;">css使用样式</h1>-->
+        <h1 >css使用样式</h1>
+        <p >css使用样式</p>
+
+
+    </body>
+</html>
