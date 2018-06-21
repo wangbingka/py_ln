@@ -42,6 +42,7 @@
     <SUITE FILE_PATH="coverage/py_ln$tkinter5.coverage" NAME="tkinter5 Coverage Results" MODIFIED="1528253164110" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/py_ln$ex20180613.coverage" NAME="ex20180613 Coverage Results" MODIFIED="1528960578640" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/py_ln$task3_1.coverage" NAME="task3_1 Coverage Results" MODIFIED="1527521520754" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+<<<<<<< HEAD
     <SUITE FILE_PATH="coverage/py_ln$task7.coverage" NAME="task7 Coverage Results" MODIFIED="1528379068158" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/py_ln$test3.coverage" NAME="test3 Coverage Results" MODIFIED="1528435970176" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/py_ln$task4.coverage" NAME="task4 Coverage Results" MODIFIED="1528384248912" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -49,6 +50,24 @@
     <SUITE FILE_PATH="coverage/py_ln$yield1_py.coverage" NAME="yield1,py Coverage Results" MODIFIED="1528640618051" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/py_ln$tkinter2.coverage" NAME="tkinter2 Coverage Results" MODIFIED="1528206327230" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/py_ln$task7_1.coverage" NAME="task7_1 Coverage Results" MODIFIED="1528386272228" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+=======
+    <SUITE FILE_PATH="coverage/py_ln$ex201806134.coverage" NAME="ex201806134 Coverage Results" MODIFIED="1529509704391" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/py_ln$task4.coverage" NAME="task4 Coverage Results" MODIFIED="1528384248912" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/py_ln$task7_1.coverage" NAME="task7_1 Coverage Results" MODIFIED="1528386272228" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/py_ln$task7.coverage" NAME="task7 Coverage Results" MODIFIED="1528379068158" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/py_ln$test3.coverage" NAME="test3 Coverage Results" MODIFIED="1528435970176" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/py_ln$test6.coverage" NAME="test6 Coverage Results" MODIFIED="1528369720173" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/py_ln$tkinter4.coverage" NAME="tkinter4 Coverage Results" MODIFIED="1528261699406" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/py_ln$ex20180620.coverage" NAME="ex20180620 Coverage Results" MODIFIED="1529511040682" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/py_ln$datanalisy1.coverage" NAME="datanalisy1 Coverage Results" MODIFIED="1528201217618" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/py_ln$class3.coverage" NAME="class3 Coverage Results" MODIFIED="1527763908534" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/py_ln$test7.coverage" NAME="test7 Coverage Results" MODIFIED="1528369743322" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/py_ln$test1.coverage" NAME="test1 Coverage Results" MODIFIED="1528552014033" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/py_ln$test4.coverage" NAME="test4 Coverage Results" MODIFIED="1528369603044" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/py_ln$tuple_dict20180613.coverage" NAME="tuple&amp;dict20180613 Coverage Results" MODIFIED="1528900218145" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/py_ln$tkentry1.coverage" NAME="tkentry1 Coverage Results" MODIFIED="1528125350358" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/py_ln$task7_2.coverage" NAME="task7_2 Coverage Results" MODIFIED="1528366013538" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+>>>>>>> 628ea1450ee48099d68bb6a25a8e042df87a0842
     <SUITE FILE_PATH="coverage/py_ln$class4.coverage" NAME="class4 Coverage Results" MODIFIED="1527998832595" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/py_ln$tkstatusBar.coverage" NAME="tkstatusBar Coverage Results" MODIFIED="1528206183120" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/py_ln$1234.coverage" NAME="1234 Coverage Results" MODIFIED="1528369444835" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -71,6 +90,7 @@
     <favorites_list name="py_ln" />
   </component>
   <component name="FileEditorManager">
+<<<<<<< HEAD
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="2.3表格标记.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/html+css/2.3表格标记.html">
@@ -87,12 +107,20 @@
             <state relative-caret-position="378">
               <caret line="21" column="7" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
             </state>
+=======
+    <leaf>
+      <file leaf-file-name="test1.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test1.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-414" />
+>>>>>>> 628ea1450ee48099d68bb6a25a8e042df87a0842
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="2.5框架详解与标记.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/html+css/2.5框架详解与标记.html">
+      <file leaf-file-name="ex20180620.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ex20180620.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="132">
               <caret line="26" column="49" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="49" />
             </state>
@@ -122,6 +150,10 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="144">
               <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+=======
+            <state relative-caret-position="42">
+              <caret line="30" column="19" lean-forward="true" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
+>>>>>>> 628ea1450ee48099d68bb6a25a8e042df87a0842
             </state>
           </provider>
         </entry>
@@ -131,8 +163,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="CSS File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -156,9 +189,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/class4.py" />
         <option value="$PROJECT_DIR$/tkinter2.py" />
         <option value="$PROJECT_DIR$/Tkinter1.py" />
+=======
+>>>>>>> 628ea1450ee48099d68bb6a25a8e042df87a0842
         <option value="$PROJECT_DIR$/task6.py" />
         <option value="$PROJECT_DIR$/tkinter1.py" />
         <option value="$PROJECT_DIR$/tkinter3.py" />
@@ -207,6 +243,12 @@
         <option value="$PROJECT_DIR$/html+css/2.5网页的右部.html" />
         <option value="$PROJECT_DIR$/html+css/2.5网页的左部.html" />
         <option value="$PROJECT_DIR$/html+css/2.6表单设计.html" />
+<<<<<<< HEAD
+=======
+        <option value="$PROJECT_DIR$/html+css/style.css" />
+        <option value="$PROJECT_DIR$/html+css/3.1css式样.html" />
+        <option value="$PROJECT_DIR$/ex20180620.py" />
+>>>>>>> 628ea1450ee48099d68bb6a25a8e042df87a0842
       </list>
     </option>
   </component>
@@ -255,6 +297,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="settings.editor.selected.configurable" value="preferences.editor" />
   </component>
   <component name="RecentsManager">
@@ -274,7 +317,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.ex201806134">
+  <component name="RunManager" selected="Python.ex20180620">
     <configuration name="Unnamed" type="PythonConfigurationType" factoryName="Python">
       <module name="py_ln" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -289,25 +332,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../Anaconda3" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="class2" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="py_ln" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/class2.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -346,6 +370,25 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ex201806134.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
+    <configuration name="ex20180620" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="py_ln" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ex20180620.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -411,19 +454,19 @@
     <list>
       <item itemvalue="Python.Unnamed" />
       <item itemvalue="Python.file1_1" />
-      <item itemvalue="Python.class2" />
       <item itemvalue="Python.ex20180613" />
       <item itemvalue="Python.tuple&amp;dict20180613" />
       <item itemvalue="Python.py_func20180613" />
       <item itemvalue="Python.ex201806134" />
+      <item itemvalue="Python.ex20180620" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.ex20180620" />
         <item itemvalue="Python.ex201806134" />
         <item itemvalue="Python.ex20180613" />
         <item itemvalue="Python.py_func20180613" />
         <item itemvalue="Python.tuple&amp;dict20180613" />
-        <item itemvalue="Python.class2" />
       </list>
     </recent_temporary>
   </component>
@@ -445,13 +488,21 @@
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
+<<<<<<< HEAD
       <window_info active="true" anchor="bottom" id="Event Log" order="12" side_tool="true" visible="true" weight="0.3272727" />
+=======
+      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.117219076" side_tool="true" visible="true" weight="0.48913044" />
+>>>>>>> 628ea1450ee48099d68bb6a25a8e042df87a0842
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Python Console" order="10" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.4909091" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.8827809" weight="0.48913044" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.3272727" />
+<<<<<<< HEAD
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48398575" visible="true" weight="0.11270802" />
+=======
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.48398575" visible="true" weight="0.11479386" />
+>>>>>>> 628ea1450ee48099d68bb6a25a8e042df87a0842
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="5" weight="0.32927817" />
       <window_info anchor="right" id="SciView" order="3" weight="0.32927817" />
@@ -486,6 +537,7 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/task7_2.py" />
     <entry file="file://$PROJECT_DIR$/Error1.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -495,6 +547,8 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test5.py" />
+=======
+>>>>>>> 628ea1450ee48099d68bb6a25a8e042df87a0842
     <entry file="file://$PROJECT_DIR$/test6.py" />
     <entry file="file://$PROJECT_DIR$/test7.py" />
     <entry file="file://$PROJECT_DIR$/test4.py" />
@@ -584,9 +638,7 @@
     <entry file="file://$PROJECT_DIR$/class2.py" />
     <entry file="file://$PROJECT_DIR$/test1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="36" column="17" selection-start-line="36" selection-start-column="17" selection-end-line="36" selection-end-column="17" />
-        </state>
+        <state relative-caret-position="-414" />
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/﻿data_audit/data_audit.py" />
@@ -609,15 +661,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/html+css/2.4简单的网页布局.html">
+    <entry file="file://$PROJECT_DIR$/html+css/2.5网页的右部.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="378">
           <caret line="21" column="7" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
+=======
+        <state relative-caret-position="147">
+          <caret line="7" column="16" lean-forward="true" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
+>>>>>>> 628ea1450ee48099d68bb6a25a8e042df87a0842
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/html+css/2.3表格标记.html">
+    <entry file="file://$PROJECT_DIR$/html+css/2.5网页的底部.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="111">
           <caret line="38" column="79" selection-start-line="38" selection-start-column="79" selection-end-line="38" selection-end-column="79" />
         </state>
@@ -628,11 +686,22 @@
     <entry file="file://$PROJECT_DIR$/html+css/1.4格式标记.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
+=======
+        <state relative-caret-position="126">
+          <caret line="6" column="22" lean-forward="true" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html+css/1.4格式标记.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+>>>>>>> 628ea1450ee48099d68bb6a25a8e042df87a0842
           <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/html+css/2.2超链接的使用.html">
+<<<<<<< HEAD
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="17" column="120" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="120" />
@@ -641,23 +710,86 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/html+css/2.5网页的左部.html" />
     <entry file="file://$PROJECT_DIR$/html+css/2.5框架详解与标记.html">
+=======
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="26" column="49" selection-start-line="26" selection-start-column="49" selection-end-line="26" selection-end-column="49" />
+        <state relative-caret-position="357">
+          <caret line="17" column="120" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="120" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/html+css/2.6表单设计.html">
+    <entry file="file://$PROJECT_DIR$/html+css/2.5网页的左部.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="249">
-          <caret line="17" column="4" lean-forward="true" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
+        <state relative-caret-position="168">
+          <caret line="11" column="65" selection-start-line="11" selection-start-column="65" selection-end-line="11" selection-end-column="65" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/html+css/1.5文本标记.html">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="6" column="22" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html+css/3.1css式样.html">
+>>>>>>> 628ea1450ee48099d68bb6a25a8e042df87a0842
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-435">
+          <caret line="24" column="63" lean-forward="true" selection-start-line="24" selection-start-column="63" selection-end-line="24" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/html+css/2.6表单设计.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="17" column="4" lean-forward="true" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
+=======
+    <entry file="file://$PROJECT_DIR$/html+css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html+css/2.6表单设计.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="762">
+          <caret line="65" column="9" lean-forward="true" selection-start-line="65" selection-start-column="9" selection-end-line="65" selection-end-column="9" />
+>>>>>>> 628ea1450ee48099d68bb6a25a8e042df87a0842
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html+css/2.5框架详解与标记.html">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="108">
           <caret line="6" column="22" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="22" />
+=======
+        <state relative-caret-position="111">
+          <caret line="25" column="7" lean-forward="true" selection-start-line="25" selection-start-column="7" selection-end-line="25" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html+css/2.4简单的网页布局.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="21" column="7" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html+css/2.3表格标记.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="35" column="107" selection-start-line="35" selection-start-column="84" selection-end-line="35" selection-end-column="107" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ex20180620.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="30" column="19" lean-forward="true" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
+>>>>>>> 628ea1450ee48099d68bb6a25a8e042df87a0842
         </state>
       </provider>
     </entry>
