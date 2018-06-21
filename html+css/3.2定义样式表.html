@@ -5,24 +5,81 @@
         p{属性:属性值;属性:属性值;...}，p可以叫做超频选择器，定义那个标记中的内容执行其中的样式
         一个选择器可以控制若干个样式属性。
 2.Class定义:
-    1).<p class="p">...</p>
+    1).<p class="pp">...</p>
     2).class定义以"."开始,例如：.p{属性:属性值;属性:属性值;}
+            .pp{color:green;font-size:28;}
+            .pp p{color:red;font-size:35;}
+3.ID定义，ID只能出现一次，是唯一的
+    1).<p id="pp">...</p>
+    2).ID定义是"#"开始的
+       #pp{属性:属性值;属性:属性值;}
+       #pp p{属性:属性值;属性:属性值;}
+4.优先级问题：
+    1).ID>Class>HTML
+    2).同样的优先级，先执行离元素最近的后出现，例如:#p{color:red;} #p{color:green;},会执行后面的green。
+5.组合选择器:h1,h2,h3,p,.p,#p{属性:属性值;属性:属性值;},选择器组合中间用","隔开
+6.伪元素选择器,用于对于链接不同的操作显示不同的式样，
+    a:link,正常连接的式样
+    a:hover,鼠标放上去的式样
+    a:active,选择链接时的式样
+    a:visited,已经访问过的链接的式样
+    用法:    a:link{color:red}
+            a:hover{color:green;}
+            a:active{color:orange}
+            a:visited{color:blue;}
+
+
+
 -->
 
 <html>
     <head>
-        <meta chaset="utf-8">
+        <meta charset="utf-8">
         <title>定义CSS样式</title>
         <style type="text/css">
-            /*p{color:red;font-size:28;}*/
+            /*p{color:red;font-size:28;}
             .p{color:green;font-size:28;}
-
+            .p p{color:red;font-size:35;}
+            #ppp {color:orange;font-size:35;}
+            #ppp p{color:blue;font-size:35;}
+            #ppp p{color:aqua;font-size:35;}
+            h1,h2,h3,h4,p,.div,#div{color:red}
+            */
+            a:link{color:red}
+            a:hover{color:green;}
+            a:active{color:orange}
+            a:visited{color:blue;}
         </style>
     </head>
     <body>
-    <div></div>
-<p>麦子学院</p>
-<div class="p">麦子学院</div>
+    <div class="p">
+       <p>麦子学院</p>
+        麦子学院麦子学院
+    </div>
+        <div id="ppp">
+       <p>麦子学院</p>
+        麦子学院麦子学院
+    </div>
+        <div id="ppp" >
+       <p id="ppp" class="p">麦子学院</p>
+        麦子学院麦子学院
+    </div>
+    <h1>麦子学院</h1>
+    <h2>麦子学院</h2>
+    <h3>麦子学院</h3>
+    <h4>麦子学院</h4>
+    <p>麦子学院</p>
+    <div class="div">
+        麦子学院
+    </div>
+        <div id="div">
+        麦子学院
+    </div>
+    <a href="http://www.baidu.com" target="_blank">百度一下</a>
+    <a href="http://www.baidu.com" target="_blank">百度一下</a>
+    <a href="http://www.baidu.com" target="_blank">百度一下</a>
+    <a href="http://www.baidu.com" target="_blank">百度一下</a>
+    <a href="http://www.baidu.com" target="_blank">百度一下</a>
 </body>
 </html>
 
