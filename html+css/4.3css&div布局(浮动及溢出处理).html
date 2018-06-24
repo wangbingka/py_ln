@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--
+1.float,浮动属性:
+    1).left，左浮动，从左往右挨个显示
+    2).right,右浮动，从右往左显示，
+2.clear，清除浮动，值只有一个:both。可以放在需要生效的块状属性中，可以单独建一个块状属性，存储这些，
+    例如:.clear{clear:both;margin-bottom:10px;}
+    清除浮动，并两个块状属性之间间隔10个px。
+3.overflow，溢出处理，显示内容超出容器大小:
+    1).hidden，隐藏超过层能容纳的内容
+    2).scroll，无论内容是否超出层大小都添加滚动条
+    3).auto，超出时自动添加滚动条，不超出不添加。
+
+-->
+<html >
+<head>
+    <meta charset="UTF-8">
+    <title>4.3css&div(浮动及溢出处理)</title>
+    <style type="text/css">
+        body{
+            margin:0px;
+            padding:00px;
+        }
+        .div{
+            width:960px;
+            height:600px;
+            margin:0 auto;
+            background-color: #f1f1f1;
+        }
+        .left{
+            float:left;
+            width:260px;
+            height:460px;
+            background: #ccc;
+        }
+        .right{
+            float:right;
+            width:690px;
+            height:460px;
+            background: #ddd;
+            /*margin-bottom:10px;   <!--保证和下一块状属性的间距是10px-->*/
+        }
+        .clearboth{
+            clear: both;
+            margin-bottom: 10px;
+        }
+        .bottom{
+            clear:both;
+            height:200px;
+            width:960px;
+            background: red;
+        }
+        .jianjie{
+            width:260px;
+            height:400px;
+            background-color: green;
+            overflow:auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="div">
+        <div class="left">
+            <div class="jianjie">
+                麦子学院麦子学院麦子学院麦子学院麦子学院麦子学院麦子学院麦子学院麦子学院麦子学院麦子学院麦子学院麦子学院麦子学院麦子学院麦子学院麦子学院麦子学院麦子学院麦子学院麦子学院麦子学院麦子学院麦子学院麦子学院麦子学院麦子学院麦子学院麦子学院麦子学院麦子学院麦子学院麦子学院麦子学院麦子学院麦子学院麦子学院麦子学院麦子学院麦子学院麦子学院麦子学院麦子学院
+            </div>
+        </div>
+        <div class="right"></div>
+        <div class="clearboth"></div>
+        <div class="bottom"></div>
+    </div>
+
+</body>
+</html>

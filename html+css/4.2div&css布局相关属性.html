@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<!--
+1.position,定位方式：
+    1).relative，默认值，正常定位
+    2).absolute，根据父元素进行定位，要求父元素必须是relative正常定位。
+    3).fixed,根据浏览器窗口进行定位，不管如何拖拉，在浏览器显示位置都是固定的，默认是在左上角。
+    4).static，没有定位
+    5).inherit，继承
+2.定位，和position结合用，left左，right右，top顶，bottom顶部.
+    1).值为固定数值，用法，离左边10个元素开始: div{position:relative;left:10px;}
+3.z-index,层覆盖先后顺序(优先级)：
+    1).默认值都是0
+    2).数字越高，优先级越高，显示在上层外层
+    3).span是依托于div存在，层级是固定和对应div一致的
+4.display,显示属性:
+    1).none，层不显示，在审查属性中可看到；
+    2).block,块状显示，在元素后面换行，显示下一个块元素；
+        可以实现将span转换为div类似的显示。
+    3).inline,内联显示，多个块可以显示在一行内，
+        可以实现将div转换为span类似的显示
+-->
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>4.2div&css布局相关属性</title>
+    <style type="text/css">
+        body{
+            padding:0px;
+            margin:0px;
+            border:solid 0px;
+        }
+        /*
+        .div{
+            width:300px;
+            height:300px;
+            background-color:green;
+            position:relative;
+            left:10px;
+            top:10px;
+
+        }
+        span{
+            position: absolute;
+            background-color:#ff6600;
+            color:#fff;
+            top:10px;
+            right:0px;
+        }
+        .fixed{
+            position:fixed;
+            background-color:#ff6600;
+            color:#fff;
+            z-index:1;
+            display: none;
+
+        }
+        */
+        div{
+            background-color:green;
+            width:200px;
+            display: inline;
+        }
+        span{
+            background-color: red;
+            display:block;
+            width:200px;
+        }
+    </style>
+</head>
+<body>
+<!--
+        <div class="fixed">
+        <p>联系电话:111111</p>
+        <p>联系QQ:222222</p>
+        <p>地址:四川成都</p>
+                </div>
+<div class="div">
+
+    <span>浏览次数:222</span>
+</div>
+-->
+<div>麦子学院</div>
+<div>麦子学院</div>
+<div>麦子学院</div>
+<div>麦子学院</div>
+<span>麦子学院</span><span>麦子学院</span><span>麦子学院</span>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+</body>
+</html>
