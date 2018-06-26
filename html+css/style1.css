@@ -80,3 +80,65 @@ img{border:none;}
     font-size: 26px ;
     color:darkred;
 }
+
+/*导航*/
+.nav{
+    height:39px;
+    width:100%;
+    background:url("images/nav_bg.jpg") repeat-x;
+}
+.nav li{
+    list-style:none;
+    float:left;
+    line-height: 39px;
+    padding: 0px 30px;
+
+}
+.nav li.a,.nav li:hover{
+    background: url(images/nav_hover.jpg) repeat-x;
+}
+.nav a{
+    color:#fff;
+    font-size:16px;
+    text-decoration: none;
+}
+/*中间部分*/
+.ad{
+    margin-bottom:10px;
+}
+.tit{
+    padding-bottom:8px;
+    border-bottom:1px solid darkred;
+    position:relative;
+    margin-bottom: 10px;
+}
+.tit span{
+    position:absolute;
+    right:0px;
+    bottom:0px;
+}
+.tit a{
+    color:darkred;
+    text-decoration: none;
+}
+.jianjie{
+    width:540px;
+    height:450px;
+    margin-right: 20px;
+}
+.jj_c img{
+    float:left;
+    margin:0 10px 10px 0;
+}
+.jj_c p{
+    color:rgb(140,140,140);
+    text-indent: 32px;
+}
+.xinwen{
+    width:400px;
+    height:450px;
+}
+.chanpin{
+    widows: 100%;
+    height:300px;
+}
