@@ -6,17 +6,17 @@
 
 #计算1-2+3-4....+99-100的值
 
-start1 = 0
-count_num = 0
-while True:
-    if start1 ==101:
-        break
-    if start1%2 == 0:
-        count_num -=start1
-    if start1%2 != 0:
-        count_num +=start1
-    start1 +=1
-print(count_num)
+# start1 = 0
+# count_num = 0
+# while True:
+#     if start1 ==101:
+#         break
+#     if start1%2 == 0:
+#         count_num -=start1
+#     if start1%2 != 0:
+#         count_num +=start1
+#     start1 +=1
+# print(count_num)
 
 
 #先设定用户名和密码
