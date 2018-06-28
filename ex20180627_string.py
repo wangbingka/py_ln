@@ -9,6 +9,7 @@ import string
 
 # string.ascii_letters,返回一个从a到z+从A到Z的52个字母的顺序字符串
 print(string.ascii_letters)
+
 # string.ascii_lowercase,返回从a到z的26个字母的顺序字符串
 print(string.ascii_lowercase)
 print(string.ascii_uppercase)  # 从A到Z的26个字母组成的字串串
