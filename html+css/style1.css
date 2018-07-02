@@ -40,6 +40,8 @@ img{border:none;}
 .sousuo{
     width:330px;
     height:41px;
+    margin-top:10px;
+    margin-left: 100px;
 }
 .sousuo td{
     height:41px;
@@ -57,7 +59,7 @@ img{border:none;}
     line-height:35px;
     border:none;
     margin-top:2px;
-    width:200px;
+    width:240px;
 }
 .s_r{
     width:78px;
@@ -77,7 +79,8 @@ img{border:none;}
     margin-left:20px;
 }
 .dianhua span{
-    font-size: 26px ;
+    margin-left: 10px;
+    font-size: 20px ;
     color:darkred;
 }
 
@@ -262,16 +265,29 @@ img{border:none;}
     height: 205px;
     width: 40px;
 }
-.top_tool li{
-    font-size: 12px;
+.top_tool ul li{
+    float:left;
+    height: 60px;
+    width: 40px;
+    margin: 0 0;
+    position: relative;
+    font-size: 14px;
+    list-style: none;
+}
+.top_tool ul li a{
+    text-decoration:none;
 }
 .top_tool li  span{
     height: 41px;
     width: 40px;
-    display: none;
+    display: block;
+    position: absolute;
+    margin-left: 8px;
+    color:black;
 }
 .top_tool li a:hover span{
     display: block;
+    color: blue;
 }
 
 
