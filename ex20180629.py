@@ -4,7 +4,33 @@
 # @Author  : bingka.wang 
 # @Email   : wangbingka@126.com
 
+import time
 
+def sleep():
+    start_time = time.time()
+    time.sleep(1)
+    end_time =time.time()
+    use_time = end_time -start_time
+    print(use_time)
+
+
+def time_dec(f):
+    def wrap(*args,**kwargs):
+        start_time = time.time()
+        # time.sleep(1)
+        f(*args,**kwargs)
+        end_time =time.time()
+        use_time = end_time -start_time
+        print(use_time)
+    return wrap
+
+def sleep(n):
+    time.sleep(n)
+
+sleep = time_dec(sleep)
+sleep(1)
+
+@time_dec
 def method1(self):
     fbnq_list = [1,1]
     if self == 1:
@@ -19,6 +45,7 @@ def method1(self):
             i +=1
         return fbnq_list
 
+@time_dec
 def method2(self):
     fbnq_list = [1,1]
     if self == 1:
@@ -31,13 +58,6 @@ def method2(self):
             fbnq_list.append(a)
         return fbnq_list
 
-print(method1(1))
-print(method1(2))
-print(method1(4))
-
-print(method2(1))
-print(method2(2))
-print(method2(4))
 
 
 #此方法严重缺陷，递归层数有限制：
@@ -49,6 +69,8 @@ def fibo(self):
         return 1
     else:
         return fibo(self-1)+fibo(self-2)
+
+@time_dec
 def method3(self):
     fbnq_list = []
     for i in range(1,int(self)+1):
@@ -56,3 +78,30 @@ def method3(self):
     return fbnq_list
 
 print(method3(20))
+
+
+def fibo3(self,fibo_dict):
+    #缓存命中的时候
+    if fibo_dict.get(self):
+        return fibo_dict.get(self)
+    if self == 1:
+        return 1
+    elif self == 2:
+        return 1
+    else:
+        data = fibo3(self-1,fibo_dict)+fibo3(self-2,fibo_dict)
+        #生成缓存
+        fibo_dict.update({self:data})
+        return data
+
+@time_dec
+def method4(self):
+    fbnq_list = []
+    fibo_dict = {}
+    for i in range(1,int(self)+1):
+        fbnq_list.append(fibo3(i,fibo_dict))
+    return fbnq_list
+
+print(method1(1000000))
+print(method2(1000000))
+print(method4(1000000))
