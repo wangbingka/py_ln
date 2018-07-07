@@ -102,6 +102,11 @@ def method4(self):
         fbnq_list.append(fibo3(i,fibo_dict))
     return fbnq_list
 
-print(method1(1000000))
-print(method2(1000000))
-print(method4(1000000))
+print(method1(100000))
+print(method2(100000))
+print(method4(100000))
+
+
+if __name__ == '__main__':
+    # sleep = time_dec(sleep)
+    sleep(2)
