@@ -1,31 +1,8 @@
 <!--
-<<<<<<< HEAD
 1.form,表单双标记，
   1).action,服务器端地址（接受表单内容的地址）
   2).name，表单名称
   3).method
--->
-
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>表单设记</title>
-    </head>
-<body>
-    <br method="post">
-        <br>账号：<input type="text" name="name"  value="" size="10" maxlength="11"></br>
-        <br>密码：<input type="password" name="password" size="10" maxlength="8"></br>
-        <br>
-
-
-    </br>
-        <br>
-        <input type="submit" size="10" >
-        <input type="reset" size="10" >
-        <input type="button" size="10"  value="按钮"> </br>
-    </form>
-
-=======
 1、form，双标记，用法:<form>内容</form>
     1).action，服务器端地址，接受表单内容的地址，可以是url也可以是html，如果不需要则制定其属性为"no",用法<form action="no"。
     2).method,传送数据的方式，默认值get最长8192个字符，不具备保密性；值post没有数据大小限制，直接不显示传送给服务器中，保密。
@@ -55,9 +32,30 @@
     3).name，name值，传输时需要
     4).size,长度
 
+--!>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>表单设记</title>
+    </head>
+<body>
+    <form>
+    <br method="post">
+        <br>账号：<input type="text" name="name"  value="" size="10" maxlength="11"></br>
+        <br>密码：<input type="password" name="password" size="10" maxlength="8"></br>
+        <br>
 
 
-    -->
+    </br>
+        <br>
+        <input type="submit" size="10" >
+        <input type="reset" size="10" >
+        <input type="button" size="10"  value="按钮"> </br>
+    </form>
+
+
 
 <html>
 <head>
@@ -92,6 +90,5 @@
         <input type="button" name="button" size="6"  value="按钮">
     </br>
 </form>
->>>>>>> 628ea1450ee48099d68bb6a25a8e042df87a0842
 </body>
 </html>
