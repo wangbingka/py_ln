@@ -8,8 +8,13 @@
 <body>
 
 <div class="nav" id="nav">
-    <a class="reg" href="" id="reg" target="_blank">注册</a>
-    <a class="login" href="" id="login">登录</a>
+    <span class="reg y">
+        <a  href="" id="reg" target="_blank">注册</a>
+    </span>
+    <span class="login y">
+        <h3  id="login">登录</h3>
+    </span>
+
 </div>
 
 <!--<div class="background"></div>-->
@@ -17,20 +22,23 @@
     <div class="left">
             <img src="login-left.png" />
             </div>
+
     <div class="right-top">
         <span class="lg"><h1>登录</h1></span>
-        <span class="close"><a ><img src="close.jpg" /></a></span>
+        <span ><h3 class="close" id="close">x</h3></span>
     </div>
     <div class="right-mid">
-    <form>
-    <br method="post">
-        <br>账号：<input type="text" name="name"  value="" size="10" maxlength="11"></br>
-        <br>密码：<input type="password" name="password" size="10" maxlength="8"></br>
-        <br>
-        <input type="submit" size="" value="登录">
-        <input type="reset" size="10"  value="重置">
-    </form>
+            <form method="post" class="form">
+                <br><input type="text" size="60" placeholder="请出入邮箱账号/手机号"  class="zhanghao"  id="zhanghao"></br>
+                <br><input type="password" name="password" placeholder="请出入密码" size="60" maxlength="10" minlength="6"/></br>
+            </form>
+            <span class="nocount">还没有账号？</span>
+            <span><a href="" target="_blank" >立即注册</a></span>
+            <span><a href="" target="_blank" >忘记密码</a></span>
         </div>
+    <div class="right-bottom">
+            <input type="submit" size="80" value="登录" id="veryfy" class="veryfy"/>
+    </div>
 </div>
 
 
