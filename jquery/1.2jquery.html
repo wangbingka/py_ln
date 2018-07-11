@@ -1,0 +1,43 @@
+<!--
+1.安装/放置jquery位置，项目，public/js下，建议尽量放本地，不要放国外的cdn文件
+1.js引入位置，放入什么地方，从什么地方开始执行引入，
+    1、页面效果与html元素关系不大的情况下，建议放在<head></head>中
+    2、body中
+    3、body跟html之间，html加载完成，不至于造成jquery错误
+    4、引入语句,尽量不要在引入的位置里面编写jquery代码
+    <script type="text/javascript"  src="public/js/jquery-3.3.1.js"></script>
+2.jquery方式：
+    1)、$(document).ready(function () {
+                alert('js work!')
+            })
+    2)、$(function() {
+                alert('js work!')
+
+            })
+-->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1.2jquery概况</title>
+    <script type="text/javascript"  src="public/js/jquery-3.3.1.js"></script>
+</head>
+<body>
+
+</body>
+    <script>
+        // 第一种校验引入成功与否
+            // $(document).ready(function () {
+            //     alert('jquery  work!')
+            // })
+        // 另一种校验引入方法
+            $(function() {
+                alert('jquery work!')
+
+            })
+
+    </script>
+</html>

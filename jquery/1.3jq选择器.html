@@ -1,0 +1,155 @@
+<!--
+1、扳机操作区需要定义id/class。
+2、常见的操作步骤：
+    1)、选择扳机(操作按钮)，即操作的位置的id/class名称
+    2)、选择要被操作的位置，即即将被改变的位置的id/class名称
+    3)、选择操作位置的某个属性，进行下一步操作，包括并不仅限于改变值/提示消息等等
+2、选择器,
+    选择id方法:$('#idname')
+    选择class方法:$('.classname')
+    选择元素选择器，比如有div、span、p等，方法：$('span')
+    选择后面跟着操作，比如某个属性=某个value值，即改变某个属性的值
+3、选择器的混合使用方式：
+    1).并列：$("div,span,p.mgClass"),id/class/元素可以混合使用
+    2).家族：$("form input")，就是家族一条路的选择，全部选中
+    3).父子：$("#li_1>span"),和家族很类似
+    3).紧邻：$("label+input")，只选择后面一个input的，前面的不选择
+    4).同辈(后辈)：$("form~input")，选择form后面一个所有同一层次的元素，不包括前面一个下面的
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>1.3jq选择器</title>
+    <script type="text/javascript" src="public/js/jquery-3.3.1.js"></script>
+    <style>
+        body{text-align: center;}
+        *{
+            margin:0px;
+            padding:0px;
+            cursor:pointer;
+            text-decoration: none;
+        }
+        li{list-style:none;clear:both;}
+        div{margin:0px auto;width:100%;clear:both;text-align: center;}
+        span{width:200px;height:40px;display: block;
+            border: 1px solid #000;float:left;text-align: center;vertical-align: center;}
+        .jingshan{background-color:red;}
+    </style>
+</head>
+<body>
+<div>
+    <ul class="">
+        <li id="li_1"><span class="class_1">class1</span><span class="class_1">class1</span><span class="class_1">class1</span></li>
+        <li id="li_2"><span class="class_2">class1</span><span class="class_2">class1</span><span class="class_2">class1</span></li>
+        <li id="li_3"><span id="ID1">ID1</span><span id="ID2">ID2</span><span id="ID3">ID3</span></li>
+        <li id="li_4"><span>normal</span><span>normal</span><<span>normal</span></li>
+        <li id="li_5"><span><a href="https://www.baidu.com" target="_blank">百度</a></span><span>新浪</span><span>阿里</span></li>
+    </ul>
+</div>
+<br/><br/>
+<hr/>
+<h2>这里是操作按扭区域</h2>
+<span id="sp1">ID1选择器</span>
+<span id="sp2">ID2选择器</span>
+<span id="sp3">ID3选择器</span>
+<span class="sp4">class1选择器</span>
+<span id="sp5">class2选择器</span>
+<span id="sp6">span选择器</span>
+<span id="sp7">ID1,ID2,ID3 选择器</span>
+<span id="sp8">class1,class2选择器</span>
+<span id="sp9">ID1,class2选择器</span>
+<span id="sp10">ul,span家族选择器</span>
+<span id="sp11">#li_1>span父子选择器</span>
+<span id="sp12">#ID1+span紧邻选择器</span>
+<span id="sp13">#ID1~span同辈选择器</span>
+<span id="sp14">.class_1:odd奇数选择器</span>
+<span id="sp15">.class_1:even偶数选择器</span>
+<span id="sp16">#li_5 span:has(a),函数span中有a元素的，选择器</span>
+</body>
+<script>
+    $(function () {
+        // alert('jq works!');
+        // 扳机选择器
+        $("#sp1").click(function () {  //选中操作选择器，并点击时的反应
+            // alert('it works!')
+            // id选择区，后面的toggleClass是选中后对应的操作改动
+            $('#ID1').toggleClass('jingshan');
+        });
+        $("#sp2").click(function () {  //选中操作选择器，并点击时的反应
+            // id选择区，后面的toggleClass是选中后对应的操作改动
+            $('#ID2').toggleClass('jingshan');
+        });
+        $("#sp3").click(function () {  //选中操作选择器，并点击时的反应
+            // id选择区，后面的toggleClass是选中后对应的操作改动
+            $('#ID3').toggleClass('jingshan');
+        });//
+        // class 选择器
+        // 扳机选择器
+        $(".sp4").click(function () {  //选中操作选择器，并点击时的反应
+            // class选择区，后面的toggleClass是选中后对应的操作改动
+            $('.class_1').toggleClass('jingshan');
+        });
+        $("#sp5").click(function () {  //选中操作选择器，并点击时的反应
+            // class选择区，后面的toggleClass是选中后对应的操作改动
+            $('.class_2').toggleClass('jingshan');
+        });
+        // 元素 选择器
+        $("#sp6").click(function () {  //选中操作选择器，并点击时的反应
+            // class选择区，后面的toggleClass是选中后对应的操作改动
+            $('span').toggleClass('jingshan');
+        });
+        // 组合选择器
+        // 并列选择器
+        $("#sp7").click(function () {  //选中操作选择器，并点击时的反应
+            // class选择区，后面的toggleClass是选中后对应的操作改动
+            $('#ID1,#ID2,#ID3').toggleClass('jingshan');
+        });
+        $("#sp8").click(function () {  //选中操作选择器，并点击时的反应
+            // class选择区，后面的toggleClass是选中后对应的操作改动
+            $('.class_1,.class_2').toggleClass('jingshan');
+        });
+        $("#sp9").click(function () {  //选中操作选择器，并点击时的反应
+            // class选择区，后面的toggleClass是选中后对应的操作改动
+            $('#ID1,.class_2').toggleClass('jingshan');
+        });
+        // 家族选择器，全家全部被选中
+        $("#sp10").click(function () {  //选中操作选择器，并点击时的反应
+            // class选择区，后面的toggleClass是选中后对应的操作改动
+            $('ul span').toggleClass('jingshan');
+        });
+        // 父子选择器
+        $("#sp11").click(function () {  //选中操作选择器，并点击时的反应
+            // class选择区，后面的toggleClass是选中后对应的操作改动
+            $('#li_1>span').toggleClass('jingshan');
+        });
+        // 紧邻选择器
+        $("#sp12").click(function () {  //选中操作选择器，并点击时的反应
+            // class选择区，后面的toggleClass是选中后对应的操作改动
+            $('#ID1+span').toggleClass('jingshan');
+        });
+        // 同辈选择器
+        $("#sp13").click(function () {  //选中操作选择器，并点击时的反应
+            // class选择区，后面的toggleClass是选中后对应的操作改动
+            $('#ID1~span').toggleClass('jingshan');
+        });
+        // 伪类
+        // 奇偶
+        $("#sp14").click(function () {  //选中操作选择器，并点击时的反应
+            // odd，奇数,元素第一个开头为0，所以第一个为偶数，第二个为奇数
+            $('.class_1:odd').toggleClass('jingshan');
+        });
+        $("#sp15").click(function () {  //选中操作选择器，并点击时的反应
+            // even,偶数
+            $('.class_1:even').toggleClass('jingshan');
+        });
+        // 函数
+        $("#sp16").click(function () {  //选中操作选择器，并点击时的反应
+            // even,偶数
+            $('#li_5 span:has(a)').toggleClass('jingshan');
+        });
+
+    })
+</script>
+</html>
