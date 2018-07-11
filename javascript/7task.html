@@ -8,11 +8,11 @@
 <body>
 
 <div class="nav" id="nav">
-    <span class="reg y">
+    <span class="reg">
         <a  href="" id="reg" target="_blank">注册</a>
     </span>
-    <span class="login y">
-        <h3  id="login">登录</h3>
+    <span class="login" id="login">
+        登录
     </span>
 
 </div>
@@ -30,7 +30,9 @@
     <div class="right-mid">
             <form method="post" class="form">
                 <br><input type="text" size="60" placeholder="请出入邮箱账号/手机号"  class="zhanghao"  id="zhanghao"></br>
-                <br><input type="password" name="password" placeholder="请出入密码" size="60" maxlength="10" minlength="6"/></br>
+                <sapn>
+                <br><input type="password" name="password" placeholder="请出入密码" size="60" id="mima"/></br>
+                </sapn>
             </form>
             <span class="nocount">还没有账号？</span>
             <span><a href="" target="_blank" >立即注册</a></span>
@@ -38,6 +40,10 @@
         </div>
     <div class="right-bottom">
             <input type="submit" size="80" value="登录" id="veryfy" class="veryfy"/>
+    </div>
+    <div class="error">
+        账号不能为空！
+    </div>
     </div>
 </div>
 

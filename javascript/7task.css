@@ -1,17 +1,35 @@
-/*.background {*/
-    /*display: none;*/
-    /*position:fixed;*/
-    /*top:0px;*/
-    /*left:0px;*/
-    /*width:100%;*/
-    /*height:100%;*/
-    /*background-color:#fff;*/
-    /*background:-moz-radial-gradient(50% 50%, #fff, #000);!*gradient for firefox*!*/
-    /*background:-webkit-radial-gradient(50% 50%, #fff, #000);!*new gradient for webkit *!*/
-    /*background:-webkit-gradient(radial, 0 50%, 0 50%, from(#fff), to(#000));!*the old grandient for webkit*!*/
-    /*opacity:0.5;*/
-    /*filter:Alpha(opacity=50);*/
-/*}*/
+.nav{
+    float: right;
+    margin-right: 80px;
+    width: 380px;
+    height:100px;
+    font-size: 30px;
+}
+.nav .reg{
+    float: left;
+    display: block;
+    line-height: 100px;
+    background-color: green;
+    color:white;
+    width: 140px;
+    height:100px;
+    margin-right:10px;
+    text-align:center;
+}
+.nav .reg a {
+    text-decoration: none;
+}
+.nav .login{
+    float: left;
+    display: block;
+    line-height: 100px;
+    background-color: orange;
+    width: 140px;
+    text-decoration: none;
+    height:100px;
+    margin-right:10px;
+    text-align:center;
+}
 .login-page {
     display: none;
     position:fixed;
@@ -38,20 +56,22 @@
     float:left;
     width:793px;
     height:141px;
-    background: #ddd;
     border-bottom-style:solid;
+    margin-top: 20px;
         }
 .login-page .right-top .lg{
+    margin-left: 40px;
     float:left;
-    width:652px;
+    width:592px;
     height:141px;
-    background: #ddd;
+    color:green;
+    font-size: 24px;
 }
 .login-page .right-top .close{
     float:right;
     width:141px;
-    height:141px;
-    background: #ddd;
+    font-size:40px;
+    color:orange;
 }
 .login-page .right-mid{
     float:left;
@@ -59,8 +79,9 @@
     height:480px;
     background:white;
     font-size: 40px;
-    margin-top: 40px;
+    margin-top: 20px;
         }
+
 
 .login-page .right-mid input{
     height:70px;
@@ -84,3 +105,14 @@
     background: green;
     width: 540px;
 }
+
+.login-page .error {
+    display: none;
+    float:left;
+    width:793px;
+    height:100px;
+    background:white;
+    font-size: 20px;
+    margin-left: 650px;
+    color: red;
+        }

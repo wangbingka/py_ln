@@ -16,16 +16,27 @@ window.onload =function () {
     var veryfy = document.getElementById('veryfy');
     function check(){
 　　 var filter = /(^(1[35678]\d{9})$)|(^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$)/i;
- 　　var zhangHao = document.getElementById('zhanghao').value;
- 　　if(zhangHao === ""){ //输入不能为空
- 　　　　alert("账号不能为空!");
+ 　　var zhangHao = document.getElementById('zhanghao');
+     var mimaPd = document.getElementById('mima').value;
+     var errorMessage = document.querySelector('.error');
+ 　　if(zhangHao.value === ""){ //输入不能为空
+     errorMessage.innerHTML = '账号不能为空';
+     errorMessage.style.display = "block";
+ // 　　　　 　　　　alert("账号不能为空!");
 　　　　return false;
-　　}else if(!filter.test(zhangHao)){
- 　　　　alert("账号格式错误!");
+　　}else if(!filter.test(zhangHao.value)){
+     errorMessage.innerHTML = '账号格式错误!';
+     errorMessage.style.display = "block";
+ // 　　　　alert("账号格式错误!");
 　　　　return false;
-　　}else{
-　　　　return true;
-　　}
+　　}else if ((mimaPd.length>11)||(mimaPd.length<6)) {
+     errorMessage.innerHTML = '密码长度错误!';
+     errorMessage.style.display = "block";
+        // alert("密码长度错误!");
+        return false;
+        } else {
+     window.location.href="7task.html";
+   }　
  }
     veryfy.addEventListener('click',check,false);
 };
