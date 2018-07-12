@@ -72,7 +72,7 @@
 <br/><br/>
 <div>
     <input type="text" name="in_1" value="in_val_1">
-    <input type="text" name="in_3" value="in_val_2">
+    <input type="text" name="in_3" value="in_val_3">
     <input type="text" name="on_3" value="in_val_3">
     <input type="text" name="on_4" value="in_val_4">
 </div>
@@ -136,41 +136,32 @@
         // 组合选择器
         // 并列选择器
         $("#sp7").click(function () {  //选中操作选择器，并点击时的反应
-            // class选择区，后面的toggleClass是选中后对应的操作改动
             $('#ID1,#ID2,#ID3').toggleClass('jingshan');
         });
         $("#sp8").click(function () {  //选中操作选择器，并点击时的反应
-            // class选择区，后面的toggleClass是选中后对应的操作改动
             $('.class_1,.class_2').toggleClass('jingshan');
         });
         $("#sp9").click(function () {  //选中操作选择器，并点击时的反应
-            // class选择区，后面的toggleClass是选中后对应的操作改动
             $('#ID1,.class_2').toggleClass('jingshan');
         });
         // 家族选择器，全家全部被选中
         $("#sp10").click(function () {  //选中操作选择器，并点击时的反应
-            // class选择区，后面的toggleClass是选中后对应的操作改动
             $('ul span').toggleClass('jingshan');
         });
         // 父子选择器
         $("#sp11").click(function () {  //选中操作选择器，并点击时的反应
-            // class选择区，后面的toggleClass是选中后对应的操作改动
             $('#li_1>span').toggleClass('jingshan');
         });
         // 紧邻选择器
         $("#sp12").click(function () {  //选中操作选择器，并点击时的反应
-            // class选择区，后面的toggleClass是选中后对应的操作改动
             $('#ID1+span').toggleClass('jingshan');
         });
         // 同辈选择器
         $("#sp13").click(function () {  //选中操作选择器，并点击时的反应
-            // class选择区，后面的toggleClass是选中后对应的操作改动
             $('#ID1~span').toggleClass('jingshan');
         });
-        // 伪类
         // 奇偶
         $("#sp14").click(function () {  //选中操作选择器，并点击时的反应
-            // odd，奇数,元素第一个开头为0，所以第一个为偶数，第二个为奇数
             $('.class_1:odd').toggleClass('jingshan');
         });
         $("#sp15").click(function () {  //选中操作选择器，并点击时的反应
@@ -179,7 +170,7 @@
         });
         // 函数
         $("#sp16").click(function () {  //选中操作选择器，并点击时的反应
-            // 包含a类的
+            // 包含元素a类的
             $('#li_5 span:has(a)').toggleClass('jingshan');
         });
         $("#sp17").click(function () {  //选中操作选择器，并点击时的反应
