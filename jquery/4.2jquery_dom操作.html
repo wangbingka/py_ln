@@ -1,0 +1,172 @@
+<!--
+1、html操作：
+    1) 属性：
+        (1) attr
+            获取属性：alert($('#img_src img ').attr('对应属性名称'));
+            修改属性：alert($('#img_src img ').attr('对应属性名称','要修改成为的属性值'));
+        (2) removeAttr：删除属性，写法：alert($('#img_src img ').removeAttr('对应属性名称'));
+    2）元素/节点：
+        (1) html ，包括里面的标签，包括<h6>这些
+            获取属性：$('#get_html').html()
+            修改属性：$('#get_html').html('<strong>man</strong>')
+        (2) text , 不包括标签，不包含<h6>这些
+            获取属性：$('#get_text').text()
+            修改属性：$('#get_text').text('要设置的文本')，设置内容中不能加标签。
+        (3) val , 仅获取里面的的值
+            获取属性：$('#get_val').val()
+            修改属性：$('#get_val').val('要设置的value值')
+    3) 文档处理:
+        (1) append：后面插入；appendTo:先准备然后再加入,效果类似，只是实现方法不同
+        (2) prepend:前面插入，prependTo:先准备然后再加入,效果类似，只是实现方法不同
+        (3) after：后面追加，追加在对应元素外的后面，append是追加在当前元素内的后面，insertAfter实现类似效果
+        (4) before：前面追加，和after类似，追加在对应元素外的后面，append是追加在当前元素内的后面,insertBefore实现类似效果
+        (5) wrap/unwrap
+        (6) empty
+        (7) remove
+        (8) clone
+2、 js操作
+    1) class 操作
+    2) id 操作
+-->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>4.2jquery_dom操作</title>
+    <script type="text/javascript" src="public/js/jquery-3.3.1.js"></script>
+    <link rel="stylesheet" href="4.2jquery_dom操作.css">
+</head>
+<body>
+<hr/>
+<label for=""> 属性操作:</label> 
+<span id="attr_get">获取属性：</span><span id="attr_set">修改属性：</span><span id="attr_remove">删除属性：</span>
+<div id="img_src">
+    <img src="logo.jpg" alt="" title="logo">
+</div>
+<br/>
+<br/>
+<br/>
+<br/>
+<label for="">节点内容的获取：</label>
+<span id="node_html">html:</span><span id="node_text">text:</span><span id="node_val">val:</span>
+<div id="nodeget">
+    <div id="get_html"><h6>这里是带有h6的文本</h6></div>
+    <div id="get_text"><h6>这里是带有h6的文本</h6></div>
+    <input type="text" id="get_val" value="美女,约吗？"/>
+</div>
+
+<br/>
+<span id="node_shtml">set html:</span><span id="node_stext">set text:</span><span id="node_sval">set val:</span>
+<br/>
+<br/>
+<label for="">文档操作展示：</label>
+<span id="dom_add">追加[append][后面]</span><span id="dom_pre_add">追加[prepend][前面]</span>
+<span id="dom_to_add">追加到[appendTo][后面]</span><span id="dom_preto_add">追加[prependTo][前面]</span>
+<div id="fabao">
+    <ul>
+        <li>追妹子的三大法宝：</li>
+        <li>坚持</li>
+        <li>不要脸</li>
+        <li>坚持不要脸</li>
+    </ul>
+</div>
+<br/>
+<br/>
+<span id="dom_after">追加[after][后面]</span><span id="dom_before">追加[before][前面]</span>
+<span id="dom_insert_after">追加到[after][后面]</span><span id="dom_insert_before">追加[before][前面]</span>
+<div id="gongzi">
+    <ul>
+        <li>老板</li>
+        <li>涨工资吗</li>
+    </ul>
+</div>
+<br/>
+<br/>
+
+</body>
+
+<script>
+    $(function () {
+        // alert('js works!')
+        // 属性操作 获取属性
+        $('#attr_get').click(function () {
+            alert($('#img_src img ').attr('src'));
+        });
+
+        // 属性操作 修改属性
+        $('#attr_set').click(function () {
+            alert($('#img_src img ').attr('src','logo1.jpg'));
+        });
+
+        // 属性操作 删除属性
+        $('#attr_remove').click(function () {
+            alert($('#img_src img ').removeAttr('src'));
+        });
+
+
+        //html操作获取: get html text val
+        $('#node_html').click(function () {
+            alert($('#get_html').html());
+        });
+
+        $('#node_text').click(function () {
+            alert($('#get_text').text());
+        });
+        $('#node_val').click(function () {
+            alert($('#get_val').val());
+        });
+
+        //html操作设置: set html text val
+        $('#node_shtml').click(function () {
+            $('#get_html').html('<strong>man</strong>');
+        });
+
+        $('#node_stext').click(function () {
+            $('#get_text').text('man');
+        });
+        $('#node_sval').click(function () {
+            $('#get_val').val('不约！');
+        });
+
+        // 文档处理,append：后追加，prepend:前追加
+        $('#dom_add').click(function () {
+            $('#fabao ul').append('<li>老师，有没有第四条?</li>');
+        });
+        $('#dom_pre_add').click(function () {
+            $('#fabao ul').prepend('<li>老师，弱弱得问一句</li>');
+        });
+        //// 文档处理,append：后追加，prepend:前追加
+        // 文档处理,append：后追加，prepend:前追加
+        $('#dom_to_add').click(function () {
+            //$('#fabao ul').append('<li>老师，有没有第四条?</li>');
+            $('<li>老师，有没有第四条?</li>').appendTo('#fabao ul');
+        });
+        $('#dom_preto_add').click(function () {
+            //$('#fabao ul').prepend('<li>老师，弱弱得问一句</li>');
+            $('<li>老师，弱弱得问一句</li>').prependTo('#fabao ul');
+        });
+
+        // 文档处理,after,before
+        $('#dom_after').click(function () {
+            $('#gongzi').after('<li>这个可以有！</li>');
+        });
+        $('#dom_before').click(function () {
+            $('#gongzi ul').before('<li>嘿嘿！</li>');
+        });
+        //// 文档处理,insertAfter,insertBefore
+        // 文档处理,append：后追加，prepend:前追加
+        $('#dom_insert_after').click(function () {
+            $('<li>这个可以有！</li>').insertAfter('#gongzi ul');
+        });
+        $('#dom_insert_before').click(function () {
+            $('<li>嘿嘿！</li>').insert_before('#gongzi ul');
+        });
+
+
+    })
+</script>
+
+</html>
