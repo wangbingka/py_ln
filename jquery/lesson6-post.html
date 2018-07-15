@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="public/js/jquery-3.3.1.js"></script>
+</head>
+<body>
+<label for="">get的方式获取手机信息</label>
+<div>手机: <input type="text" name="phone" id="iphone_g" placeholder="请输入你的手机号"/> </div>
+<div>
+    <span id="get_msg">获取的信息显示在这里</span>
+    <br/>
+    <span id="get_msg_do">点击获取</span>
+</div>
+
+
+</body>
+<script>
+    $(function () {
+        $("#get_msg_do").click(function(){
+            var iphone = $("#iphone_g").val();
+            var url = 'http://maizi.itpaimai.com/jquery/post/';
+            var data = {phone:iphone};
+            $.post(url,data,function(msg){
+                if(msg.errNum=='-1'){
+                    $("#get_msg").text(msg.retMsg);
+                }else{
+                    $("#get_msg").text(msg.retData.supplier+':'+msg.retData.province+msg.retData.city+':'+msg.retData.suit);
+                }
+            },'json');
+
+        });
+    });
+</script>
+</html>

@@ -1,0 +1,120 @@
+<!--
+1、ajax基础原理:浏览器异步请求服务器
+    1) 非ajax原理，从1html页面跳转2html页面时，需要向服务器发送请求，从开始发起跳转页面到收到要跳转的页面数据，中间有间隔，会有空白显示，体验很差
+    2) ajax原理，从1html页面跳转时，需要向服务器发送请求时，原有1html页面保持不变，自己私下发送数据请求，直到接受到服务器的数据后，直接用2页面中的内容，替换1html的程序语言
+2、load：
+    1) 作用：载入远程html文件代码并插入至DOM中，默认使用GET方式，传递附加参数时自动转换为POST方式。
+    2) 参数： url,[data,[callback]]。url：网址；data:发送到服务器数据 key/value;callback:回调函数。
+    3) 通用格式：$('#links').load('http://www.baidu.com');
+3、get:
+    1) get：通过HTTP的get请求载入信息，发送数据到后台
+            助记：简单封装
+            参数：url,[data],[callback],[type]
+                 data:url地址栏方式：index.php?username=jingshan&pwd=123456
+                        {key:value,key2:value2}
+                 callback：function(){}
+                 type：xml,html,script,json,text,_default
+                       跨域：jsonp
+            常用形式：$.get('test.php',{name:'john',time:'2pm'});
+
+    2) getJSON
+    3) getScript
+4、post：发送数据到远端
+        参数：url,[data],[callback],[type]
+        案例：$.post('test.php',{name:'john',time:'2pm'});
+5、ajax:
+    1） ajax：通过HTTP请求加载远程数据。
+        参数： {ur:baidu.com,context:123}
+        常用格式:
+            $.ajax({
+                type:'POST',
+                url:'some.php',
+                date:'name=John&location=Boston',
+                success:function(msg){
+                    alert('Date Saved:'+msg):
+                    }
+            });
+
+    2) 分过程
+        ajaxComplete
+        ajaxError
+        ajaxSend
+        ajaxStart
+        ajaxStop
+        ajaxSuccess
+6、辅助
+    1) serialize
+    2) serializeArray
+
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>6jquery基础应用ajax</title>
+    <script type="text/javascript" src="public/js/jquery-3.3.1.js"></script>
+</head>
+<body>
+
+<label for="">get 的方式 获取 手机信息</label>
+<div>
+    手机：
+    <input type="text" name="phone" id="iphone_g" placeholder="请输入手机号码"/>
+</div>
+
+<div>
+    <span id="get_msg">获取的信息显示在这里</span>
+    <br/>
+    <span id="get_msg_do>">点击获取</span>
+</div>
+
+
+<span id="c1">我需要阳光</span>
+<div id="dis">
+
+</div>
+
+
+</body>
+
+<script>
+    $(function () {
+        // alert('jq works!')
+        // load用法
+            // $('#c1').click(function () {
+            //     $('#dis').load('5jquery动画简介演示环境搭建.html')
+            // });
+        // get 用法
+            // $('#get_msg_do').click(function () {
+            //     var iphone = $('#iphone_g').val();
+            //     var url = 'http://maizi.itpaimai.com/jquery/get/';
+            //     var data = {phone:iphone};
+            //     $.get(url,data,function (msg) {
+            //         if (msg.errNum == '-1') {
+            //             $('#get_msg').text(msg.retMsg);
+            //         } else {
+            //             $('#get_msg').text(msg.retData.supplier + ':' + msg.retData.province+msg.retData.city+':'+msg.retData.suit)
+            //         }
+            //     },'jsonp');
+            //
+            //     });
+        //post用法
+        $('#get_msg_do').click(function () {
+            var iphone = $('#iphone_g').val();
+            var url = 'http://maizi.itpaimai.com/jquery/get/';
+            var data = {phone:iphone};
+            $.post(url,data,function (msg) {
+                if (msg.errNum == '-1') {
+                    $('#get_msg').text(msg.retMsg);
+                } else {
+                    $('#get_msg').text(msg.retData.supplier + ':' + msg.retData.province+msg.retData.city+':'+msg.retData.suit)
+                }
+            },'json');
+
+            });
+
+        });
+</script>
+</html>

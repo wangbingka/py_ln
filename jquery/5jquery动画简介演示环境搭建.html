@@ -1,0 +1,122 @@
+<!--
+1、显示.隐藏
+    1) show 显示
+    2) hide 隐藏
+    3) toggle 显示/隐藏，反复进行
+2、卷帘门效果
+    1) slideDown：向上
+    2) slideUp：向下
+    3）slideToggle：向上/向下反复进行
+3、淡入淡出
+    1）fadeIn：淡入
+    2) fadeOut：淡出
+    3) fadeToggle：淡入/淡出反复进行
+    4) fadeTo：淡入到
+4、自定义动画
+    1) animate:后面可以跟四个常用的设置，
+        第一个为prop,必须，用于设置css属性，
+        第二个为speed，可选，速度，默认为normal，还有slow,fast，也可以设为固定值，单位为ms
+        第三个为easing，可选，规定在不同的动画点中设置动画速度的 easing 函数。
+        第三个为callback,可选，animate 函数执行完之后，要执行的函数。
+    2) stop
+    3) delay
+
+
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>5jquery动画简介演示环境搭建</title>
+    <script type='text/javascript' src="public/js/jquery-3.3.1.js"></script>
+    <style type="text/css">
+        *{
+            margin:0px;
+            padding: 0px;
+        }
+        body{text-align: center;}
+        .main{width:1000px;margin:0px auto;background-color: #007777}
+        .button_t{padding: 10px;}
+        .button_t span{
+            margin: 0px 8px;
+            padding: 0px 10px;
+            border: 1px solid #0000ff;
+            cursor: pointer;
+
+        }
+    </style>
+</head>
+<body>
+
+<div class="main">
+    <div class="button_t">
+        <span id="t_show">显示</span><span id="t_hide">隐藏</span><span id="t_toggle">toggle反复</span>
+        <span id="t_slideUp">向上</span><span id="t_slideDown">向下</span><span id="t_slideToggle">反复向上向下slideToggle</span>
+        <span id="t_fadeIn">淡入</span><span id="t_fadeOut">淡出</span><span id="t_fadeToggle">fadeToggle反复淡入/淡出</span><span id="t_fadeTo">淡入到指定位置fadeTo</span>
+    </div>
+    <div class="meinv1">
+        <img src="meinv1.jpg" alt="" title="meinv1"/>
+    </div>
+</div>
+<div class="main">
+    <div class="button_t">
+        <span id="t_animate">动画</span>
+        <div class="meinv2">
+        <img src="meinv2.jpg" alt="" title="meinv1"/>
+    </div>
+    </div>
+</div>
+
+</body>
+<script>
+    $(function () {
+        // alert('jq works!');
+        // 显示/隐藏，反复显示/隐藏
+        $('#t_show').click(function () {
+            $('.meinv1').show();
+        });
+        $('#t_hide').click(function () {
+            $('.meinv1').hide();
+        });
+        $('#t_toggle').click(function () {
+            $('.meinv1').toggle();
+        });
+
+        //上下滑动
+        $('#t_slideDown').click(function () {
+            $('.meinv1').slideDown();
+        });
+        $('#t_slideUp').click(function () {
+            $('.meinv1').slideUp();
+        });
+        $('#t_slideToggle').click(function () {
+            $('.meinv1').slideToggle();
+        });
+
+        //淡入淡出
+        $('#t_fadeIn').click(function () {
+            $('.meinv1').fadeIn();
+        });
+        $('#t_fadeOut').click(function () {
+            $('.meinv1').fadeOut();
+        });
+        $('#t_fadeToggle').click(function () {
+            $('.meinv1').fadeToggle();
+        });
+        $('#t_fadeTo').click(function () {
+            $('.meinv1').fadeTo('slow',0.5);  //slow慢一点，0.5指透明度，1为完全显示，0为完全透明不显示
+        });
+
+        //动画animate
+        $('#t_animate').click(function () {
+            $('.meinv2 img').animate({height:'100px',opacity:'0.1'},'2000')
+            $('.meinv2 img').animate()
+
+
+        })
+
+    })
+</script>
+</html>

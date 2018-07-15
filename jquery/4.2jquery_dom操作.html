@@ -20,13 +20,28 @@
         (2) prepend:前面插入，prependTo:先准备然后再加入,效果类似，只是实现方法不同
         (3) after：后面追加，追加在对应元素外的后面，append是追加在当前元素内的后面，insertAfter实现类似效果
         (4) before：前面追加，和after类似，追加在对应元素外的后面，append是追加在当前元素内的后面,insertBefore实现类似效果
-        (5) wrap/unwrap
-        (6) empty
-        (7) remove
-        (8) clone
-2、 js操作
-    1) class 操作
-    2) id 操作
+        (5) wrap/unwrap，wrap：外面包裹一层元素,unwrap，移除紧挨着的外面的的一层元素
+        (6) empty:清空里面文本，保留元素标签
+        (7) remove：删除所有，包括删除元素标签
+        (8) clone：复制内容，包括元素标签
+2、 css操作
+    1) class 操作：
+        (1) addClass  新增class类
+        (2) removeClass 删除class类
+        (3) toggleClass 新增和删除类，反复循环进行
+    2) css 基础操作
+        (1) css 基础设置，用法：$('#dom_css_set').css({border:'red solid 1px',height:'800px'}); //使用json字符串，一个可以传入n个设置
+        (2) 常见设置尺寸:
+            offset
+            position
+            scrollTep
+            scrollLeft
+            height
+            width
+            innerHeight
+            innerWidth
+            outerHeight
+            outerWidth
 -->
 
 
@@ -85,6 +100,44 @@
 </div>
 <br/>
 <br/>
+<span id="dom_wrap">包裹[wrap] 操作</span><span id="dom_unwrap">去掉包裹[unwrap] 操作</span>
+<div id="baoguo" style="border: solid">
+    <p>hello</p>
+    <p>girls</p>
+    <p>!</p>
+</div>
+<br/>
+<br/>
+<span id="dom_empty">清空[empty]操作</span><span id="dom_remove">删除[remove] 操作</span><span id="dom_clone">复制[clone]操作</span>
+<div id="shan">
+    <li id="node_empty">这个是empty</li>
+    <li id="node_remove">这个是remove</li>
+    <li id="node_clone">这个是clone</li>
+</div>
+
+<br/>
+<br/>
+<style>
+    .jinshan{
+        color: red;
+    }
+</style>
+<span id="dom_addClass">新增.class</span><span id="dom_removeClass">删除.class</span><span id="dom_toggleClass">反复.class</span>
+<div id="dom_class">
+    这里是个展示区域
+</div>
+<br/>
+<br/>
+<br/>
+<label for="">css 普通操作</label>
+<span id="dom_css">普通的css编辑</span><span id="dom_height">普通的css编辑[height]</span>
+<div id="dom_css_set">
+    这里是是css的基础操作
+</div>
+
+
+
+
 
 </body>
 
@@ -165,6 +218,47 @@
             $('<li>嘿嘿！</li>').insert_before('#gongzi ul');
         });
 
+        // 文档处理,wrap：外面包裹一层元素,unwrap，移除外面的的一层元素
+        $('#dom_wrap').click(function () {
+            $('#baoguo p').wrap('<div style="color:#a52a2a;"></div>');
+        });
+        $('#dom_unwrap').click(function () {
+            $('#baoguo p').unwrap();
+        });
+
+        // 文档处理:empty,remove,clone
+        $('#dom_empty').click(function () {
+            $('#node_empty').empty();
+        });
+        $('#dom_remove').click(function () {
+            $('#node_remove').remove();
+        });
+        $('#dom_clone').click(function () {
+            alert($('#node_clone').clone().html());
+        });
+
+        //css 类class的操作
+        $('#dom_addClass').click(function () {
+            $('#dom_class').addClass('jinshan');
+        });
+        $('#dom_removeClass').click(function () {
+            $('#dom_class').removeClass('jinshan');
+        });
+        $('#dom_toggleClass').click(function () {
+            $('#dom_class').toggleClass('jinshan');
+        });
+
+        //css基础操作，color/height
+        $('#dom_css').click(function () {
+            // $('#dom_css_set').css('color','red'); //一次只能设置一个操作
+            $('#dom_css_set').css({border:'red solid 1px',height:'800px'}); //使用json字符串，一个可以传入n个设置
+
+        });
+        $('#dom_height').click(function () {
+            $('#dom_css_set').css('color','red'); //一次只能设置一个操作
+            $('#dom_css_set').height('200px'); //使用json字符串，一个可以传入n个设置
+
+        })
 
     })
 </script>

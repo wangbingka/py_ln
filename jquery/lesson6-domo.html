@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="public/js/jquery-3.3.1.js"></script>
+    <style>
+        *{margin: 0px; padding: 0px;}
+        body{text-align: center;}
+        li{list-style: none; cursor: pointer;}
+        .main{width: 1000px; height: 500px; background-color: #007777; margin: auto;}
+        .top_nav{height: 30px; width: 100%;background-color: #004444;}
+        .top_nav span{cursor: pointer; color: white; float: right; height: 30px; line-height: 30px; margin:0px 10px;}
+        .top_nav a{color: white; text-decoration: none;}
+        .login{width: 300px; height: 200px; background-color:#669966; border-radius:15px; display: none;}
+        .login ul{ padding-top: 60px;}
+        .login_display{display: block; position: absolute;}
+    </style>
+</head>
+<body>
+<div class="main">
+    <!-- 模拟网站的顶部代码 -->
+    <!-- 正确的用户名密码：maizi:123456 -->
+    <div class="top_nav">
+        <span id="register_do">注册</span>
+        <span id="login_do">登录</span>
+        <span><a href="http://www.baidu.com">首页</a></span>
+    </div>
+</div>
+<!-- 登录窗口 -->
+<div class="login">
+    <form id="myform" >
+        <ul>
+            <li>
+                <label>用户：</label>
+                <input type="text" name="name" id="user" placeholder="请输入用户名"/>
+            </li>
+            <li>
+                <label>密码：</label>
+                <input type="password" name="pwd" id="pass" />
+            </li>
+            <li><input type="button" id="denglu" value="登录"/></li>
+        </ul>
+    </form>
+</div>
+</body>
+<script>
+    $(function () {
+        // 显示登录 信息
+        $('#login_do').click(function(){
+            $('.login').toggleClass('login_display');
+            // 修改其显示位置，让他居中
+
+            //获取到窗口的高度和宽度，保持永远相对居中设置
+            var height = $(window).height();
+            var width = $(window).width();
+            height = parseInt(height/2-150);
+            width = parseInt(width/2-50);
+            $('.login').css({left:width,top:height});
+        });
+        // ajax 登录
+        $("#denglu").click(function(){
+            var url = 'http://maizi.itpaimai.com/jquery/server/';
+            var data = $("#myform").serialize();
+            $.post(url,data,function(msg){
+                if(msg.status=='ok'){
+                    $(".top_nav").html("<span>欢迎您："+msg.id+"</span>");
+                    $('.login').hide();
+                }else{
+                    alert("登录失败，请重新登录");
+                }
+            },'json');
+        });
+    });
+</script>
+</html>
