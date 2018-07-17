@@ -1,0 +1,90 @@
+<!--
+一、认识HTTP
+    1、应答码：
+        1） 2xx：成功，
+            200：ok；
+            206：Partial Content
+        2) 3xx：重定向，要获取的资源不这里了，你要重新区获取地址
+            301：Moved Permanently
+            302：See Other
+            304：Not Modified
+        3) 4xx:客户端错误
+            400:Bad Request，要求的格式或者参数部队
+            404:Not Found，要求的资源在服务端不存在
+        4) 5xx：服务端错误，服务端不存在，例如被人黑掉了
+            500:Internal Server Error ,网络故增
+            501:No Implemented
+    2、Server:应答服务器
+    3、Content-Type:应答的数据类型
+        1) text/*
+        2) image/*
+        3) audio/*
+        4) video/*
+        5) */*
+    4、Last-Modified:上一次修改时间
+    5、Content-Encoding:应答编码类型
+    6、Content-Length:应答的内容长度
+二、URL简介：
+    1、url组成部分：
+        协议，类似：http/https
+        路径：类似：baidu.com
+        参数：路径后面的内容，例如：?t=1
+             参数规则：除了英文字母、数字和部分符号外，其他的全部使用百分号+十六位制码值进行编码
+             例子：百度搜索中文对应的网址：
+                    https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd=%E4%B8%AD%E6%96%87&
+                    oq=1&rsv_pq=88c7475e0002422c&rsv_t=9cb0D4PZ6zWGgXOCsCMlEyoSM%2B9y0o4UfzRJ8enuXuNa2TzwWcAgBF91BrE&rqlang=cn&rsv_enter=1&inputT=198&rsv_sug3=20&rsv_sug1=18&rsv_sug7=100&bs=1
+                    '中文'这两个字被转化为'%E4%B8%AD%E6%96%87'
+                    参数对：key=value样式
+                    参数对之间，用'&'连接
+三、cookie协议
+    1、cookie的格式：
+        客户端发送cookie时：Cookie:ke1=value;key2=value2;key3=value3;...
+        服务器端保存Cookie时：Set-cookie:key1=value1;path/;domain=xx
+            其中domain指生效的网址，让cookie只能用于此网址，保证一定的安全性
+    2、cookie的属性：
+        Domain and Path:定义cookie的作用于。当制定domain时，这个域以及其子域名都会包含这个cookie。
+        Expires:定义cookie的生命周期
+        HttpOnly：禁止脚本访问
+    3、cookie常用的用途：
+            保存登录信息，即是保存cookie
+            购物车：保存用户选中的购买列表
+    4、cookie小结：
+            1) cookie是服务器在客户端存储的信息。
+            2) 请求时，客户端需要把未超市的cookie发送回客户端。
+                    Cookie:ke1=value;key2=value2;key3=value3;...
+                应答时，服务器会把新的cookies发送给客户端，以便下次请求时带上这些cookie.
+                    Set-cookie:key1=value1;path/;domain=xx
+    5、cookie,可以通过获取最新的cookie,进行登录，然后进行很多操作
+    6、cookie可能引起的安全问题：
+        增多 cookie 安全性添加HttpOnly和secure属性
+
+            （1）HttpOnly属性
+
+            如果在Cookie中设置了"HttpOnly"属性，那么通过程序(JS脚本、Applet等)将无法读取到Cookie信息，这样能有效的防止XSS攻击。
+
+            （2）secure属性
+
+            当设置为true时，表示创建的 Cookie 会被以安全的形式向服务器传输，也就是只能在 HTTPS 连接中被浏览器传递到服务器端进行会话验证，如果是 HTTP 连接则不会传递该信息，所以不会被盗取到Cookie 的具体内容。
+
+            对于以上两个属性，
+
+            secure属性是防止信息在传递的过程中被监听捕获后信息泄漏。 6号位true
+
+            HttpOnly属性的目的是防止程序获取cookie后进行攻击。7号位true
+
+            注意，为了降低XSS跨站点脚本攻击带来的损害，通常需要将HTTP-only Cookie和其他技术组合使用。如果单独使用的话，它无法全面抵御跨站点脚本攻击。可以使用专门的工具(fiddler2，burp)对安全性进行测试。XSS_cookie跨站点脚本攻击示例请参阅我的其他文章。
+
+
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>爬虫1认识http协议</title>
+</head>
+<body>
+
+</body>
+</html>
