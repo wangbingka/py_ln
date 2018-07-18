@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>注册</title>
+	<link rel="stylesheet" media="screen" href="public/css/screen.css">
+	<script src="public/validate/lib/jquery.js"></script>
+	<script src="public/validate/dist/jquery.validate.js"></script>
+	<script>
+	$(function() {
+		// highlight 全部高亮 非提交按钮
+		var elements = $("input[type!='submit'], textarea, select");
+		elements.focus(function() {
+			$(this).parents('li').addClass('highlight');
+		});// 选中状态
+		elements.blur(function() {
+			$(this).parents('li').removeClass('highlight');
+		});// 离开状态
+
+        // 执行 验证
+		$("#register").validate();
+        // 检测用户 是否占用
+        $("#email").keyup(function(){
+            var mail = $("#email").val();
+            var url = 'server/check.php';
+            $.post(url,{email:mail},function(data){
+                if(data==1){
+                    $("#error_mail").show().html('你的邮箱被占用了');
+                }else{
+                    $("#error_mail").hide().html('请输入合法合理的邮箱');
+                }
+            },'json');
+        });
+	});
+	</script>
+</head>
+<body>
+<div id="page">
+	<div id="header">
+		<h1>注册</h1>
+	</div>
+	<div id="content">
+		<p id="status"></p>
+		<form action="/server.php" method="post" id="register">
+			<fieldset>
+				<legend>用户详情</legend>
+				<ul>
+					<li>
+						<label for="email">
+							<span class="required">邮箱：</span>
+						</label>
+						<input id="email" name="email" class="text required email" type="text">
+						<label for="email" id="error_mail" class="error ">请输入合法合理的邮箱</label>
+					</li>
+					<li>
+						<label for="password">
+							<span class="required">密码：</span>
+						</label>
+						<input name="password" type="password" class="text required" id="password" minlength="4" maxlength="20">
+					</li>
+                    <li>
+                        <label for="phoneNum">
+                            <span class="required">效验手机：</span>
+                        </label>
+                        <input name="phoneNum" type="text" class="text required phone" id="phoneNum" minlength="4" maxlength="20">
+                        <label for="phoneNum" class="error">请输入合法的手机号码</label>
+                    </li>
+				</ul>
+			</fieldset>
+			<fieldset class="submit">
+				<input type="submit" class="button" value="点击注册">
+			</fieldset>
+			<div class="clear"></div>
+		</form>
+	</div>
+</div>
+</body>
+</html>

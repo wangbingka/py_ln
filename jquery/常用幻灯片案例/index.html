@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body{text-align: center;}
+        *{margin: 0px; padding: 0px; cursor: pointer;}
+        .main{width: 800px; height: 530px; margin: auto; padding: 0px; }
+        .m_view{width: 800px; height: 400px; }
+        .m_control{width: 800px;height: 124px;  text-align: left; margin-top: 6px;}
+        .m_control ul li{width: 192px; height: 124px; margin: 0px 5px; display: block; float: left;  }
+        .m_control ul li:first-child{ margin-left: 0px;}
+        .m_control ul li:last-child{ margin-right: 0px;}
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="m_view">
+            <img id="jingshan" src="img/image-1.jpg" width="800px" height="400px" alt=""/>
+        </div>
+        <div class="m_control">
+            <ul>
+                <li><img src="img/image-1.jpg" width="100%" height="100%" alt=""/></li>
+                <li><img src="img/image-2.jpg" width="100%" height="100%" alt=""/></li>
+                <li><img src="img/image-3.jpg" width="100%" height="100%" alt=""/></li>
+                <li><img src="img/image-4.jpg" width="100%" height="100%" alt=""/></li>
+            </ul>
+        </div>
+    </div>
+</body>
+<script src="jquery-2.1.1.min.js"></script>
+<script>
+    // 第一步：
+//    $(function(){
+//        alert('it work');
+//    })
+    // 第二步：
+//    $(function(){
+//        $("ul>li>img").click(function(){
+//            var src = $(this).attr('src')
+//            alert(src);
+//        });
+//    })
+    // 第三步：
+    $(function(){
+        $("ul>li>img").click(function(){
+            $('#jingshan').attr('src',$(this).attr('src'));
+        });
+    })
+</script>
+</html>

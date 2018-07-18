@@ -1,0 +1,34 @@
+文件夹 PATH 列表
+卷序列号为 A820-D705
+C:.
+├─.idea
+│  └─dictionaries
+├─Bootstrap4
+│  ├─css
+│  └─js
+├─html+css
+│  ├─1
+│  └─images
+├─javascript
+│  └─images
+├─jquery
+│  ├─public
+│  │  ├─css
+│  │  ├─images
+│  │  ├─js
+│  │  └─validate
+│  │      ├─dist
+│  │      │  └─localization
+│  │      ├─lib
+│  │      └─src
+│  │          ├─additional
+│  │          └─localization
+│  └─常用幻灯片案例
+│      └─img
+├─picture
+├─static_python
+├─task7_1
+├─wangbk
+│  └─wangbk
+├─__pycache__
+└─爬虫基础pachong
