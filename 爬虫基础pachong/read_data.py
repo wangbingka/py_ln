@@ -5,7 +5,7 @@
 # @Email   : wangbingka@126.com
 
 import os
-
+import collections
 
 def file_name(movie_name):
     L=[]
@@ -18,8 +18,20 @@ def file_name(movie_name):
     return L
 print(file_name('douban'))
 
+c= Counter()
 
+def read_data():
+    with open('{}.txt'.format('邪不压正'),'r') as f1:
+        lines=f1.readlines()
 
-def read_data(movie_name):
-    with open('{}.txt'.format(movie_name),'r') as f1:
-        f1.readlines()
+    for line in lines:
+        # print(line)
+
+        #split切片函数，切成列表，
+        # strip是清洗字符串前后的空格、换行符、tab符等符号，lstrip只清洗字符串左边的字符，rstrip：清洗右边的字符
+        name = line.split(':')[0].strip()
+        num1  =int(line.split(':')[1].strip())
+        print(name+':'+num1)
+
+        c(name) = c(name)+num1
+read_data()

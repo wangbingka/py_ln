@@ -11,7 +11,10 @@ from write_movie_data import *
 
 #输入电影名，获取电影推荐对应的id
 def search_movie_id_by_name(name):
-    r = requests.get('https://movie.douban.com/j/subject_suggest?q={}'.format(name))
+    headers = {
+        'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 SE 2.X MetaSr 1.0'
+    }
+    r = requests.get('https://movie.douban.com/j/subject_suggest?q={}'.format(name),headers=headers)
 
     # print(r) #返回的是相应类型，类似200
     print(r.text)
@@ -20,6 +23,7 @@ def search_movie_id_by_name(name):
 
 def search_movie_by_id(movie_id):
     #输入电影的id，获取电影的展示链接
+
     url = 'https://movie.douban.com/subject/{}/?from=showing'.format(movie_id)
     r= requests.get(url)
 
@@ -42,11 +46,12 @@ def search_movie_by_id(movie_id):
     movie_list = zip(movie_tuijian_name,movie_tuijian_url)
     return list(movie_list)   #list，将集合转换为列表
 
+input_movie = '邪不压正'
 
-m_id= search_movie_id_by_name('邪不压正')
+m_id= search_movie_id_by_name(input_movie)
 similar_movie = search_movie_by_id(m_id)
 
-create_write_data()
+create_write_data(input_movie)
 
 for m in similar_movie:
     print(m)
@@ -54,14 +59,14 @@ for m in similar_movie:
     mid = m[1].split('/')[-2]
     s = search_movie_by_id(mid)
     # print(s)
-    write_data(m[0]+'相似指数:3')
+    write_data(input_movie,m[0]+'相似指数:3')
     for m1 in s:
         mid1 = m1[1].split('/')[-2]
         s1 = search_movie_by_id(mid1)
         # print(s1)
-        write_data('\t'+m1[0]+'相似指数:2')
+        write_data(input_movie,'\t'+m1[0]+'相似指数:2')
         for m2 in s1:
-            write_data('\t'+'\t'+m2[0]+'相似指数:1')
+            write_data(input_movie,'\t'+'\t'+m2[0]+'相似指数:1')
 
 
 #输出类似的推荐电影
