@@ -39,3 +39,6 @@ def index(request,name):
     2、在app下面，建立templates文件夹，直接放，直接只用'index.html',或者继续加子目录，前面就需要加上路径
     
     """
+
+
+# orm，可以数据映射不同类型的数据库，包括sqlite,mysql,oracal

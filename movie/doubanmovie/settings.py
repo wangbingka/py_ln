@@ -78,8 +78,17 @@ WSGI_APPLICATION = 'doubanmovie.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # 默认的sqlite3设置
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+
+        #my sql设置
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mv',
+        'USER': 'mydatabaseuser',
+        'PASSWORD': 'mypassword',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     }
 }
 
