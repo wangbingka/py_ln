@@ -3,7 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 
 from django.http import HttpResponse
-
+from .models import Movie
 
 def index(request,name):
     #name是需要在网址中输入的内容，可以随便输入
@@ -31,7 +31,20 @@ def index(request,name):
     # context = }
     # return render(request, 'movie/index.html', context)
 
+
     return render(request, 'movie/index.html', {'tip': '没有该电影', 'sayhi': '很遗憾，我们会尽快添加！'})
+
+def add(request):
+
+    #往数据库中新增一条数据
+    mv = Movie.objects.create(
+        movie_name = '蛮荒故事 Relates salvajes',
+        img_url = 'https://movie.douban.com/subject/24750126/',
+        rate = 19,
+    )
+
+    return render(request, 'movie/index.html', {'tip': mv.movie_name})
+
 
     # 怎么使用html文件
     """
@@ -42,3 +55,4 @@ def index(request,name):
 
 
 # orm，可以数据映射不同类型的数据库，包括sqlite,mysql,oracal
+# 数据库相关文件，应该放在models.py

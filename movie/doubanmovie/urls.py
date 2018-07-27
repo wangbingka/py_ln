@@ -29,10 +29,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
+
 #python manage.py startproject projectName ,新建一个项目
 #python manage.py startapp appName，要在项目目录下新建模块
 #python manage.py runserver 运行这个服务器起来
-
+#python manage.py makemigrations ，执行数据
+#python manage.py migrate，数据库层面改动数据操作
 
 urlpatterns = [
     path('admin/', admin.site.urls),
