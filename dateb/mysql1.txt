@@ -1,0 +1,142 @@
+MYSQL>select now();
++---------------------+
+| now()               |
++---------------------+
+| 2018-07-30 22:48:28 |
++---------------------+
+1 row in set (0.00 sec)
+
+MYSQL>PROMPT MYSQL>;
+PROMPT set to 'MYSQL>'
+MYSQL>PROMPT MYSQL;
+PROMPT set to 'MYSQL'
+MYSQLselect VERSION();
++-----------+
+| VERSION() |
++-----------+
+| 8.0.11    |
++-----------+
+1 row in set (0.00 sec)
+
+MYSQLPROMPT MYSQL>;
+PROMPT set to 'MYSQL>'
+MYSQL>SHOW SCHEMA;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SCHEMA' at line 1
+MYSQL>SHOW SCHEMAS;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mv                 |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+MYSQL>SHOW CREATE DATABASE mv;
++----------+-------------------------------------------------------------------------------------------+
+| Database | Create Database                                                                           |
++----------+-------------------------------------------------------------------------------------------+
+| mv       | CREATE DATABASE `mv` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ |
++----------+-------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+MYSQL>ALTER DATABASE mv  DEFAULT CHARACTER SET=GBK;
+Query OK, 1 row affected (0.10 sec)
+
+MYSQL>SHOW CREATE DATABASE mv;
++----------+------------------------------------------------------------+
+| Database | Create Database                                            |
++----------+------------------------------------------------------------+
+| mv       | CREATE DATABASE `mv` /*!40100 DEFAULT CHARACTER SET gbk */ |
++----------+------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+MYSQL>ALTER DATABASE mv  DEFAULT CHARACTER SET=UTF-8;
+ERROR 1115 (42000): Unknown character set: 'UTF'
+MYSQL>ALTER DATABASE mv  DEFAULT CHARACTER SET=utf-8;
+ERROR 1115 (42000): Unknown character set: 'utf'
+MYSQL>ALTER DATABASE mv  DEFAULT CHARACTER SET=utf8;
+Query OK, 1 row affected, 1 warning (0.08 sec)
+
+MYSQL>SHOW CREATE DATABASE mv;
++----------+-------------------------------------------------------------+
+| Database | Create Database                                             |
++----------+-------------------------------------------------------------+
+| mv       | CREATE DATABASE `mv` /*!40100 DEFAULT CHARACTER SET utf8 */ |
++----------+-------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+MYSQL>SELECT DATABASE();
++------------+
+| DATABASE() |
++------------+
+| mv         |
++------------+
+1 row in set (0.00 sec)
+
+MYSQL>help tinyint;
+Name: 'TINYINT'
+Description:
+TINYINT[(M)] [UNSIGNED] [ZEROFILL]
+
+A very small integer. The signed range is -128 to 127. The unsigned
+range is 0 to 255.
+
+URL: http://dev.mysql.com/doc/refman/8.0/en/numeric-type-overview.html
+
+
+MYSQL>?int;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '?int' at line 1
+MYSQL>?INT;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '?INT' at line 1
+MYSQL>? INT;
+Name: 'INT'
+Description:
+INT[(M)] [UNSIGNED] [ZEROFILL]
+
+A normal-size integer. The signed range is -2147483648 to 2147483647.
+The unsigned range is 0 to 4294967295.
+
+URL: http://dev.mysql.com/doc/refman/8.0/en/numeric-type-overview.html
+
+
+MYSQL>? SMALLINT;
+Name: 'SMALLINT'
+Description:
+SMALLINT[(M)] [UNSIGNED] [ZEROFILL]
+
+A small integer. The signed range is -32768 to 32767. The unsigned
+range is 0 to 65535.
+
+URL: http://dev.mysql.com/doc/refman/8.0/en/numeric-type-overview.html
+
+
+MYSQL>? MEDIUINT;
+
+Nothing found
+Please try to run 'help contents' for a list of all accessible topics
+
+MYSQL>? MEDIUMINT;
+Name: 'MEDIUMINT'
+Description:
+MEDIUMINT[(M)] [UNSIGNED] [ZEROFILL]
+
+A medium-sized integer. The signed range is -8388608 to 8388607. The
+unsigned range is 0 to 16777215.
+
+URL: http://dev.mysql.com/doc/refman/8.0/en/numeric-type-overview.html
+
+
+MYSQL>? TINYINT;
+Name: 'TINYINT'
+Description:
+TINYINT[(M)] [UNSIGNED] [ZEROFILL]
+
+A very small integer. The signed range is -128 to 127. The unsigned
+range is 0 to 255.
+
+URL: http://dev.mysql.com/doc/refman/8.0/en/numeric-type-overview.html
+
+

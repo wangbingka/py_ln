@@ -1,5 +1,38 @@
 root，初始：l<6NmlK%Z*8r
 
+安装mysql：
+
+
+启动mysql：
+net start mysql
+
+输入root命令进入操作：
+mysql -uroot -p
+下一步，输入root密码
+
+
+关闭mysql:
+net stop mysql
+
+修改root密码：
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '新密码;
+
+mysql语句规范：
+1、关键字与函数名称全部大写
+2、数据库名称、表名称、字段名称等全部小写
+3、SQL语句必须以分隔符结尾
+4、数据库名称、表名称、字段名称，不要使用sql的关键字，如果有必要的话，可以用''括起来
+5、引号一定要成对出去，否则永远无法结束
+6、如果写了一个命令后又不想执行，可以删掉，也可以后面加‘\c’，不带引号。
+7、DELIMITER 内容，修改分隔符符号，替换';'
+8、开启操作日志记录，\T 路径\Name.txt。
+	结果操作日子：\t 
+	
+
+展示所有数据库：
+show databases
+
+
 创建数据库：
 create database databName character set utf8;
 
@@ -30,3 +63,35 @@ SHOW STATUS                                  //列出 DB Server 状态。
 SHOW VARIABLES                               //列出 MySQL 系统环境变量。
 SHOW PROCESSLIST                             //列出执行命令。
 SHOW GRANTS FOR user                         //列出某用户权限
+
+进入mysql之前修改命令提示符：
+mysql -uroot -proot --prompt=提示符内容，连接客户端时抬头展示
+进入mysql之后，修改当前提示符：
+prompt 提示符
+命令提示符内容：
+	\D：完整的日期
+	\d：当前的数据库名
+	\h:服务器名称
+	\u：当前用户名
+
+select VERSION(); 显示当前版本
+select NOW()；显示当前日期时间
+select USER();显示当前用户名
+
+
+	
+创建数据库：
+CREATE {DATABASE|SCHEMA} [IF NOT EXISTS] db_name [[DEFAULT] CHARACTER SET [=] charset_name]
+大括号中为必选项，中括号中为可选项，“|”表示多个中选一个
+
+查看上一步产生的警告：
+SHOW WARNINGS;
+
+查看数据库的定义信息：
+SHOW CREATE DATABASE db_name;
+
+修改制定数据库的编码方式：
+ALTER {DATABASE|SCHEMA} db_name DEFAULT CHARACTER SET utf8;
+
+当前打开的数据库名称:
+SELECT DATABASE();
