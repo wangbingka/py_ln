@@ -1,5 +1,8 @@
 root，初始：l<6NmlK%Z*8r
 
+创建数据库：
+create database databName character set utf8;
+
 切换数据库：
 use 数据库Name；
 

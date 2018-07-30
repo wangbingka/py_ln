@@ -88,14 +88,14 @@ class DoubanClient(object):
         self.session.headers.update(headers)
         pass
     def login(self,username,password,source='main',
-        redir='https://www.douban.com/doumail/',
+        redir='https://www.douban.com/',
         login= '登录'):
 
         url = 'https://accounts.douban.com/login'
         #获取验证码图片和验证码ID
         r = self.session.get(url)
-        (captcha_id,captcha_url) = _get_captcha(r.content)
-        if captcha_id:
+        captcha_url = _get_captcha(r.content)
+        if captcha_url:
             captcha_solution = input('please input solutions for [%s]'%captcha_url)
         data= {'form_email':username,
                'form_password':password,
@@ -103,8 +103,8 @@ class DoubanClient(object):
                'redir':redir,
                'login':login,
         }
-        if captcha_id:
-            data['captcha-id'] = captcha_id
+        if captcha_url:
+            # data['captcha-id'] = captcha_id
             data['captcha-solutions'] = captcha_solution
         headers = {'referer':'https://accounts.douban.com/login?alias=897266654%40qq.com&redir=https%3A%2F%2Fwww.douban.com&source=None&error=1013',
                    'host':'accounts.douban.com'
@@ -122,11 +122,11 @@ def _get_captcha(content):
     class CaptchaParser(HTMLParser):
         def __init__(self):
             HTMLParser.__init__(self)
-            self.captcha_id=None
+            # self.captcha_id=None
             self.captcha_url= None
         def handle_starttag(self, tag, attrs):
-            if tag == 'input' and _attr(attrs,'type') == 'hidden' and _attr(attrs,'name') == 'captcha_id':
-                self.captcha_id =  _attr(attrs,'value')
+            # if tag == 'input' and _attr(attrs,'type') == 'hidden' and _attr(attrs,'name') == 'captcha_id':
+            #     self.captcha_id =  _attr(attrs,'value')
             if tag == 'input' and _attr(attrs, 'type') == 'img' and _attr(attrs, 'id') == 'captcha_image':
                 self.captcha_url = _attr(attrs,'src')
 
