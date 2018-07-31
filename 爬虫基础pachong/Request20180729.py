@@ -5,7 +5,11 @@
 # @Email   : wangbingka@126.com
 
 import requests
-import HTMLParser
+
+#不能使用 from HTMLParser import HTMLParser,里面有错误
+from html.parser  import HTMLParser
+# import urlparse
+
 # request从基础知识：
 """
 1、简介：不是标准库，需要安装，最好用的http库，严格的python格式
@@ -78,6 +82,7 @@ def get_cookie():
     print(r.cookies['bid'])
     print(r.headers)
 
+# get_custom_headers()
 # get_cookie()
 
 class DoubanClient(object):
@@ -87,30 +92,55 @@ class DoubanClient(object):
         self.session = requests.Session()
         self.session.headers.update(headers)
         pass
-    def login(self,username,password,source='main',
-        redir='https://www.douban.com/',
-        login= '登录'):
+    def login(self,username,password,source='main',):
 
         url = 'https://accounts.douban.com/login'
         #获取验证码图片和验证码ID
         r = self.session.get(url)
-        captcha_url = _get_captcha(r.content)
-        if captcha_url:
-            captcha_solution = input('please input solutions for [%s]'%captcha_url)
+        # print(r.content)
+        # print(r.content.decode('utf-8'))
+        #python3中字符串，区分str和bytes，需要将bytes转码，用法:str.decode('utf-8')
+        (captcha_id,captcha_url) = _get_captcha(r.content.decode('utf-8'))
+        if captcha_id:
+            captcha_solution = input('please input solution for [%s]'%captcha_url)
         data= {'form_email':username,
                'form_password':password,
-               'source':source,
-               'redir':redir,
-               'login':login,
+               'source':'index_nav',
         }
-        if captcha_url:
-            # data['captcha-id'] = captcha_id
-            data['captcha-solutions'] = captcha_solution
-        headers = {'referer':'https://accounts.douban.com/login?alias=897266654%40qq.com&redir=https%3A%2F%2Fwww.douban.com&source=None&error=1013',
-                   'host':'accounts.douban.com'
+        if captcha_id:
+            data['captcha-id'] = captcha_id
+            data['captcha-solution'] = captcha_solution
+        print(captcha_solution)
+        print(captcha_id)
+        headers = {'Host':'www.douban.com',
+                    'Origin':'https://www.douban.com',
+                    'Referer':'https://www.douban.com/',
+                    'Upgrade-Insecure-Requests':'1',
                    }
         r = self.session.post(url,data=data,headers=headers)
-        print(self.session.cookies.items())
+        # print(r.cookies)
+        # print(self.session.cookies.items())
+        print(self.session.get(url).content.decode('utf-8'))
+
+    def edit_sign(self,username,signature):
+        url = 'https://www.douban.com/people/%s/'%username
+        r= self.session.get(url)
+        # print(r.content.decode('utf-8'))
+        ck = _get_ck(r.content.decode('utf-8'))
+        # print(ck)
+        #发送带有ck和签名的post请求
+        data = {
+            'ck':ck,
+            'signature': signature,
+        }
+
+        headers = {
+            'Host': 'www.douban.com',
+            'Origin': 'https://www.douban.com',
+             'Referer': 'https://www.douban.com/people/%s/'%username,
+             'X - Requested - With': 'XMLHttpRequest',
+        }
+        r = self.session.post(url,data=data,headers=headers)
 
 def _attr(attrs,attrname):
     for attr in attrs:
@@ -122,18 +152,36 @@ def _get_captcha(content):
     class CaptchaParser(HTMLParser):
         def __init__(self):
             HTMLParser.__init__(self)
-            # self.captcha_id=None
+            self.captcha_id=None
             self.captcha_url= None
         def handle_starttag(self, tag, attrs):
-            # if tag == 'input' and _attr(attrs,'type') == 'hidden' and _attr(attrs,'name') == 'captcha_id':
-            #     self.captcha_id =  _attr(attrs,'value')
-            if tag == 'input' and _attr(attrs, 'type') == 'img' and _attr(attrs, 'id') == 'captcha_image':
+            if tag == 'img' and _attr(attrs, 'class') == 'captcha_image' and _attr(attrs, 'id') == 'captcha_image':
                 self.captcha_url = _attr(attrs,'src')
+
+
+
 
     p = CaptchaParser()
     p.feed(content)
-    return p.captcha_url
+    id1 = p.captcha_url.split('=')[1]
+    p.captcha_id = id1.split('&')[0]
+    return p.captcha_id,p.captcha_url
+
+
+def _get_ck(content):
+    class CkParser(HTMLParser):
+        def __init__(self):
+            HTMLParser.__init__(self)
+            self.ck= None
+        def handle_starttag(self, tag, attrs):
+            if tag == 'input' and _attr(attrs, 'name') == 'ck' and _attr(attrs, 'type') == 'hidden':
+                self.ck = _attr(attrs,'value')
+
+    p = CkParser()
+    p.feed(content)
+    return p.ck
 
 c = DoubanClient()
-c.login('897266654@qq.com','Za598521')
+c.login('897266654@qq.com','za598521')
+c.edit_sign('qq897266654','python签名')
 
