@@ -1,0 +1,725 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| maizi              |
+| mv                 |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> usr maizi
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'usr maizi' at line 1
+mysql> use maizi;
+Database changed
+mysql> CREATE TABLE IF NOT EXISTS test5(
+    -> str1 CHAR(5),
+    -> str2 VARCHAR(5),
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 4
+mysql> CREATE TABLE IF NOT EXISTS test5(
+    -> str1 CHAR(5),
+    -> str2 VARCHAR(5)
+    -> );
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> INSERT  test5 VALUES('1234','12345');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> desc test5;
++-------+------------+------+-----+---------+-------+
+| Field | Type       | Null | Key | Default | Extra |
++-------+------------+------+-----+---------+-------+
+| str1  | char(5)    | YES  |     | NULL    |       |
+| str2  | varchar(5) | YES  |     | NULL    |       |
++-------+------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from test5;
++------+-------+
+| str1 | str2  |
++------+-------+
+| 1234 | 12345 |
++------+-------+
+1 row in set (0.00 sec)
+
+mysql> INSERT test5 VALUES('  A  ','  1  ');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from test5;
++------+-------+
+| str1 | str2  |
++------+-------+
+| 1234 | 12345 |
+|   A  |   1   |
++------+-------+
+2 rows in set (0.00 sec)
+
+mysql> SELECT  CONCAT(str1,'_',str2) from test5;
++-----------------------+
+| CONCAT(str1,'_',str2) |
++-----------------------+
+| 1234_12345            |
+|   A_  1               |
++-----------------------+
+2 rows in set (0.00 sec)
+
+mysql> INSERT  test5 VALUES('啊','哈');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT  test5 VALUES('啊啊啊啊啊','哈哈哈哈哈');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select CHAR_LENGH(str1),CHAR_LENGTH(str2) from test5;
+ERROR 1305 (42000): FUNCTION maizi.CHAR_LENGH does not exist
+mysql> select CHAR_LENGH('啊啊');
+ERROR 1305 (42000): FUNCTION maizi.CHAR_LENGH does not exist
+mysql> select CHAR_LENGTH('啊啊');
++-----------------------+
+| CHAR_LENGTH('啊啊')   |
++-----------------------+
+|                     2 |
++-----------------------+
+1 row in set (0.00 sec)
+
+mysql> select CHAR_LENGTH(str1),CHAR_LENGTH(str2) from test5;
++-------------------+-------------------+
+| CHAR_LENGTH(str1) | CHAR_LENGTH(str2) |
++-------------------+-------------------+
+|                 4 |                 5 |
+|                 3 |                 5 |
+|                 1 |                 1 |
+|                 5 |                 5 |
++-------------------+-------------------+
+4 rows in set (0.00 sec)
+
+mysql> CREATE TABLE IF NOT EXISTS TEST6(
+    -> str1 TEXT
+    -> );
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> INSERT TABLE test6 VALUES ('打法撒旦法规撒沙发沙发按时发动机后撒上发的撒开了按时发货洒进来的说法都是驾驶的方式大');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TABLE test6 VALUES ('打法撒旦法规撒沙发沙发按时发动机后撒上�' at line 1
+mysql> INSERT TABLE test6 VALUES('打法撒旦法规撒沙发沙发按时发动机后撒上发的撒开了按时发货洒进来的说法都是驾驶的方式大');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TABLE test6 VALUES('打法撒旦法规撒沙发沙发按时发动机后撒上发' at line 1
+mysql> INSERT test6 VALUES('打法撒旦法规撒沙发沙发按时发动机后撒上发的撒开了按时发货洒进来的说法都是驾驶的方式大');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> desc test6;
++-------+------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------+------+------+-----+---------+-------+
+| str1  | text | YES  |     | NULL    |       |
++-------+------+------+-----+---------+-------+
+1 row in set (0.00 sec)
+
+mysql> CREATE TABLE IF NOT EXISTS test7(
+    -> sex ENUM('男','女','保密')
+    -> )
+    -> ;
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> INSERT test7 VALUES ('男');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> INSERT test7 values (2);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT test7 values ('保密');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> INSERT test7 values (NULL);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from test7;
++--------+
+| sex    |
++--------+
+| 男     |
+| 女     |
+| 保密   |
+| NULL   |
++--------+
+4 rows in set (0.00 sec)
+
+mysql> CREATE TABLE IF NOT EXISTS test8(
+    -> fav SET('A','B','C','D')
+    -> );
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> INSERT test8 VALUES ('A,D');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT test8 VALUES ('D,B,A');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT test8 VALUES ('1');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT test8 VALUES ('3');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT test8 VALUES ('7');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT test8 VALUES ('15');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from test8;
++---------+
+| fav     |
++---------+
+| A,D     |
+| A,B,D   |
+| A       |
+| A,B     |
+| A,B,C   |
+| A,B,C,D |
++---------+
+6 rows in set (0.00 sec)
+
+mysql> CREATE TABLE IF NOT EXISTS  test9(
+    -> birth YEAR
+    -> );
+Query OK, 0 rows affected (0.14 sec)
+
+mysql> insert test9 values ('1989');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert test9 values (2055);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> insert test9 values (12);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert test9 values (79);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert test9 values ('0');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> insert test9 values (0);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> select * from test9;
++-------+
+| birth |
++-------+
+|  1989 |
+|  2055 |
+|  2012 |
+|  1979 |
+|  2000 |
+|  0000 |
++-------+
+6 rows in set (0.00 sec)
+
+mysql> CREATE TABLE IF NOT EXISTS test10(
+    -> test TIME
+    -> );
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> INSERT test10 values ('1 12:12:12');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> INSERT test10 values ('12:12:12');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT test10 values ('12:12');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT test10 values ('1212');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT test10 values ('12');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from test10;
++----------+
+| test     |
++----------+
+| 36:12:12 |
+| 12:12:12 |
+| 12:12:00 |
+| 00:12:12 |
+| 00:00:12 |
++----------+
+5 rows in set (0.00 sec)
+
+mysql> INSERT test10 values ('0');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from test10;
++----------+
+| test     |
++----------+
+| 36:12:12 |
+| 12:12:12 |
+| 12:12:00 |
+| 00:12:12 |
+| 00:00:12 |
+| 00:00:00 |
++----------+
+6 rows in set (0.00 sec)
+
+mysql> ? date;
+Name: 'DATE'
+Description:
+DATE
+
+A date. The supported range is '1000-01-01' to '9999-12-31'. MySQL
+displays DATE values in 'YYYY-MM-DD' format, but permits assignment of
+values to DATE columns using either strings or numbers.
+
+URL: http://dev.mysql.com/doc/refman/8.0/en/date-and-time-type-overview.html
+
+
+mysql> CREATE TABLE IF NOT EXISTS test11(
+    -> test DATE
+    -> );
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> INSERT test11 values ('2012-06-07');
+Query OK, 1 row affected (0.10 sec)
+
+mysql> INSERT test11 values ('12\06\07');
+ERROR 1292 (22007): Incorrect date value: '12' for column 'test' at row 1
+mysql> INSERT test11 values ('12@607');
+ERROR 1292 (22007): Incorrect date value: '12@607' for column 'test' at row 1
+mysql> INSERT test11 values ('12/06/07');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT test11 values ('12@6@07');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT test11 values ('12@6/07');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from test11;
++------------+
+| test       |
++------------+
+| 2012-06-07 |
+| 2012-06-07 |
+| 2012-06-07 |
+| 2012-06-07 |
++------------+
+4 rows in set (0.00 sec)
+
+mysql> CREATE TABLE IF NOT EXISTS USER1(
+    -> ID INT PRIMARY KEY,
+    -> USERNAME VARCHAR(20)
+    -> );
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> desc uesr1;
+ERROR 1146 (42S02): Table 'maizi.uesr1' doesn't exist
+mysql> desc user1;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| ID       | int(11)     | NO   | PRI | NULL    |       |
+| USERNAME | varchar(20) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> show create table user1;
++-------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                     |
++-------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+| user1 | CREATE TABLE `user1` (
+  `ID` int(11) NOT NULL,
+  `USERNAME` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 |
++-------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+mysql> show create table user1 \G;
+*************************** 1. row ***************************
+       Table: user1
+Create Table: CREATE TABLE `user1` (
+  `ID` int(11) NOT NULL,
+  `USERNAME` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+1 row in set (0.00 sec)
+
+ERROR: 
+No query specified
+
+mysql> INSERT uesr1 VALUES (1,'king');
+ERROR 1146 (42S02): Table 'maizi.uesr1' doesn't exist
+mysql> INSERT uesr1 VALUES (13,'tom');INSERT user1 VALUES (1,'king');
+ERROR 1146 (42S02): Table 'maizi.uesr1' doesn't exist
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT user1 VALUES (13,'tom');INSERT user1 VALUES (1,'king');
+Query OK, 1 row affected (0.02 sec)
+
+ERROR 1062 (23000): Duplicate entry '1' for key 'PRIMARY'
+mysql> INSERT user1 VALUES (13,'tom');
+ERROR 1062 (23000): Duplicate entry '13' for key 'PRIMARY'
+mysql> select * from user1;
++----+----------+
+| ID | USERNAME |
++----+----------+
+|  1 | king     |
+| 13 | tom      |
++----+----------+
+2 rows in set (0.00 sec)
+
+mysql> CREATE TABLE IF NOT EXISTS USER2(
+    -> id INT,
+    -> username VARCHAR(20),
+    -> card CHAR(20),
+    -> primary(id,card)
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(id,card)
+)' at line 5
+mysql> CREATE TABLE IF NOT EXISTS USER2(
+    -> id INT,
+    -> username VARCHAR(20),
+    -> card CHAR(20),
+    -> primary key(id,card)
+    -> );
+Query OK, 0 rows affected (0.23 sec)
+
+mysql> desc user2;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| id       | int(11)     | NO   | PRI | NULL    |       |
+| username | varchar(20) | YES  |     | NULL    |       |
+| card     | char(20)    | NO   | PRI | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> INSERT user2 VALUES (1,'king','111');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> INSERT user2 VALUES (13,'tom','222');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT user2 VALUES (1,'tom','222');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from user2;
++----+----------+------+
+| id | username | card |
++----+----------+------+
+|  1 | king     | 111  |
+|  1 | tom      | 222  |
+| 13 | tom      | 222  |
++----+----------+------+
+3 rows in set (0.00 sec)
+
+mysql> CREATE TABLE IF NOT EXISTS USER3(
+    -> ID INT KEY,
+    -> USERNAME VARCHAR(20)
+    -> );
+Query OK, 0 rows affected (0.15 sec)
+
+mysql> select * from user3;
+Empty set (0.00 sec)
+
+mysql> DESC USER3;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| ID       | int(11)     | NO   | PRI | NULL    |       |
+| USERNAME | varchar(20) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> CREATE TABLE IF NOT EXISTS user4(
+    -> id SMALLINT KEY AUTO_INCREMENT,
+    -> username VARCHAR(20)
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> 
+mysql> INSERT user4 VALUES('1','king');
+Query OK, 1 row affected (0.09 sec)
+
+mysql> INSERT user4 VALUES('tom');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> INSERT user4 VALUES(111,'carry');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> INSERT user4(username) VALUES('tom');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> INSERT user4 VALUES(111,'carry');
+ERROR 1062 (23000): Duplicate entry '111' for key 'PRIMARY'
+mysql> INSERT user4 VALUES('jim');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> INSERT user4(username) VALUES('jim');
+Query OK, 1 row affected (0.09 sec)
+
+mysql> select * from user4;
++-----+----------+
+| id  | username |
++-----+----------+
+|   1 | king     |
+| 111 | carry    |
+| 112 | tom      |
+| 113 | jim      |
++-----+----------+
+4 rows in set (0.00 sec)
+
+mysql> INSERT user4 VALUES(888,'jack');
+Query OK, 1 row affected (0.10 sec)
+
+mysql> INSERT user4(username) VALUES('amy');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from user4;
++-----+----------+
+| id  | username |
++-----+----------+
+|   1 | king     |
+| 111 | carry    |
+| 112 | tom      |
+| 113 | jim      |
+| 888 | jack     |
+| 889 | amy      |
++-----+----------+
+6 rows in set (0.00 sec)
+
+mysql> INSERT user4 VALUES(null ,'jack');
+Query OK, 1 row affected (0.05 sec)
+
+mysql> INSERT user4 VALUES(DEFAULT ,'jack');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from user4;
++-----+----------+
+| id  | username |
++-----+----------+
+|   1 | king     |
+| 111 | carry    |
+| 112 | tom      |
+| 113 | jim      |
+| 888 | jack     |
+| 889 | amy      |
+| 890 | jack     |
+| 891 | jack     |
++-----+----------+
+8 rows in set (0.00 sec)
+
+mysql> CREATE TABLE IF NOT EXISTS user6(
+    -> id SMALLINT KEY AUTO_INCREMENT,
+    -> username VARCHAR(20)
+    -> )AUTO_INCREMENT=100;
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> INSERT user4(username) VALUES('tom');
+Query OK, 1 row affected (0.08 sec)
+
+mysql> select * from user6;
+Empty set (0.00 sec)
+
+mysql> INSERT user6(username) VALUES('tom');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from user6;
++-----+----------+
+| id  | username |
++-----+----------+
+| 100 | tom      |
++-----+----------+
+1 row in set (0.00 sec)
+
+mysql> ALTER TABLE user6 AUTO_INCREMENT=500;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from user6;
++-----+----------+
+| id  | username |
++-----+----------+
+| 100 | tom      |
++-----+----------+
+1 row in set (0.00 sec)
+
+mysql> INSERT user4(username) VALUES('tom1');
+Query OK, 1 row affected (0.10 sec)
+
+mysql> select * from user6;
++-----+----------+
+| id  | username |
++-----+----------+
+| 100 | tom      |
++-----+----------+
+1 row in set (0.00 sec)
+
+mysql> INSERT user6(username) VALUES('tom1');
+Query OK, 1 row affected (0.07 sec)
+
+mysql> select * from user6;
++-----+----------+
+| id  | username |
++-----+----------+
+| 100 | tom      |
+| 500 | tom1     |
++-----+----------+
+2 rows in set (0.00 sec)
+
+mysql> CREATE TABLE IF NOT EXISTS user7(
+    -> id SMALLINT UNSIGNED KEY AUTO_INCREMENT,
+    -> username VARCHAR(20) NOT NULL,
+    -> password CHAR(32) NOT NULL,
+    -> age TINYINT UNSIGNED
+    -> );
+Query OK, 0 rows affected (0.16 sec)
+
+mysql> INSERT user7(username,password) VALUES('KING','KING');
+Query OK, 1 row affected (0.08 sec)
+
+mysql> select * from user7;
++----+----------+----------+------+
+| id | username | password | age  |
++----+----------+----------+------+
+|  1 | KING     | KING     | NULL |
++----+----------+----------+------+
+1 row in set (0.00 sec)
+
+mysql> INSERT user7(username,password,age) VALUES('KING','KING',12);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select * from user7;
++----+----------+----------+------+
+| id | username | password | age  |
++----+----------+----------+------+
+|  1 | KING     | KING     | NULL |
+|  2 | KING     | KING     |   12 |
++----+----------+----------+------+
+2 rows in set (0.00 sec)
+
+mysql> INSERT user7(username,age) VALUES('KING',,12);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',12)' at line 1
+mysql> INSERT user7(username,age) VALUES('KING',12);
+ERROR 1364 (HY000): Field 'password' doesn't have a default value
+mysql> INSERT user7(username,password,age) VALUES('KING',NULL,12);
+ERROR 1048 (23000): Column 'password' cannot be null
+mysql> INSERT user7(username,password,age) VALUES('TOM','',13);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from user7;
++----+----------+----------+------+
+| id | username | password | age  |
++----+----------+----------+------+
+|  1 | KING     | KING     | NULL |
+|  2 | KING     | KING     |   12 |
+|  3 | TOM      |          |   13 |
++----+----------+----------+------+
+3 rows in set (0.00 sec)
+
+mysql> INSERT user8(username,password) values ('KING','KING');
+ERROR 1146 (42S02): Table 'maizi.user8' doesn't exist
+mysql> INSERT user8 VALUES(DEFAULT ,'TOM','TOM',DEFAULT,DEFAULT );
+ERROR 1146 (42S02): Table 'maizi.user8' doesn't exist
+mysql> CREATE TABLE IF NOT EXISTS user8(
+    -> id SMALLINT UNSIGNED KEY AUTO_INCREMENT,
+    -> username VARCHAR(20) NOT NULL,
+    -> password CHAR(32) NOT NULL,
+    -> age TINYINT UNSIGNED DEFAULT 18,
+    -> addr VARCHAR(50) NOT NULL DEFAULT '北京',
+    -> sex ENUM('男','女','保密') NOT NULL DEFAULT '保密'
+    -> );
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> INSERT user8(username,password) values ('KING','KING');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT user8 VALUES(DEFAULT ,'TOM','TOM',DEFAULT,DEFAULT );
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> INSERT user8 VALUES(null ,'TOM','TOM',DEFAULT,DEFAULT );
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> INSERT user8 VALUES(null ,'TOM','TOM',DEFAULT,DEFAULT,DEFAULT );
+Query OK, 1 row affected (0.06 sec)
+
+mysql> INSERT uesr8 VALUES (29,'QUEEN','QUEEN',29,'上海','男');
+ERROR 1146 (42S02): Table 'maizi.uesr8' doesn't exist
+mysql> INSERT user8 VALUES (29,'QUEEN','QUEEN',29,'上海','男');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> select * from user8;
++----+----------+----------+------+--------+--------+
+| id | username | password | age  | addr   | sex    |
++----+----------+----------+------+--------+--------+
+|  1 | KING     | KING     |   18 | 北京   | 保密   |
+|  2 | TOM      | TOM      |   18 | 北京   | 保密   |
+| 29 | QUEEN    | QUEEN    |   29 | 上海   | 男     |
++----+----------+----------+------+--------+--------+
+3 rows in set (0.00 sec)
+
+mysql> CREATE TABLE IF NOT EXISTS test10(
+    -> id SMALLINT UNSIGNED NOT NULL DEFAULT NULL,
+    -> );\c
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 3
+mysql> CREATE TABLE IF NOT EXISTS test10(
+    -> id SMALLINT UNSIGNED NOT NULL DEFAULT NULL
+    -> );
+ERROR 1067 (42000): Invalid default value for 'id'
+mysql> CREATE TABLE IF NOT EXISTS test10(
+    -> nam1 SMALLINT UNSIGNED NOT NULL DEFAULT NULL
+    -> );
+ERROR 1067 (42000): Invalid default value for 'nam1'
+mysql> CREATE TABLE IF NOT EXISTS user9(
+    -> id SMALLINT UNSIGNED KEY AUTO_INCREMENT,
+    -> username VARCHAR(20) NOT NULL UNIQUE,
+    -> card char(18) UNIQUE
+    -> );
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> INSERT user9(username) VALUES('A1');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> INSERT user9(username) VALUES('A1');
+ERROR 1062 (23000): Duplicate entry 'A1' for key 'username'
+mysql> INSERT user9(username,card) VALUES('B1',null);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> INSERT user9(username,card) VALUES('C1',null);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from user9;
++----+----------+------+
+| id | username | card |
++----+----------+------+
+|  1 | A1       | NULL |
+|  3 | B1       | NULL |
+|  4 | C1       | NULL |
++----+----------+------+
+3 rows in set (0.00 sec)
+
+mysql> show ENGINE;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> DESC ENGINE;
+ERROR 1146 (42S02): Table 'maizi.engine' doesn't exist
+mysql> ? ENGINE;
+Many help items for your request exist.
+To make a more specific request, please type 'help <item>',
+where <item> is one of the following
+topics:
+   ALTER TABLE
+   ALTER TABLESPACE
+   CREATE TABLE
+   CREATE TABLESPACE
+   DROP TABLESPACE
+   FLUSH
+   SHOW
+   SHOW ENGINE
+
+mysql> show ENGINE
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> SHOW ENGINE %;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%' at line 1
+mysql> exit
