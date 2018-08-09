@@ -1,0 +1,429 @@
+mysql> use maizi;
+Database changed
+mysql> show tables;
++-----------------+
+| Tables_in_maizi |
++-----------------+
+| cms_cate        |
+| cms_news        |
+| courses         |
+| test1           |
+| test10          |
+| test11          |
+| test2           |
+| test3           |
+| test4           |
+| test5           |
+| test6           |
+| test7           |
+| test8           |
+| test9           |
+| user            |
+| user1           |
+| user2           |
+| user3           |
+| user4           |
+| user6           |
+| user7           |
+| user8           |
+| user9           |
++-----------------+
+23 rows in set (0.01 sec)
+
+mysql> CREATE TABLE IF NOT EXISTS user10(
+    -> id SMALLINT UNSIGNED KEY AUTO_INCREMENT ,
+    -> uesrname VARCHAR(20) NOT NULL UNIQUE,
+    -> password CHAR(32) NOT NULL,
+    -> email VARVHAR(50) NOT NULL DEFAULT '897266654@QQ.COM',
+    -> age TINYINT UNSIGNED DEFAULT 18,
+    -> sex ENUM('男','女','保密'),
+    -> addr VARCHAR (200) NOT NULL DEFAULT '北京',
+    -> salary FLOAT (6,2),
+    -> regTime INT UNSIGNED,
+    -> face CHAR(100) NOT NULL DEFAULT  'default.jpg'
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'VARVHAR(50) NOT NULL DEFAULT '897266654@QQ.COM',
+age TINYINT UNSIGNED DEFAULT 18' at line 5
+mysql> CREATE TABLE IF NOT EXISTS user10(
+    -> id SMALLINT UNSIGNED KEY AUTO_INCREMENT ,
+    -> uesrname VARCHAR(20) NOT NULL UNIQUE,
+    -> password CHAR(32) NOT NULL,
+    -> email VARCHAR(50) NOT NULL DEFAULT '897266654@QQ.COM',
+    -> age TINYINT UNSIGNED DEFAULT 18,
+    -> sex ENUM('男','女','保密'),
+    -> addr VARCHAR (200) NOT NULL DEFAULT '北京',
+    -> salary FLOAT (6,2),
+    -> regTime INT UNSIGNED,
+    -> face CHAR(100) NOT NULL DEFAULT  'default.jpg'
+    -> );
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> desc user10;
++----------+----------------------------+------+-----+------------------+----------------+
+| Field    | Type                       | Null | Key | Default          | Extra          |
++----------+----------------------------+------+-----+------------------+----------------+
+| id       | smallint(5) unsigned       | NO   | PRI | NULL             | auto_increment |
+| uesrname | varchar(20)                | NO   | UNI | NULL             |                |
+| password | char(32)                   | NO   |     | NULL             |                |
+| email    | varchar(50)                | NO   |     | 897266654@QQ.COM |                |
+| age      | tinyint(3) unsigned        | YES  |     | 18               |                |
+| sex      | enum('男','女','保密')     | YES  |     | NULL             |                |
+| addr     | varchar(200)               | NO   |     | 北京             |                |
+| salary   | float(6,2)                 | YES  |     | NULL             |                |
+| regTime  | int(10) unsigned           | YES  |     | NULL             |                |
+| face     | char(100)                  | NO   |     | default.jpg      |                |
++----------+----------------------------+------+-----+------------------+----------------+
+10 rows in set (0.01 sec)
+
+mysql> ALTER TABLE user10 RENAME T0 user11;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'user11' at line 1
+mysql> ALTER TABLE user10 RENAME as user11;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_maizi |
++-----------------+
+| cms_cate        |
+| cms_news        |
+| courses         |
+| test1           |
+| test10          |
+| test11          |
+| test2           |
+| test3           |
+| test4           |
+| test5           |
+| test6           |
+| test7           |
+| test8           |
+| test9           |
+| user            |
+| user1           |
+| user11          |
+| user2           |
+| user3           |
+| user4           |
+| user6           |
+| user7           |
+| user8           |
+| user9           |
++-----------------+
+24 rows in set (0.00 sec)
+
+mysql> desc user11;
++----------+----------------------------+------+-----+------------------+----------------+
+| Field    | Type                       | Null | Key | Default          | Extra          |
++----------+----------------------------+------+-----+------------------+----------------+
+| id       | smallint(5) unsigned       | NO   | PRI | NULL             | auto_increment |
+| uesrname | varchar(20)                | NO   | UNI | NULL             |                |
+| password | char(32)                   | NO   |     | NULL             |                |
+| email    | varchar(50)                | NO   |     | 897266654@QQ.COM |                |
+| age      | tinyint(3) unsigned        | YES  |     | 18               |                |
+| sex      | enum('男','女','保密')     | YES  |     | NULL             |                |
+| addr     | varchar(200)               | NO   |     | 北京             |                |
+| salary   | float(6,2)                 | YES  |     | NULL             |                |
+| regTime  | int(10) unsigned           | YES  |     | NULL             |                |
+| face     | char(100)                  | NO   |     | default.jpg      |                |
++----------+----------------------------+------+-----+------------------+----------------+
+10 rows in set (0.00 sec)
+
+mysql> ALTER TABLE user11 RENAME as user10;
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> desc user11;
+ERROR 1146 (42S02): Table 'maizi.user11' doesn't exist
+mysql> show tables;
++-----------------+
+| Tables_in_maizi |
++-----------------+
+| cms_cate        |
+| cms_news        |
+| courses         |
+| test1           |
+| test10          |
+| test11          |
+| test2           |
+| test3           |
+| test4           |
+| test5           |
+| test6           |
+| test7           |
+| test8           |
+| test9           |
+| user            |
+| user1           |
+| user10          |
+| user2           |
+| user3           |
+| user4           |
+| user6           |
+| user7           |
+| user8           |
+| user9           |
++-----------------+
+24 rows in set (0.00 sec)
+
+mysql> ALTER TABLE user10 RENAME as user11;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> ALTER TABLE user11 RENAME  user10;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_maizi |
++-----------------+
+| cms_cate        |
+| cms_news        |
+| courses         |
+| test1           |
+| test10          |
+| test11          |
+| test2           |
+| test3           |
+| test4           |
+| test5           |
+| test6           |
+| test7           |
+| test8           |
+| test9           |
+| user            |
+| user1           |
+| user10          |
+| user2           |
+| user3           |
+| user4           |
+| user6           |
+| user7           |
+| user8           |
+| user9           |
++-----------------+
+24 rows in set (0.00 sec)
+
+mysql> RENAME TABLE user10 TO user11;
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> show tables;
++-----------------+
+| Tables_in_maizi |
++-----------------+
+| cms_cate        |
+| cms_news        |
+| courses         |
+| test1           |
+| test10          |
+| test11          |
+| test2           |
+| test3           |
+| test4           |
+| test5           |
+| test6           |
+| test7           |
+| test8           |
+| test9           |
+| user            |
+| user1           |
+| user11          |
+| user2           |
+| user3           |
+| user4           |
+| user6           |
+| user7           |
+| user8           |
+| user9           |
++-----------------+
+24 rows in set (0.00 sec)
+
+mysql> desc user11;
++----------+----------------------------+------+-----+------------------+----------------+
+| Field    | Type                       | Null | Key | Default          | Extra          |
++----------+----------------------------+------+-----+------------------+----------------+
+| id       | smallint(5) unsigned       | NO   | PRI | NULL             | auto_increment |
+| uesrname | varchar(20)                | NO   | UNI | NULL             |                |
+| password | char(32)                   | NO   |     | NULL             |                |
+| email    | varchar(50)                | NO   |     | 897266654@QQ.COM |                |
+| age      | tinyint(3) unsigned        | YES  |     | 18               |                |
+| sex      | enum('男','女','保密')     | YES  |     | NULL             |                |
+| addr     | varchar(200)               | NO   |     | 北京             |                |
+| salary   | float(6,2)                 | YES  |     | NULL             |                |
+| regTime  | int(10) unsigned           | YES  |     | NULL             |                |
+| face     | char(100)                  | NO   |     | default.jpg      |                |
++----------+----------------------------+------+-----+------------------+----------------+
+10 rows in set (0.00 sec)
+
+mysql> ALTER TABLE user11 RENAME  user10
+    -> ;
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> ALTER TABLE user10 ADD card CHAR(18) ;
+Query OK, 0 rows affected (0.17 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc user10;
++----------+----------------------------+------+-----+------------------+----------------+
+| Field    | Type                       | Null | Key | Default          | Extra          |
++----------+----------------------------+------+-----+------------------+----------------+
+| id       | smallint(5) unsigned       | NO   | PRI | NULL             | auto_increment |
+| uesrname | varchar(20)                | NO   | UNI | NULL             |                |
+| password | char(32)                   | NO   |     | NULL             |                |
+| email    | varchar(50)                | NO   |     | 897266654@QQ.COM |                |
+| age      | tinyint(3) unsigned        | YES  |     | 18               |                |
+| sex      | enum('男','女','保密')     | YES  |     | NULL             |                |
+| addr     | varchar(200)               | NO   |     | 北京             |                |
+| salary   | float(6,2)                 | YES  |     | NULL             |                |
+| regTime  | int(10) unsigned           | YES  |     | NULL             |                |
+| face     | char(100)                  | NO   |     | default.jpg      |                |
+| card     | char(18)                   | YES  |     | NULL             |                |
++----------+----------------------------+------+-----+------------------+----------------+
+11 rows in set (0.00 sec)
+
+mysql> ALTER TABLE user10 ADD test1 CHAR(18) not null UNIQUE;
+Query OK, 0 rows affected (0.18 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE user10 ADD test2 CHAR(18) not null FIRST;
+Query OK, 0 rows affected (0.13 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE user10 ADD test3 int not null DEFAULT 100 AFTER username;
+ERROR 1054 (42S22): Unknown column 'username' in 'user10'
+mysql> ALTER TABLE user10 ADD test3 int not null DEFAULT 100 AFTER uesrname;
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc user10;
++----------+----------------------------+------+-----+------------------+----------------+
+| Field    | Type                       | Null | Key | Default          | Extra          |
++----------+----------------------------+------+-----+------------------+----------------+
+| test2    | char(18)                   | NO   |     | NULL             |                |
+| id       | smallint(5) unsigned       | NO   | PRI | NULL             | auto_increment |
+| uesrname | varchar(20)                | NO   | UNI | NULL             |                |
+| test3    | int(11)                    | NO   |     | 100              |                |
+| password | char(32)                   | NO   |     | NULL             |                |
+| email    | varchar(50)                | NO   |     | 897266654@QQ.COM |                |
+| age      | tinyint(3) unsigned        | YES  |     | 18               |                |
+| sex      | enum('男','女','保密')     | YES  |     | NULL             |                |
+| addr     | varchar(200)               | NO   |     | 北京             |                |
+| salary   | float(6,2)                 | YES  |     | NULL             |                |
+| regTime  | int(10) unsigned           | YES  |     | NULL             |                |
+| face     | char(100)                  | NO   |     | default.jpg      |                |
+| card     | char(18)                   | YES  |     | NULL             |                |
+| test1    | char(18)                   | NO   | UNI | NULL             |                |
++----------+----------------------------+------+-----+------------------+----------------+
+14 rows in set (0.00 sec)
+
+mysql> ALTER TABLE 
+    -> ADD test4 INT NOT NULL AFTER password,
+    -> ADD test5 FLOAT(6,2) FIRSHT,
+    -> ADD test6 SET('A','B','C');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ADD test4 INT NOT NULL AFTER password,
+ADD test5 FLOAT(6,2) FIRSHT,
+ADD test6 SE' at line 2
+mysql> ALTER TABLE
+    -> ADD test4 INT NOT NULL AFTER password,
+    -> ADD test5 FLOAT(6,2) FIRST,
+    -> ADD test6 SET('A','B','C');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ADD test4 INT NOT NULL AFTER password,
+ADD test5 FLOAT(6,2) FIRST,
+ADD test6 SET' at line 2
+mysql> ALTER TABLE user10
+    -> ADD test4 INT NOT NULL DEFAULT 100 AFTER password,
+    -> ADD test5 FLOAT(6,2) FIRST,
+    -> ADD test6 SET('A','B','C');
+Query OK, 0 rows affected (0.11 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE user10 DROP test6;
+Query OK, 0 rows affected (0.13 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc user10;
++----------+----------------------------+------+-----+------------------+----------------+
+| Field    | Type                       | Null | Key | Default          | Extra          |
++----------+----------------------------+------+-----+------------------+----------------+
+| test5    | float(6,2)                 | YES  |     | NULL             |                |
+| test2    | char(18)                   | NO   |     | NULL             |                |
+| id       | smallint(5) unsigned       | NO   | PRI | NULL             | auto_increment |
+| uesrname | varchar(20)                | NO   | UNI | NULL             |                |
+| test3    | int(11)                    | NO   |     | 100              |                |
+| password | char(32)                   | NO   |     | NULL             |                |
+| test4    | int(11)                    | NO   |     | 100              |                |
+| email    | varchar(50)                | NO   |     | 897266654@QQ.COM |                |
+| age      | tinyint(3) unsigned        | YES  |     | 18               |                |
+| sex      | enum('男','女','保密')     | YES  |     | NULL             |                |
+| addr     | varchar(200)               | NO   |     | 北京             |                |
+| salary   | float(6,2)                 | YES  |     | NULL             |                |
+| regTime  | int(10) unsigned           | YES  |     | NULL             |                |
+| face     | char(100)                  | NO   |     | default.jpg      |                |
+| card     | char(18)                   | YES  |     | NULL             |                |
+| test1    | char(18)                   | NO   | UNI | NULL             |                |
++----------+----------------------------+------+-----+------------------+----------------+
+16 rows in set (0.00 sec)
+
+mysql> LTER TABLE user10 
+    -> DROP test1,
+    -> DROP test2,
+    -> DROP test3,
+    -> DROP test4,
+    -> DROP test5
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'LTER TABLE user10 
+DROP test1,
+DROP test2,
+DROP test3,
+DROP test4,
+DROP test5' at line 1
+mysql> ALTER TABLE user10
+    -> DROP test1,
+    -> DROP test2,
+    -> DROP test3,
+    -> DROP test4,
+    -> DROP test5
+    -> ;
+Query OK, 0 rows affected (0.17 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc user10;
++----------+----------------------------+------+-----+------------------+----------------+
+| Field    | Type                       | Null | Key | Default          | Extra          |
++----------+----------------------------+------+-----+------------------+----------------+
+| id       | smallint(5) unsigned       | NO   | PRI | NULL             | auto_increment |
+| uesrname | varchar(20)                | NO   | UNI | NULL             |                |
+| password | char(32)                   | NO   |     | NULL             |                |
+| email    | varchar(50)                | NO   |     | 897266654@QQ.COM |                |
+| age      | tinyint(3) unsigned        | YES  |     | 18               |                |
+| sex      | enum('男','女','保密')     | YES  |     | NULL             |                |
+| addr     | varchar(200)               | NO   |     | 北京             |                |
+| salary   | float(6,2)                 | YES  |     | NULL             |                |
+| regTime  | int(10) unsigned           | YES  |     | NULL             |                |
+| face     | char(100)                  | NO   |     | default.jpg      |                |
+| card     | char(18)                   | YES  |     | NULL             |                |
++----------+----------------------------+------+-----+------------------+----------------+
+11 rows in set (0.00 sec)
+
+mysql> ALTER TABLE user10
+    -> ADD test INT UNSIGNED NOT NULL DEFAULT 100 AFTER sex,
+    -> DROP addr;
+Query OK, 0 rows affected (0.13 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc user10;
++----------+----------------------------+------+-----+------------------+----------------+
+| Field    | Type                       | Null | Key | Default          | Extra          |
++----------+----------------------------+------+-----+------------------+----------------+
+| id       | smallint(5) unsigned       | NO   | PRI | NULL             | auto_increment |
+| uesrname | varchar(20)                | NO   | UNI | NULL             |                |
+| password | char(32)                   | NO   |     | NULL             |                |
+| email    | varchar(50)                | NO   |     | 897266654@QQ.COM |                |
+| age      | tinyint(3) unsigned        | YES  |     | 18               |                |
+| sex      | enum('男','女','保密')     | YES  |     | NULL             |                |
+| test     | int(10) unsigned           | NO   |     | 100              |                |
+| salary   | float(6,2)                 | YES  |     | NULL             |                |
+| regTime  | int(10) unsigned           | YES  |     | NULL             |                |
+| face     | char(100)                  | NO   |     | default.jpg      |                |
+| card     | char(18)                   | YES  |     | NULL             |                |
++----------+----------------------------+------+-----+------------------+----------------+
+11 rows in set (0.00 sec)
+
+mysql> Terminal close -- exit!
