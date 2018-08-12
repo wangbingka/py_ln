@@ -97,21 +97,26 @@ class DoubanClient(object):
         url = 'https://accounts.douban.com/login'
         #获取验证码图片和验证码ID
         r = self.session.get(url)
+        ck = _get_ck(r.content.decode('utf-8'))
         # print(r.content)
         # print(r.content.decode('utf-8'))
         #python3中字符串，区分str和bytes，需要将bytes转码，用法:str.decode('utf-8')
+        data= {'form_email':username,
+               'form_password':password,
+               'source':'None',
+               'login':'登录',
+               'ck':ck,
+               }
         (captcha_id,captcha_url) = _get_captcha(r.content.decode('utf-8'))
         if captcha_id:
             captcha_solution = input('please input solution for [%s]'%captcha_url)
-        data= {'form_email':username,
-               'form_password':password,
-               'source':'index_nav',
-        }
+
+
         if captcha_id:
             data['captcha-id'] = captcha_id
             data['captcha-solution'] = captcha_solution
-        print(captcha_solution)
-        print(captcha_id)
+        # print(captcha_solution)
+        # print(captcha_id)
         headers = {'Host':'www.douban.com',
                     'Origin':'https://www.douban.com',
                     'Referer':'https://www.douban.com/',
@@ -163,8 +168,8 @@ def _get_captcha(content):
 
     p = CaptchaParser()
     p.feed(content)
-    id1 = p.captcha_url.split('=')[1]
-    p.captcha_id = id1.split('&')[0]
+    # id1 = p.captcha_url.split('=')[1]
+    # p.captcha_id = id1.split('&')[0]
     return p.captcha_id,p.captcha_url
 
 
