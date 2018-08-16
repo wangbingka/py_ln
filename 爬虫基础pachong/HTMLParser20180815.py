@@ -23,12 +23,24 @@ from html.parser import HTMLParser
 
 '''
 class MyHTMLParser(HTMLParser):
+    a_t = False
     def handle_starttag(self, tag, attrs):
         print("Encountered a start tag:", tag)
-    def handle_endtag(self, tag):
-        print("Encountered an end tag :", tag)
+        if str(tag).startswith("title"):
+            self.a_t = True
+
+    # 根据某些条件，获取data值
+    def handle_data(self, data):
+        if self.a_t is True:
+            print("得到的数据: ",data)
+
+    #打印所有的data值
     def handle_data(self, data):
         print("Encountered some data  :", data)
+    def handle_endtag(self, tag):
+        print("Encountered an end tag :", tag)
+
+
 
 parser = MyHTMLParser()
 parser.feed('<html><head><title>Test</title></head>''<body><h1>Parse me!</h1></body></html>')
