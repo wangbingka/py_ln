@@ -186,6 +186,7 @@ def _get_ck(content):
     p.feed(content)
     return p.ck
 
+get_json()
 c = DoubanClient()
 c.login('897266654@qq.com','za598521')
 c.edit_sign('qq897266654','python签名')
