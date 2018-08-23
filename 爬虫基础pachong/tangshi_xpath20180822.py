@@ -13,7 +13,9 @@ from lxml import etree
 
 
 class tangShi300():
-    def __init__(self):
+    def __init__(self,url,txt_name):
+        self.url = url
+        self.txt_name = txt_name
         self.tangshi_list = []
         self.current_poem = {}
         headers = {
@@ -22,23 +24,29 @@ class tangShi300():
         self.session = requests.Session()
         self.session.headers.update(headers)
     def retrive_tangshi_300(self):
-        url = 'https://www.gushiwen.org/gushi/tangshi.aspx'
-        s = self.session.get(url)
+        # url = 'https://www.gushiwen.org/gushi/tangshi.aspx'
+        s = self.session.get(self.url)
         response = etree.HTML(s.content.decode('utf-8'))
         tangshi300 = response.xpath('//div[@class="typecont"]')
+
         for x in tangshi300:
             type = x.xpath('./div[@class="bookMl"]//strong/text()')
-            for i in range(0,300):
+            for i in range(0,10000):
                 url1 = x.xpath('./span/a/@href')
                 title = x.xpath('./span/a/text()')
                 author = x.xpath('./span/text()')
                 try:
                     self.current_poem['type'] = ''.join(type)
                     self.current_poem['title'] = title[i]
-                    self.current_poem['url'] = url1[i]
+                    author = author[i]
+                    author_txt = re.sub(r'[\n()]', '', author)
+                    self.current_poem['author'] = author_txt
+                    urlist = 'https://so.gushiwen.org/%s' % re.split('/', url1[i])[-1]
+                    self.current_poem['url'] = urlist
+
                     idnum = 'contson%s'%re.split('[_\.]',url1[i])[-2]
                     # print(idnum)
-                    ss = self.session.get(url1[i])
+                    ss = self.session.get(urlist)
                     response1 = etree.HTML(ss.content.decode('utf-8'))
                     # print(ss.content.decode('utf-8'))
 
@@ -47,20 +55,34 @@ class tangShi300():
 
                     content_list = response1.xpath('//div[@id="' + idnum + '"]/text()')+response1.xpath('//div[@id="' + idnum + '"]/p/text()')
                     content_txt = ''.join(content_list)
-                    self.current_poem['content'] = content_txt
+                    content_txt1 = re.sub(r'[\n\t\r]', '', content_txt)
+                    self.current_poem['content'] = content_txt1
                     # print(idnum)
                     # print(self.current_poem['content'])
                     yiwen_list = response1.xpath('//div[@class= "contyishang"]/p/text()')
-                    yiwen_txt = ''.join(yiwen_list)
-                    self.current_poem['yiwen'] = yiwen_txt
+                    yiwen_list1 = response1.xpath('//div[@class= "contyishang"]')[0]
+                    yiwen_list2 = yiwen_list1.xpath('./p/text()')
+                    # print(yiwen_list2)
+                    yiwen_txt = ''.join(yiwen_list2)
+                    yiwen_txt1 = re.sub(r'[\n\t\r\u3000]', '', yiwen_txt)
+                    # print(yiwen_txt1)
+                    self.current_poem['yiwen'] = yiwen_txt1
 
-                    self.current_poem['author'] = author[i]
+
+
                     self.tangshi_list.append(self.current_poem)
                     self.current_poem = {}
 
                 except:
-                    print('This\'s OK!')
+                    print('This\'s all!')
                     break
+        for i in self.tangshi_list:
+            for a in i.keys():
+                # print(a)
+                # print(i[a])
+                write_tangshi300(a, self.txt_name)
+                write_tangshi300(i[a], self.txt_name)
+            write_tangshi300('\n', self.txt_name)
 
         return self.tangshi_list
 
@@ -69,15 +91,8 @@ def write_tangshi300(self,txt_name):
         f.write(self+'\t')
 
 if __name__  == '__main__':
-    tangshi = tangShi300()
-    # print(tangshi.retrive_tangshi_300())
-    for i in tangshi.retrive_tangshi_300():
-        for a in  i.keys():
-            print(a)
-            print(i[a])
-            write_tangshi300(a,'tangshi300')
-            write_tangshi300(i[a],'tangshi300')
-        write_tangshi300('\n', 'tangshi300')
+    tangshi = tangShi300('https://www.gushiwen.org/gushi/tangshi.aspx','tangshi300')
+    tangshi.retrive_tangshi_300()
 
 
 

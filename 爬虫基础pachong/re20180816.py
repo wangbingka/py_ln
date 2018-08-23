@@ -93,5 +93,6 @@ if __name__ == '__main__':
     # re_split()
     # re_findall()
     # re_finditer()
-    # re_subn()
+    re_subn()
+    # re_match_object()
     re_match_object()
