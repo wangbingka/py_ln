@@ -8,6 +8,10 @@ import requests
 from html.parser import  HTMLParser
 import re
 
+'''
+此脚本失败，未达成目的
+原因，HTMLParser,div内包含一个div，导致无法通过handle_endtag，初始化设置的True为False
+'''
 
 def _attr(attrlist, attrname):
     for attr in attrlist:
@@ -26,7 +30,7 @@ class tangshiParser(HTMLParser):
         self.current_poem = {}
         self.pattern = re.compile(r'''
                 (.+)  #匹配标题
-                \(    #匹配作者左边的括号
+                \n\(    #匹配作者左边的括号
                 (.+)  #匹配作者
                 \)    #匹配作者右边的括号
                 ''', re.VERBOSE)
@@ -59,8 +63,10 @@ class tangshiParser(HTMLParser):
             # self.current_poem['author'] = data
             # self.tangshi_list.append(self.current_poem)
             m = self.pattern.match(data)
+            print(m)
             if m:
                 self.current_poem['title']  = m.group(1)
+                print(m.group(1))
                 self.current_poem['author'] = m.group(2)
                 self.tangshi_list.append(self.current_poem)
 

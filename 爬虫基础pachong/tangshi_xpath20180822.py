@@ -10,97 +10,75 @@ import re
 from lxml import html
 from lxml import etree
 
-def _attr(attrlist, attrname):
-    for attr in attrlist:
-        if attr[0] == attrname:
-            return attr[1]
-    return None
 
-class tangshiParser(HTMLParser):
+
+class tangShi300():
     def __init__(self):
-        HTMLParser.__init__(self)
         self.tangshi_list = []
-        self.in_div = False
-        self.in_div2 = False
-        self.in_a = False
-        self.in_span = False
         self.current_poem = {}
-        self.pattern = re.compile(r'''
-                (.+)  #匹配标题
-                \(    #匹配作者左边的括号
-                (.+)  #匹配作者
-                \)    #匹配作者右边的括号
-                ''', re.VERBOSE)
-    def handle_starttag(self,tag,attrs):
-        if tag == 'div' and _attr(attrs,'class') == 'typecont':
-            self.in_div = True
-        if self.in_div and _attr(attrs,'class') == 'bookMl':
-            self.in_div2 =True
-        if self.in_div and tag == 'span':
-            self.in_span = True
-        if self.in_div  and tag == 'a':
-            self.in_a = True
-            self.current_poem['url'] = _attr(attrs,'href')
-            print(self.current_poem['url'])
-    def handle_endtag(self,tag):
-        # if tag == 'div':
-        #     self.in_div = False
-        if tag == 'span':
-            self.in_span = False
-        if tag == 'a':
-            self.in_a = False
-            self.in_div = False
-            self.in_div2 = False
-    def handle_data(self,data):
-        # if self.in_a:
-        #     # print(data)
-        #     self.current_poem['title'] = data
-        if self.in_span:
-            print(data)
-            # self.current_poem['author'] = data
-            # self.tangshi_list.append(self.current_poem)
-            m = self.pattern.match(data)
-            if m:
-                self.current_poem['title']  = m.group(1)
-                self.current_poem['author'] = m.group(2)
-                self.tangshi_list.append(self.current_poem)
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36 SE 2.X MetaSr 1.0', }
+        # 创建一个session，更新headers,保持全局可以使用
+        self.session = requests.Session()
+        self.session.headers.update(headers)
+    def retrive_tangshi_300(self):
+        url = 'https://www.gushiwen.org/gushi/tangshi.aspx'
+        s = self.session.get(url)
+        response = etree.HTML(s.content.decode('utf-8'))
+        tangshi300 = response.xpath('//div[@class="typecont"]')
+        for x in tangshi300:
+            type = x.xpath('./div[@class="bookMl"]//strong/text()')
+            for i in range(0,300):
+                url1 = x.xpath('./span/a/@href')
+                title = x.xpath('./span/a/text()')
+                author = x.xpath('./span/text()')
+                try:
+                    self.current_poem['type'] = ''.join(type)
+                    self.current_poem['title'] = title[i]
+                    self.current_poem['url'] = url1[i]
+                    idnum = 'contson%s'%re.split('[_\.]',url1[i])[-2]
+                    # print(idnum)
+                    ss = self.session.get(url1[i])
+                    response1 = etree.HTML(ss.content.decode('utf-8'))
+                    # print(ss.content.decode('utf-8'))
 
+                    # 取出对应id的诗正文，但只能取当前div中的，取不出里面再下一层，比如<p>正文</p>。
+                    # self.current_poem['content'] = response1.xpath('//div[@id="'+idnum+'"]/text()')
 
+                    content_list = response1.xpath('//div[@id="' + idnum + '"]/text()')+response1.xpath('//div[@id="' + idnum + '"]/p/text()')
+                    content_txt = ''.join(content_list)
+                    self.current_poem['content'] = content_txt
+                    # print(idnum)
+                    # print(self.current_poem['content'])
+                    yiwen_list = response1.xpath('//div[@class= "contyishang"]/p/text()')
+                    yiwen_txt = ''.join(yiwen_list)
+                    self.current_poem['yiwen'] = yiwen_txt
 
+                    self.current_poem['author'] = author[i]
+                    self.tangshi_list.append(self.current_poem)
+                    self.current_poem = {}
 
+                except:
+                    print('This\'s OK!')
+                    break
 
+        return self.tangshi_list
 
-
-def retrive_tangshi_300():
-    url = 'https://www.gushiwen.org/gushi/tangshi.aspx'
-    s = requests.get(url)
-    response = etree.HTML(s.content.decode('utf-8'))
-    tangshi300 = response.xpath('//div[@class="typecont"]')
-    for x in tangshi300:
-        print(x)
-        type = x.xpath('./div[@class="bookMl"]//strong/text()')
-        print(type)
-        for i in range(0,300):
-            url1 = x.xpath('./span/a/@href')
-            title = x.xpath('./span/a/text()')
-            author = x.xpath('./span/text()')
-            try:
-                print(url1[i])
-                print(title[i])
-                print(author[i])
-            except:
-                print('This\'s OK!')
-                break
-        # print(title)
-        # print(url1)
-    # print(tangshi300)
-    # print(response)
-    # parser = tangshiParser()
-    # # print(s.content.decode('utf-8'))
-    # parser.feed(s.content.decode('utf-8'))
-    # return parser.tangshi_list
+def write_tangshi300(self,txt_name):
+    with open('{}.txt'.format(txt_name),'a+',encoding='utf-8') as f:
+        f.write(self+'\t')
 
 if __name__  == '__main__':
-    retrive_tangshi_300()
-    # for i in retrive_tangshi_300():
-    #     print(i)
+    tangshi = tangShi300()
+    # print(tangshi.retrive_tangshi_300())
+    for i in tangshi.retrive_tangshi_300():
+        for a in  i.keys():
+            print(a)
+            print(i[a])
+            write_tangshi300(a,'tangshi300')
+            write_tangshi300(i[a],'tangshi300')
+        write_tangshi300('\n', 'tangshi300')
+
+
+
+
