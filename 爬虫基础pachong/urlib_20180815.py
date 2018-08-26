@@ -7,6 +7,7 @@ import urllib.request
 import urllib.parse
 
 
+
 #打开网站
 response = urllib.request.urlopen('http://www.baidu.com')
 
@@ -19,11 +20,11 @@ response = urllib.request.urlopen('http://www.baidu.com')
 
 # 这里就用到urllib.parse，通过bytes(urllib.parse.urlencode())可以将post数据进行转换放到urllib.request.urlopen的data参数中。这样就完成了一次post请求。
 # 所以如果我们添加data参数的时候就是以post请求方式请求，如果没有data参数就是get请求方式
-#更新data
-    # data = bytes(urllib.parse.urlencode({'word': 'hello'}), encoding='utf8')
-    # print(data)
-    # response = urllib.request.urlopen('http://httpbin.org/post', data=data)
-    # print(response.read().decode('utf-8'))
+# 更新data
+#     data = bytes(urllib.parse.urlencode({'word': 'hello'}), encoding='utf8')
+#     print(data)
+#     response = urllib.request.urlopen('http://httpbin.org/post', data=data)
+#     print(response.read().decode('utf-8'))
 
 # timeout参数的使用
 # 在某些网络情况不好或者服务器端异常的情况会出现请求慢的情况，或者请求异常，所以这个时候我们需要给
