@@ -14,7 +14,7 @@ import os
 
 '''
 
-def _download_imaage(url,folder = 'image'):
+def _download_image(url,folder = 'image'):
     print('downloading %s' % url)
     if not os.path.isdir(folder):
         os.mkdir(folder)
@@ -64,7 +64,7 @@ def download_wallpaper():
         print(i)
         if 'downloadUrl' in i:
             print(i['downloadUrl'])
-            _download_imaage(i['downloadUrl'])
+            _download_image(i['downloadUrl'])
 
 
 
