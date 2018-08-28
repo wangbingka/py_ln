@@ -20,49 +20,59 @@ from lxml import etree
 
 '''
 
+type_content = {}
 typeUrl_list = []
 poemUrl_content = {}
-poemUrl_list = {}
-poem_list = []
+poemUrl_list = []
 poem_content = {}
+poem_list = []
+
+
+
 
 # 还未使用
 def _guwen_content(url):
     global poem_content
     global poem_list
-    for i in url:
-        idnum = 'contson%s' % re.split('[_\.]', url)[-2]
-        ss = session.get(url)
-        response1 = etree.HTML(ss.content.decode('utf-8'))
-        # print(ss.content.decode('utf-8'))
 
-        # 取出对应id的诗正文，但只能取当前div中的，取不出里面再下一层，比如<p>正文</p>。
-        # self.current_poem['content'] = response1.xpath('//div[@id="'+idnum+'"]/text()')
+    idnum = 'contson%s' % re.split('[_\.]', url)[-2]
+    # print(idnum)
+    ss = session.get(url)
+    response1 = etree.HTML(ss.content.decode('utf-8'))
 
-        # 诗词标题
-        title = response1.xpath('//div[@class= "cont"]')[0]
+    # print(ss.content.decode('utf-8'))
+
+    # 诗词标题
+    try:
+        title = response1.xpath('//div[@class= "cont"]')[1]
         title1 = title.xpath('./h1/text()')
         poem_content['title'] = title1
+    except:
+        poem_content['title'] = ''
 
-        # 诗词朝代
-        chaodai = response1.xpath('//div[@class= "source"]')[0]
-        chaodai1 = chaodai.xpath('./a[0]/text()')
+    # 诗词朝代
+    try:
+        chaodai = response1.xpath('//p[@class= "source"]')[1]
+
+        chaodai1 = chaodai.xpath('./a[1]/text()')
         poem_content['chaodai'] = chaodai1
 
         # 诗词作者
-        author = chaodai.xpath('./a[1]/text()')
+        author = chaodai.xpath('./a[2]/text()')
         poem_content['author'] = author
+    except:
+        poem_content['chaodai'] = ''
+        poem_content['author'] = ''
 
+    # 诗词正文
+    content_list = response1.xpath('//div[@id="' + idnum + '"]/text()') + response1.xpath(
+        '//div[@id="' + idnum + '"]/p/text()')
+    content_txt = ''.join(content_list)
+    content_txt1 = re.sub(r'[\n\t\r]', '', content_txt)
+    poem_content['content'] = content_txt1
 
-        # 诗词正文
-        content_list = response1.xpath('//div[@id="' + idnum + '"]/text()') + response1.xpath(
-            '//div[@id="' + idnum + '"]/p/text()')
-        content_txt = ''.join(content_list)
-        content_txt1 = re.sub(r'[\n\t\r]', '', content_txt)
-        poem_content['content'] = content_txt1
-
-        # 诗词译文
-        yiwen_list = response1.xpath('//div[@class= "contyishang"]/p/text()')
+    # 诗词译文
+    try:
         yiwen_list1 = response1.xpath('//div[@class= "contyishang"]')[0]
         yiwen_list2 = yiwen_list1.xpath('./p/text()')
         # print(yiwen_list2)
@@ -70,16 +80,22 @@ def _guwen_content(url):
         yiwen_txt1 = re.sub(r'[\n\t\r\u3000]', '', yiwen_txt)
         # print(yiwen_txt1)
         poem_content['yiwen'] = yiwen_txt1
-        # 诗词网址
-        poem_content['url'] = url
+    except:
+        poem_content['yiwen'] = ''
+    # 诗词网址
+    poem_content['url'] = url
 
-        poem_list.append[poem_content]
+    print(poem_content)
+
+    poem_list.append(poem_content)
+    poem_content = {}
 
     return poem_list
 
 
 def _guwen_url(url):
     global poemUrl_list
+    global poemUrl_content
 
     poemUrl_content = {}
     s = session.get(url)
@@ -87,31 +103,26 @@ def _guwen_url(url):
     tangshi300 = response.xpath('//div[@class="typecont"]')
 
     for inx1, x in enumerate(tangshi300):
-        print(x)
     # for x in tangshi300:
         type = x.xpath('./div[@class="bookMl"]/strong/text()')
         url1 = x.xpath('./span/a/@href')
-
         title = x.xpath('./span/a/text()')
         for inx2, i in enumerate(title):
-            try:
-                poemUrl_content['type'] = ''.join(type)
-                urlist = 'https://so.gushiwen.org/%s' % re.split('/', url1[inx2])[-1]
-                poemUrl_content['url'] = urlist
-                poemUrl_content['title'] = title[inx2]
-                poemUrl_list.append(poemUrl_content)
-                poemUrl_content = {}
+            poemUrl_content['type'] = ''.join(type)
+            urlist = 'https://so.gushiwen.org/%s' % re.split('/', url1[inx2])[-1]
+            poemUrl_content['url'] = urlist
+            poemUrl_content['title'] = title[inx2]
+            poemUrl_list.append(poemUrl_content)
+            poemUrl_content = {}
 
-            except:
-                # print('This\'s all!')
-                break
+    print(len(poemUrl_list))
     print(poemUrl_list)
     return poemUrl_list
 
 def _typeUrl_list(url):
     global typeUrl_list
+    global type_content
 
-    type_content = {}
 
     s = session.get(url)
     response = etree.HTML(s.content.decode('utf-8'))
@@ -148,4 +159,8 @@ if __name__  == '__main__':
     a = _typeUrl_list(url)
 
     print(a[0]['title'])
-    _guwen_url(a[0]['url'])
+    for i in a:
+        b = _guwen_url(i['url'])
+    print(b[0]['url'])
+    for i in b:
+        c = _guwen_content(i['url'])
