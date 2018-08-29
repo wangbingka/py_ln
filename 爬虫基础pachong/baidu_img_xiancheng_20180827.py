@@ -33,10 +33,26 @@ class Producer(threading.Thread):
         # 获取图片对应的Url列表
         imgs = download_wallpaper_list()
 
+
+
         # 对条件进行上锁，以便进行操作
         gCondition.acquire()
 
         # 将对应的url放入对应多线程的列表中
+
+        while True:
+            # 上锁
+            gCondition.acquire()
+            print('{}:trying to download from pool.pool size is {}'.format(threading.current_thread(),len(gImageList)))
+
+            # 当列表中是空的时候，等待，然后不断的尝试获取列表不等于0的时刻
+            while len(gImageList)  == 0:
+                gCondition.wait()
+                print('{}:waken up. pool size is {}'.format(threading.current_thread(),len(gImageList)))
+            url = gImageList.pop()
+            gCondition.release()
+            _download_image(url)
+
         for i in imgs:
             if 'downloadUrl' in i:
                 gImageList.append(i['downloadUrl'])

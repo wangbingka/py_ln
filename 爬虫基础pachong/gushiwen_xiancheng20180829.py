@@ -1,3 +1,9 @@
+#!/usr/bin/python
+# -*- coding:utf-8 -*-
+# @Time :  2018/8/29 23:35
+# @Author: Bingka.wang
+# @Email:  wangbingka@126.com
+
 #!usr/bin/python
 #coding:utf-8
 #author:bingka.wang
@@ -29,14 +35,76 @@ poem_list = []
 
 
 
+gCondition = threading.Condition()
+
+# 定义生产者
+class Producer(threading.Thread):
+    def run(self):
+        global typeUrl_list
+        global poemUrl_list
+        global gCondition
+
+        # print('%s:started'%threading.current_thread())
+
+
+        # 对条件进行上锁，以便进行操作
+        # gCondition.acquire()
+
+        while True:
+            # 上锁
+            gCondition.acquire()
+            print('{}:trying to download poem from pool.pool size is {}'.format(threading.current_thread(),len(typeUrl_list)))
+            if len(typeUrl_list) == 0:
+                print('Download url has finished!')
+                break
+            # 当列表中是空的时候，等待，然后不断的尝试获取列表不等于0的时刻
+            url = typeUrl_list.pop()
+            url1 = url['url']
+            # gCondition.release()
+            _guwen_url(url1)
+        print('%s:produce finished. left:%d' % (threading.current_thread(), len(typeUrl_list)))
+
+        # 将对应的url放入对应多线程的列表中
+        # for i in imgs:
+        #     if 'downloadUrl' in i:
+        #         gImageList.append(i['downloadUrl'])
+
+
+        # 通知消费者
+        gCondition.notify_all()
+
+        # 解锁，把钥匙放回，释放
+        gCondition.release()
+
+class Consumer(threading.Thread):
+    def run(self):
+
+        global typeUrl_list
+        global poemUrl_list
+        global gCondition
+
+        print('%s:started' % threading.current_thread())
+
+        # 循环运行获取图片列表,下载数据
+        while True:
+            # 上锁
+            gCondition.acquire()
+            print('{}:trying to download poem from pool.pool size is {}'.format(threading.current_thread(),len(poemUrl_list)))
+            if len(typeUrl_list) == 0:
+                gCondition.wait()
+                print('{}:waken up. pool size is {}'.format(threading.current_thread(), len(poemUrl_list)))
+            url = poemUrl_list.pop()
+            url1 = url['url']
+            gCondition.release()
+            _guwen_content(url1)
+
 
 # 还未使用
 def _guwen_content(url):
     global poem_content
     global poem_list
 
-    idnum = 'contson%s' % re.split('[_\.]', url)[-2]
-    # print(idnum)
+
     ss = session.get(url)
     response1 = etree.HTML(ss.content.decode('utf-8'))
     content = response1.xpath('//div[@class="left"]/div[@class="sons"]')
@@ -196,13 +264,18 @@ if __name__  == '__main__':
     session.headers.update(headers)
     url = 'https://www.gushiwen.org/gushi/'
     a = _typeUrl_list(url)
+    #
+    # # b = _guwen_url(a[0]['url'])
+    # # c = _guwen_content(b[0]['url'])
+    #
+    # print(a[0]['title'])
+    # for i in a:
+    #     b = _guwen_url(i['url'])
+    # print(b[0]['url'])
+    # for i in b:
+    #     c = _guwen_content(i['url'])
 
-    # b = _guwen_url(a[0]['url'])
-    # c = _guwen_content(b[0]['url'])
-
-    print(a[0]['title'])
-    for i in a:
-        b = _guwen_url(i['url'])
-    print(b[0]['url'])
-    for i in b:
-        c = _guwen_content(i['url'])
+    for i in range(2):
+        Producer().start()
+    for i in range(2):
+        Consumer().start()
