@@ -13,6 +13,7 @@ import parser
 import re
 from lxml import html
 from lxml import etree
+import time
 
 '''
 1、通过首页https://www.gushiwen.org，获取诗文的所有类型列表,返回一个网址list
@@ -36,14 +37,17 @@ def _guwen_content(url):
     global poem_content
     global poem_list
 
-    idnum = 'contson%s' % re.split('[_\.]', url)[-2]
-    # print(idnum)
+
     ss = session.get(url)
+
+    # time.sleep(1)
+
     response1 = etree.HTML(ss.content.decode('utf-8'))
 
-    print(url)
+    # print(str(url.encode('utf-8')))
+    # print(type(str(url)))
 
-    if url.startwith('https://www.gushiwen.org'):
+    if  'wen_' not in str(url):
         content = response1.xpath('//div[@class="left"]/div[@class="sons"]')
 
         # print(ss.content.decode('utf-8'))
@@ -71,16 +75,14 @@ def _guwen_content(url):
             poem_content['author'] = ''
 
         # 诗词正文
-        content_txt = content[0].xpath('./div[@class = "cont"]/div[@class= "contson"]/text()')
-        content_txt1 = ''.join(content_txt)
-        content_txt2 = re.sub(r'[\n\t\r]', '', content_txt1)
+        try:
+            content_txt = content[0].xpath('./div[@class = "cont"]/div[@class= "contson"]/text()')
+            content_txt1 = ''.join(content_txt)
+            content_txt2 = re.sub(r'[\n\t\r]', '', content_txt1)
+            poem_content['content'] = content_txt2
+        except:
+            poem_content['content'] = ''
 
-        # content_list = response1.xpath('//div[@id="' + idnum + '"]/text()') + response1.xpath(
-        #     '//div[@id="' + idnum + '"]/p/text()')
-        # content_txt = ''.join(content_list)
-        # content_txt1 = re.sub(r'[\n\t\r]', '', content_txt)
-
-        poem_content['content'] = content_txt2
 
         # 诗词译文
         try:
@@ -204,11 +206,16 @@ def _guwen_url(url):
 
 
 
-
         for inx2, i in enumerate(title):
-            if url1[inx2].startswith('http') is False:
+            if  url1[inx2].startswith('/shiwenv') :
                 poemUrl_content['type'] = ''.join(type)
-                urlist = urllib.parse.urljoin(url,re.split('/', url1[inx2])[-1])
+                # urlist = urllib.parse.urljoin(url,re.split('/', url1[inx2])[-1])
+                urlist = 'https://so.gushiwen.org/%s' % (re.split('/', url1[inx2])[-1])
+                poemUrl_content['url'] = urlist
+                poemUrl_content['title'] = title[inx2]
+            elif  url1[inx2].startswith('/wen') :
+                poemUrl_content['type'] = ''.join(type)
+                urlist = 'https://www.gushiwen.org/%s'%(re.split('/', url1[inx2])[-1])
                 poemUrl_content['url'] = urlist
                 poemUrl_content['title'] = title[inx2]
             else:
@@ -268,7 +275,7 @@ def _typeUrl_list(url):
     return typeUrl_list
 
 def write_gushi(self,txt_name):
-    with open('{}.txt'.format(txt_name),'a+',encoding='utf8') as f:
+    with open('./gushi/{}.txt'.format(txt_name),'a+',encoding='utf8') as f:
         f.write(self)
 
 
@@ -279,7 +286,7 @@ if __name__  == '__main__':
     session = requests.Session()
     session.headers.update(headers)
     url = 'https://www.gushiwen.org/gushi/'
-    a = _typeUrl_list(url)
+    type_url_list = _typeUrl_list(url)
 
     # b = _guwen_url(a[0]['url'])
     # print(b)
@@ -287,27 +294,34 @@ if __name__  == '__main__':
     # print(c)
 
 
-    for i in a:
+    for i in type_url_list:
         print(i['title'])
-        b = _guwen_url(i['url'])
-        print(b)
-        for x in b:
-            c = _guwen_content(x['url'])
+        guwen_url_list = _guwen_url(i['url'])
+        print(guwen_url_list)
+
+    for x in guwen_url_list:
+        # print(x['url'])
+        guwen_content_list = _guwen_content(x['url'])
 
 
     for i in poemUrl_list:
         for a in i.keys():
             # print(a)
             # print(i[a])
-            write_gushi(a+'\t', 'poemUrl_list')
-            write_gushi(i[a], 'poemUrl_list')
-            write_gushi('\t', 'poemUrl_list')
+            # write_gushi(a+'\t', 'poemUrl_list')
+            # write_gushi(i[a], 'poemUrl_list')
+            # write_gushi('\t', 'poemUrl_list')
+            write_gushi(a + '\t' + i[a] + '\t', 'poem_list')
+            
         write_gushi('\n', 'poemUrl_list')
-    for x in poem_list:
+    for x in guwen_content_list:
         for a in x.keys():
             # print(a)
             # print(i[a])
-            write_gushi(a+'\t', 'poem_list')
-            write_gushi(x[a], 'poem_list')
-            write_gushi('\t', 'poem_list')
+            # write_gushi(a+'\t', 'poem_list')
+            # write_gushi(x[a], 'poem_list')
+            # write_gushi('\t', 'poem_list')
+
+            write_gushi(a + '\t' + x[a] + '\t', 'poem_list')
+            
         write_gushi('\n', 'poem_list')
