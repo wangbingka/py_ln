@@ -64,10 +64,6 @@ class Producer(threading.Thread):
             _guwen_url(url1)
         print('%s:produce finished. left:%d' % (threading.current_thread(), len(typeUrl_list)))
 
-        # 将对应的url放入对应多线程的列表中
-        # for i in imgs:
-        #     if 'downloadUrl' in i:
-        #         gImageList.append(i['downloadUrl'])
 
 
         # 通知消费者
@@ -148,7 +144,7 @@ def _guwen_content(url):
     # 诗词译文
     try:
         yiwen_txt = content[1].xpath('./div[@class = "contyishang"]/p/text()')
-        print(yiwen_txt)
+        # print(yiwen_txt)
         yiwen_txt1 = ''.join(yiwen_txt)
         yiwen_txt2 = re.sub(r'[\n\t\r\u3000]', '', yiwen_txt1)
 
@@ -187,7 +183,7 @@ def _guwen_url(url):
     poemUrl_content = {}
     s = session.get(url)
     response = etree.HTML(s.content.decode('utf-8'))
-    tangshi300 = response.xpath('//div[@class="typecont"]')
+    tangshi300 = response.xpath('//div[@class="left"]/div[@class="sons"]/div[@class="typecont"]')
 
     for inx1, x in enumerate(tangshi300):
     # for x in tangshi300:
@@ -228,7 +224,6 @@ def _typeUrl_list(url):
     # for i in type_list1:
         if i.startswith('http') is False:
             url1 = url + re.split('/', i)[-1]
-
             type_content['title'] = type_title[inx]
             type_content['url'] = url1
             typeUrl_list.append(type_content)
@@ -252,7 +247,7 @@ def _typeUrl_list(url):
     return typeUrl_list
 
 def write_gushi(self,txt_name):
-    with open('{}.txt'.format(txt_name),'a+',encoding='utf-8') as f:
+    with open('{}.txt'.format(txt_name),'a+',encoding='utf8') as f:
         f.write(self+'\t')
 
 
@@ -275,7 +270,7 @@ if __name__  == '__main__':
     # for i in b:
     #     c = _guwen_content(i['url'])
 
-    for i in range(2):
+    for i in range(1):
         Producer().start()
-    for i in range(2):
+    for i in range(10):
         Consumer().start()
