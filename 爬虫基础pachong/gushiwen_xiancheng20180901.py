@@ -1,6 +1,8 @@
-#!usr/bin/python
-#coding:utf-8
-#author:bingka.wang
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+# @Time    : 2018/8/31  22:38
+# @Author  : bingka.wang 
+# @Email   : wangbingka@126.com
 
 
 import requests
@@ -42,7 +44,7 @@ class Producer(threading.Thread):
 
         print('%s:started'%threading.current_thread())
 
-        num = 0
+
         # 循环运行获取图片列表,下载数据
         while len(poem_url_list) > 0:
             # 上锁
@@ -54,7 +56,8 @@ class Producer(threading.Thread):
             print(len(poem_url_list))
             gImageList_dict = poem_url_list.pop()
 
-
+            if 'url' in gImageList_dict:
+                gImageList.append(gImageList_dict['url'])
 
             key_list = []
             value_list = []
@@ -64,13 +67,8 @@ class Producer(threading.Thread):
 
             write_gushi(key_list[0] + '\t' + value_list[0] + '\t'+key_list[1] + '\t' + value_list[1]+'\t'+key_list[2] + '\t' + value_list[2]+'\n', 'poem_url')
 
-            if 'url' in gImageList_dict:
-                gImageList.append(gImageList_dict['url'])
 
 
-            print('%s:produce finished. left:%d' % (threading.current_thread(), len(poem_url_list)))
-
-            num += 1
 
             if len(gImageList) >100:
                 gCondition.wait()
@@ -84,24 +82,12 @@ class Producer(threading.Thread):
             # 解锁，把钥匙放回，释放
             gCondition.release()
 
-        print(num)
 
 
-
-        # print('%s:produce finished. left:%d'%(threading.current_thread(),len(gImageList)))
-
-        # # 通知消费者
-        # gCondition.notify_all()
-        #
-        # # 解锁，把钥匙放回，释放
-        # gCondition.release()
 
 
 class Consumer(threading.Thread):
     def run(self):
-
-        global typeUrl_list
-        global poemUrl_list
 
         global gImageList
         global gCondition
@@ -132,13 +118,12 @@ class Consumer(threading.Thread):
                 key_list.append(x)
                 value_list.append(poem_content_str[x])
 
-            write_gushi(key_list[0] + '\t'+value_list[0]+'\t'+key_list[1] + '\t'+value_list[1]+'\t'+key_list[2] + '\t'+value_list[2]+'\t'+key_list[3] + '\t'+value_list[3]+'\t'+key_list[4] + '\t'+value_list[4]+'\t'+key_list[5] +'\t'+value_list[5]+'\n', 'poem_list')
+            write_gushi(key_list[0] + '\t'+value_list[0]+'\t'+key_list[1] + '\t'+value_list[1]+'\t'+key_list[2] + '\t'+value_list[2]+'\t'+key_list[3] + '\t'+value_list[3]+'\t'+key_list[4] + '\t'+value_list[4]+'\n', 'poem_list')
 
             num +=1
 
 
 def _guwen_content(url):
-
     poem_content = {}
 
     ss = session.get(url)
@@ -150,71 +135,47 @@ def _guwen_content(url):
     # print(str(url.encode('utf-8')))
     # print(type(str(url)))
 
-    if  'wen_' not in str(url):
+    if 'wen_' not in str(url):
         content = response1.xpath('//div[@class="left"]/div[@class="sons"]')
 
         # print(ss.content.decode('utf-8'))
 
         # 诗词标题
         try:
-            title = content[0].xpath('./div[@class= "cont"]/h1/text()')
-            title1 = ''.join(title)
-            title2 = re.sub(r'[\n\t\r\u3000]', '', title1)
-            poem_content['title'] = title2
+            title = content[0].xpath('string(./div[@class= "cont"]/h1)')
+            title1 = re.sub(r'[\n\t\r\u3000]', '', title)
+            poem_content['title'] = title1
         except:
             poem_content['title'] = ''
 
-        # 诗词朝代
+        # 诗词朝代和作者
         try:
-            chaodai = content[0].xpath('./div[@class = "cont"]/p[@class= "source"]/a[1]/text()')
-            # print(chaodai)
-            chaodai1 = ''.join(chaodai)
-            chaodai2 = re.sub(r'[\n\t\r\u3000]', '', chaodai1)
-            poem_content['chaodai'] =chaodai2
+            chaodai = content[0].xpath('string(./div[@class = "cont"]/p[@class= "source"])')
 
-            # 诗词作者
-            author = content[0].xpath('./div[@class = "cont"]/p[@class= "source"]/a[2]/text()')
-            # print(author)
-            author1 = ''.join(author)
-            author2 = re.sub(r'[\n\t\r\u3000]', '', author1)
-            poem_content['author'] = author2
+            chaodai1 = re.sub(r'[\n\t\r\u3000]', '', chaodai)
+            poem_content['chaodai_author'] = chaodai1
         except:
-            poem_content['chaodai'] = ''
-            poem_content['author'] = ''
+            poem_content['chaodai_author'] = ''
 
         # 诗词正文
         try:
-            content_txt = content[0].xpath('./div[@class = "cont"]/div[@class= "contson"]/text()')
-            content_txt1 = ''.join(content_txt)
-            content_txt2 = re.sub(r'[\n\t\r]', '', content_txt1)
-            poem_content['content'] = content_txt2
+            content_txt = content[0].xpath('string(./div[@class = "cont"]/div[@class= "contson"])')
+            # print(content_txt)
+            content_txt1 = re.sub(r'[\n\t\r\u3000]', '', content_txt)
+            poem_content['content'] = content_txt1
         except:
             poem_content['content'] = ''
 
-
         # 诗词译文
         try:
-            yiwen_txt = content[1].xpath('./div[@class = "contyishang"]/p/text()')
-
-            yiwen_txt1 = ''.join(yiwen_txt)
-            yiwen_txt2 = re.sub(r'[\n\t\r\u3000]', '', yiwen_txt1)
-
-            # # yiwen_list1 = response1.xpath('//div[@class= "contyishang"]')[0]
-            # # yiwen_list2 = yiwen_list1.xpath('./p/text()')
-            # # print(yiwen_list2)
-            # yiwen_txt = ''.join(yiwen_list2)
-            # yiwen_txt1 = re.sub(r'[\n\t\r\u3000]', '', yiwen_txt)
-            # print(yiwen_txt1)
-
-            poem_content['yiwen'] = yiwen_txt2
+            yiwen_txt = content[1].xpath('string(./div[@class = "contyishang"])')
+            yiwen_txt1 = re.sub(r'[\n\t\r\u3000]', '', yiwen_txt)
+            poem_content['yiwen'] = yiwen_txt1
         except:
             poem_content['yiwen'] = ''
+
         # 诗词网址
         poem_content['url'] = url
-
-
-        # print(poem_content)
-
 
     else:
         content = response1.xpath('//div[@class="left"]/div[@class="sons"]')
@@ -230,61 +191,37 @@ def _guwen_content(url):
         except:
             poem_content['title'] = ''
 
-        # 诗词朝代
+        # 诗词朝代和作者
         try:
-            chaodai = content[0].xpath('./div[@class = "cont"]/p[@class= "source"]/a[1]/text()')
+            chaodai = content[0].xpath('string(./div[@class = "cont"]/p[@class= "source"])')
             chaodai1 = ''.join(chaodai)
-            chaodai2 = re.sub(r'[\n\t\r\u3000]', '', chaodai1)
-            poem_content['chaodai'] = chaodai2
+            chaodai1 = re.sub(r'[\n\t\r\u3000]', '', chaodai)
+            poem_content['chaodai&anthor'] = chaodai1
 
-            # 诗词作者
-            author = content[0].xpath('./div[@class = "cont"]/p[@class= "source"]/a[2]/text()')
-            # print(author)
-            author1 = ''.join(author)
-            author2 = re.sub(r'[\n\t\r\u3000]', '', author1)
-            poem_content['author'] = author2
         except:
-            poem_content['chaodai'] = ''
-            poem_content['author'] = ''
+            poem_content['chaodai&anthor'] = ''
 
         # 诗词正文
         try:
 
-            content_txt = content[0].xpath('./div[@class = "cont"]/div[@class= "contson"]')
-            content_txt1 = content_txt.xpath('string(.)').encode('utf-8').strip()
-            content_txt2 = ''.join(content_txt1)
-            content_txt3 = re.sub(r'[\n\t\r]', '', content_txt2)
-
-            # content_list = response1.xpath('//div[@id="' + idnum + '"]/text()') + response1.xpath(
-            #     '//div[@id="' + idnum + '"]/p/text()')
-            # content_txt = ''.join(content_list)
-            # content_txt1 = re.sub(r'[\n\t\r]', '', content_txt)
-            poem_content['content'] = content_txt3
+            # 取出对应文本下所有的包括子节点下的文本内容
+            content_txt = content[0].xpath('string(./div[@class = "cont"]/div[@class= "contson"])')
+            content_txt1 = re.sub(r'[\n\t\r\u3000]', '', content_txt)
+            poem_content['content'] = content_txt1
 
         except:
             poem_content['content'] = ''
 
         # 诗词译文
         try:
-            yiwen_txt = content[1].xpath('./div[@class = "contyishang"]/p/text()')
-
-            yiwen_txt1 = ''.join(yiwen_txt)
-            yiwen_txt2 = re.sub(r'[\n\t\r\u3000]', '', yiwen_txt1)
-
-            # # yiwen_list1 = response1.xpath('//div[@class= "contyishang"]')[0]
-            # # yiwen_list2 = yiwen_list1.xpath('./p/text()')
-            # # print(yiwen_list2)
-            # yiwen_txt = ''.join(yiwen_list2)
-            # yiwen_txt1 = re.sub(r'[\n\t\r\u3000]', '', yiwen_txt)
-            # print(yiwen_txt1)
-
-            poem_content['yiwen'] = yiwen_txt2
+            yiwen_txt = content[1].xpath('string(./div[@class = "contyishang"]/p/text())')
+            yiwen_txt1 = re.sub(r'[\n\t\r\u3000]', '', yiwen_txt)
+            poem_content['yiwen'] = yiwen_txt1
         except:
             poem_content['yiwen'] = ''
+
         # 诗词网址
-
         poem_content['url'] = url
-
 
     return poem_content
 
@@ -324,7 +261,12 @@ def _guwen_url(url):
                 poemUrl_content['url'] = urlist
                 poemUrl_content['title'] = title[inx2]
 
-            if poemUrl_content in poemUrl_list:
+            # 判断字典中是否存在这个键值
+            poem_url_only_list = []
+            for i in poemUrl_list:
+                if 'url' in i:
+                    poem_url_only_list.append(i['url'])
+            if urlist in poem_url_only_list:
                 continue
             else:
                 poemUrl_list.append(poemUrl_content)
