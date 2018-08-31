@@ -1,9 +1,6 @@
-#!/usr/bin/python
-# -*- coding:utf-8 -*-
-# @Time :  2018/8/29 23:35
-# @Author: Bingka.wang
-# @Email:  wangbingka@126.com
-
+#!usr/bin/python
+#coding:utf-8
+#author:bingka.wang
 
 
 import requests
@@ -27,7 +24,6 @@ type_content = {}
 typeUrl_list = []
 poemUrl_content = {}
 poemUrl_list = []
-poem_content = {}
 poem_list = []
 
 
@@ -37,47 +33,67 @@ gCondition = threading.Condition()
 # 定义生产者
 class Producer(threading.Thread):
     def run(self):
-        global typeUrl_list
-        global poemUrl_list
-        global type_url_list
 
+        global poem_url_list
         global gImageList
         global gCondition
 
+
         print('%s:started'%threading.current_thread())
 
-        for i in type_url_list:
-            print(i['title'])
-            poem_url_list = _guwen_url(i['url'])
+        num = 0
+        # 循环运行获取图片列表,下载数据
+        while len(poem_url_list) > 0:
+            # 上锁
+            gCondition.acquire()
 
-        for i in poem_url_list:
-            for a in i.keys():
-                # print(a)
-                # print(i[a])
+            # if len(poem_url_list) == 0:
+            #     gCondition.wait()
 
-                # write_gushi(a + '\t', 'poemUrl_list')
-                # write_gushi(i[a], 'poemUrl_list')
-                # write_gushi('\t', 'poemUrl_list')
+            print(len(poem_url_list))
+            gImageList_dict = poem_url_list.pop()
 
-                write_gushi(a + '\t' + i[a] + '\t', 'poem_list')
 
-            write_gushi('\n', 'poemUrl_list')
 
-        # 对条件进行上锁，以便进行操作
-        gCondition.acquire()
+            key_list = []
+            value_list = []
+            for x in gImageList_dict:
+                key_list.append(x)
+                value_list.append(gImageList_dict[x])
 
-        # 将对应的url放入对应多线程的列表中
+            write_gushi(key_list[0] + '\t' + value_list[0] + '\t'+key_list[1] + '\t' + value_list[1]+'\t'+key_list[2] + '\t' + value_list[2]+'\n', 'poem_url')
 
-        for i in poem_url_list:
-            if 'url' in i:
-                gImageList.append(i['url'])
-        print('%s:produce finished. left:%d'%(threading.current_thread(),len(gImageList)))
+            if 'url' in gImageList_dict:
+                gImageList.append(gImageList_dict['url'])
 
-        # 通知消费者
-        gCondition.notify_all()
 
-        # 解锁，把钥匙放回，释放
-        gCondition.release()
+            print('%s:produce finished. left:%d' % (threading.current_thread(), len(poem_url_list)))
+
+            num += 1
+
+            if len(gImageList) >100:
+                gCondition.wait()
+                print('%s:produce finished. left:%d' % (threading.current_thread(), len(gImageList)))
+
+
+
+            # 通知消费者
+            gCondition.notify_all()
+
+            # 解锁，把钥匙放回，释放
+            gCondition.release()
+
+        print(num)
+
+
+
+        # print('%s:produce finished. left:%d'%(threading.current_thread(),len(gImageList)))
+
+        # # 通知消费者
+        # gCondition.notify_all()
+        #
+        # # 解锁，把钥匙放回，释放
+        # gCondition.release()
 
 
 class Consumer(threading.Thread):
@@ -93,7 +109,7 @@ class Consumer(threading.Thread):
 
         num = 0
         # 循环运行获取图片列表,下载数据
-        while True and i <11111:
+        while True and num <11111:
             # 上锁
             gCondition.acquire()
             print('{}:trying to download poem from pool.pool size is {}'.format(threading.current_thread(),len(gImageList)))
@@ -102,27 +118,27 @@ class Consumer(threading.Thread):
                 print('{}:waken up. pool size is {}'.format(threading.current_thread(), len(gImageList)))
             url1 = gImageList.pop()
             gCondition.release()
-            poem_list = _guwen_content(url1)
+            poem_content_str = _guwen_content(url1)
 
-            for x in poem_list:
-                for a in x.keys():
-                    # print(a)
-                    # print(i[a])
 
-                    # write_gushi(a + '\t', 'poem_list')
-                    # write_gushi(x[a], 'poem_list')
-                    # write_gushi('\t', 'poem_list')
 
-                    write_gushi(a + '\t'+x[a]+'\t', 'poem_list')
+            if poem_content_str not in poem_list:
+                poem_list.append(poem_content_str)
 
-                write_gushi('\n', 'poem_list')
+            key_list = []
+            value_list = []
+            for x in poem_content_str:
+                key_list.append(x)
+                value_list.append(poem_content_str[x])
+
+            write_gushi(key_list[0] + '\t'+value_list[0]+'\t'+key_list[1] + '\t'+value_list[1]+'\t'+key_list[2] + '\t'+value_list[2]+'\t'+key_list[3] + '\t'+value_list[3]+'\t'+key_list[4] + '\t'+value_list[4]+'\t'+key_list[5] +'\t'+value_list[5]+'\n', 'poem_list')
+
             num +=1
 
 
 def _guwen_content(url):
-    global poem_content
-    global poem_list
 
+    poem_content = {}
 
     ss = session.get(url)
 
@@ -142,7 +158,8 @@ def _guwen_content(url):
         try:
             title = content[0].xpath('./div[@class= "cont"]/h1/text()')
             title1 = ''.join(title)
-            poem_content['title'] = title1
+            title2 = re.sub(r'[\n\t\r\u3000]', '', title1)
+            poem_content['title'] = title2
         except:
             poem_content['title'] = ''
 
@@ -150,12 +167,16 @@ def _guwen_content(url):
         try:
             chaodai = content[0].xpath('./div[@class = "cont"]/p[@class= "source"]/a[1]/text()')
             # print(chaodai)
-            poem_content['chaodai'] = ''.join(chaodai)
+            chaodai1 = ''.join(chaodai)
+            chaodai2 = re.sub(r'[\n\t\r\u3000]', '', chaodai1)
+            poem_content['chaodai'] =chaodai2
 
             # 诗词作者
             author = content[0].xpath('./div[@class = "cont"]/p[@class= "source"]/a[2]/text()')
             # print(author)
-            poem_content['author'] = ''.join(author)
+            author1 = ''.join(author)
+            author2 = re.sub(r'[\n\t\r\u3000]', '', author1)
+            poem_content['author'] = author2
         except:
             poem_content['chaodai'] = ''
             poem_content['author'] = ''
@@ -192,11 +213,8 @@ def _guwen_content(url):
 
 
         # print(poem_content)
-        if poem_content in poem_list:
-            pass
-        else:
-            poem_list.append(poem_content)
-        poem_content = {}
+
+
     else:
         content = response1.xpath('//div[@class="left"]/div[@class="sons"]')
 
@@ -206,20 +224,24 @@ def _guwen_content(url):
         try:
             title = content[0].xpath('./div[@class= "cont"]/h1/text()')
             title1 = ''.join(title)
-            poem_content['title'] = title1
+            title2 = re.sub(r'[\n\t\r\u3000]', '', title1)
+            poem_content['title'] = title2
         except:
             poem_content['title'] = ''
 
         # 诗词朝代
         try:
             chaodai = content[0].xpath('./div[@class = "cont"]/p[@class= "source"]/a[1]/text()')
-            # print(chaodai)
-            poem_content['chaodai'] = ''.join(chaodai)
+            chaodai1 = ''.join(chaodai)
+            chaodai2 = re.sub(r'[\n\t\r\u3000]', '', chaodai1)
+            poem_content['chaodai'] = chaodai2
 
             # 诗词作者
             author = content[0].xpath('./div[@class = "cont"]/p[@class= "source"]/a[2]/text()')
             # print(author)
-            poem_content['author'] = ''.join(author)
+            author1 = ''.join(author)
+            author2 = re.sub(r'[\n\t\r\u3000]', '', author1)
+            poem_content['author'] = author2
         except:
             poem_content['chaodai'] = ''
             poem_content['author'] = ''
@@ -262,17 +284,8 @@ def _guwen_content(url):
 
         poem_content['url'] = url
 
-        # print(poem_content)
-        if poem_content in poem_list:
-            pass
-        else:
-            poem_list.append(poem_content)
-        poem_content = {}
 
-
-
-
-    return poem_list
+    return poem_content
 
 
 def _guwen_url(url):
@@ -352,9 +365,13 @@ def _typeUrl_list(url):
         for a in i.keys():
             # print(a)
             # print(i[a])
-            write_gushi(a, 'typeUrl_list')
-            write_gushi(i[a], 'typeUrl_list')
-            write_gushi('\n', 'typeUrl_list')
+            write_gushi(a+'\t'+i[a]+'\t', 'typeUrl_list')
+        write_gushi('\n', 'typeUrl_list')
+
+
+            # write_gushi(a, 'typeUrl_list')
+            # write_gushi(i[a], 'typeUrl_list')
+            # write_gushi('\n', 'typeUrl_list')
 
 
     print(typeUrl_list)
@@ -373,9 +390,16 @@ if __name__  == '__main__':
     session.headers.update(headers)
     url = 'https://www.gushiwen.org/gushi/'
     type_url_list = _typeUrl_list(url)
+    for i in type_url_list:
+        print(i['title'])
+        poem_url_list = _guwen_url(i['url'])
 
 
-    for i in range(1):
+    # for i in range(10):
+    #     Producer().start()
+    # for i in range(10):
+    #     Consumer().start()
+
+    for i in range(100):
         Producer().start()
-    for i in range(10):
         Consumer().start()

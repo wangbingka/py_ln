@@ -1,130 +1,65 @@
-title唐诗三百首
-urlhttps://www.gushiwen.org/gushi/tangshi.aspx
-title古诗三百首
-urlhttps://so.gushiwen.org/gushi/sanbai.aspx
-title宋词三百首
-urlhttps://so.gushiwen.org/gushi/songsan.aspx
-title全宋词
-urlhttps://www.gushiwen.org/gushi/quansong.aspx
-title宋词精选
-urlhttps://so.gushiwen.org/gushi/songci.aspx
-title元曲精选
-urlhttps://www.gushiwen.org/gushi/yuanqu.aspx
-title古诗十九首
-urlhttps://so.gushiwen.org/gushi/shijiu.aspx
-title小学古诗
-urlhttps://so.gushiwen.org/gushi/xiaoxue.aspx
-title小学古诗80首
-urlhttps://www.gushiwen.org/gushi/xiaoba.aspx
-title小学古诗70首
-urlhttps://www.gushiwen.org/gushi/xiaoqi.aspx
-title初中古诗
-urlhttps://so.gushiwen.org/gushi/chuzhong.aspx
-title高中古诗
-urlhttps://so.gushiwen.org/gushi/gaozhong.aspx
-title写景的古诗
-urlhttps://so.gushiwen.org/gushi/xiejing.aspx
-title咏物诗
-urlhttps://so.gushiwen.org/gushi/yongwu.aspx
-title描写春天的古诗
-urlhttps://so.gushiwen.org/gushi/chuntian.aspx
-title描写夏天的古诗
-urlhttps://so.gushiwen.org/gushi/xiatian.aspx
-title描写秋天的古诗
-urlhttps://so.gushiwen.org/gushi/qiutian.aspx
-title描写冬天的古诗
-urlhttps://so.gushiwen.org/gushi/dongtian.aspx
-title描写雨的古诗
-urlhttps://so.gushiwen.org/gushi/yu.aspx
-title描写雪的古诗
-urlhttps://so.gushiwen.org/gushi/xue.aspx
-title描写风的古诗
-urlhttps://so.gushiwen.org/gushi/feng.aspx
-title描写花的古诗
-urlhttps://so.gushiwen.org/gushi/hua.aspx
-title描写梅花的古诗
-urlhttps://so.gushiwen.org/gushi/meihua.aspx
-title描写荷花的古诗
-urlhttps://so.gushiwen.org/gushi/hehua.aspx
-title描写柳树的古诗
-urlhttps://so.gushiwen.org/gushi/liushu.aspx
-title描写月亮的古诗
-urlhttps://so.gushiwen.org/gushi/yueliang.aspx
-title描写山的古诗
-urlhttps://so.gushiwen.org/gushi/shan.aspx
-title描写水的古诗
-urlhttps://so.gushiwen.org/gushi/shui.aspx
-title描写长江的古诗
-urlhttps://so.gushiwen.org/gushi/changjiang.aspx
-title描写黄河的古诗
-urlhttps://so.gushiwen.org/gushi/huanghe.aspx
-title描写儿童的古诗
-urlhttps://so.gushiwen.org/gushi/ertong.aspx
-title山水诗
-urlhttps://so.gushiwen.org/gushi/shanshui.aspx
-title田园诗
-urlhttps://so.gushiwen.org/gushi/tianyuan.aspx
-title边塞诗
-urlhttps://so.gushiwen.org/gushi/biansai.aspx
-title含有地名的古诗
-urlhttps://so.gushiwen.org/gushi/diming.aspx
-title节日古诗
-urlhttps://so.gushiwen.org/gushi/jieri.aspx
-title春节古诗
-urlhttps://so.gushiwen.org/gushi/chunjie.aspx
-title元宵节古诗
-urlhttps://so.gushiwen.org/gushi/yuanxiao.aspx
-title清明节古诗
-urlhttps://so.gushiwen.org/gushi/qingming.aspx
-title端午节古诗
-urlhttps://so.gushiwen.org/gushi/duanwu.aspx
-title七夕古诗
-urlhttps://so.gushiwen.org/gushi/qixi.aspx
-title中秋节古诗
-urlhttps://so.gushiwen.org/gushi/zhongqiu.aspx
-title重阳节古诗
-urlhttps://so.gushiwen.org/gushi/chongyang.aspx
-title古代抒情诗
-urlhttps://so.gushiwen.org/gushi/shuqing.aspx
-title伤怀的古诗
-urlhttps://www.gushiwen.org/gushi/shanghuai.aspx
-title咏史怀古诗
-urlhttps://so.gushiwen.org/gushi/huaigu.aspx
-title爱国古诗
-urlhttps://so.gushiwen.org/gushi/aiguo.aspx
-title送别诗
-urlhttps://so.gushiwen.org/gushi/songbie.aspx
-title离别诗
-urlhttps://so.gushiwen.org/gushi/libie.aspx
-title思乡诗
-urlhttps://so.gushiwen.org/gushi/sixiang.aspx
-title思念的诗
-urlhttps://www.gushiwen.org/gushi/sinian.aspx
-title爱情古诗
-urlhttps://www.gushiwen.org/gushi/aiqing.aspx
-title励志古诗
-urlhttps://www.gushiwen.org/gushi/lizhi.aspx
-title哲理诗
-urlhttps://www.gushiwen.org/gushi/zheli.aspx
-title闺怨诗
-urlhttps://www.gushiwen.org/gushi/guiyuan.aspx
-title赞美老师的古诗
-urlhttps://www.gushiwen.org/gushi/laoshi.aspx
-title赞美母亲的古诗
-urlhttps://www.gushiwen.org/gushi/muqin.aspx
-title关于友情的古诗
-urlhttps://www.gushiwen.org/gushi/youqing.aspx
-title关于战争的古诗
-urlhttps://www.gushiwen.org/gushi/zhanzheng.aspx
-title忧国忧民的古诗
-urlhttps://www.gushiwen.org/gushi/youguo.aspx
-title婉约诗词
-urlhttps://www.gushiwen.org/gushi/wanyue.aspx
-title豪放诗词
-urlhttps://www.gushiwen.org/gushi/haofang.aspx
-title人生必背古诗
-urlhttps://www.gushiwen.org/gushi/bibei.aspx
-title辞赋精选
-urlhttps://so.gushiwen.org/gushi/cifu.aspx
-title全唐诗
-urlhttps://www.gushiwen.org/gushi/quantang.aspx
+title	唐诗三百首	url	https://www.gushiwen.org/gushi/tangshi.aspx	
+title	古诗三百首	url	https://so.gushiwen.org/gushi/sanbai.aspx	
+title	宋词三百首	url	https://so.gushiwen.org/gushi/songsan.aspx	
+title	全宋词	url	https://www.gushiwen.org/gushi/quansong.aspx	
+title	宋词精选	url	https://so.gushiwen.org/gushi/songci.aspx	
+title	元曲精选	url	https://www.gushiwen.org/gushi/yuanqu.aspx	
+title	古诗十九首	url	https://so.gushiwen.org/gushi/shijiu.aspx	
+title	小学古诗	url	https://so.gushiwen.org/gushi/xiaoxue.aspx	
+title	小学古诗80首	url	https://www.gushiwen.org/gushi/xiaoba.aspx	
+title	小学古诗70首	url	https://www.gushiwen.org/gushi/xiaoqi.aspx	
+title	初中古诗	url	https://so.gushiwen.org/gushi/chuzhong.aspx	
+title	高中古诗	url	https://so.gushiwen.org/gushi/gaozhong.aspx	
+title	写景的古诗	url	https://so.gushiwen.org/gushi/xiejing.aspx	
+title	咏物诗	url	https://so.gushiwen.org/gushi/yongwu.aspx	
+title	描写春天的古诗	url	https://so.gushiwen.org/gushi/chuntian.aspx	
+title	描写夏天的古诗	url	https://so.gushiwen.org/gushi/xiatian.aspx	
+title	描写秋天的古诗	url	https://so.gushiwen.org/gushi/qiutian.aspx	
+title	描写冬天的古诗	url	https://so.gushiwen.org/gushi/dongtian.aspx	
+title	描写雨的古诗	url	https://so.gushiwen.org/gushi/yu.aspx	
+title	描写雪的古诗	url	https://so.gushiwen.org/gushi/xue.aspx	
+title	描写风的古诗	url	https://so.gushiwen.org/gushi/feng.aspx	
+title	描写花的古诗	url	https://so.gushiwen.org/gushi/hua.aspx	
+title	描写梅花的古诗	url	https://so.gushiwen.org/gushi/meihua.aspx	
+title	描写荷花的古诗	url	https://so.gushiwen.org/gushi/hehua.aspx	
+title	描写柳树的古诗	url	https://so.gushiwen.org/gushi/liushu.aspx	
+title	描写月亮的古诗	url	https://so.gushiwen.org/gushi/yueliang.aspx	
+title	描写山的古诗	url	https://so.gushiwen.org/gushi/shan.aspx	
+title	描写水的古诗	url	https://so.gushiwen.org/gushi/shui.aspx	
+title	描写长江的古诗	url	https://so.gushiwen.org/gushi/changjiang.aspx	
+title	描写黄河的古诗	url	https://so.gushiwen.org/gushi/huanghe.aspx	
+title	描写儿童的古诗	url	https://so.gushiwen.org/gushi/ertong.aspx	
+title	山水诗	url	https://so.gushiwen.org/gushi/shanshui.aspx	
+title	田园诗	url	https://so.gushiwen.org/gushi/tianyuan.aspx	
+title	边塞诗	url	https://so.gushiwen.org/gushi/biansai.aspx	
+title	含有地名的古诗	url	https://so.gushiwen.org/gushi/diming.aspx	
+title	节日古诗	url	https://so.gushiwen.org/gushi/jieri.aspx	
+title	春节古诗	url	https://so.gushiwen.org/gushi/chunjie.aspx	
+title	元宵节古诗	url	https://so.gushiwen.org/gushi/yuanxiao.aspx	
+title	清明节古诗	url	https://so.gushiwen.org/gushi/qingming.aspx	
+title	端午节古诗	url	https://so.gushiwen.org/gushi/duanwu.aspx	
+title	七夕古诗	url	https://so.gushiwen.org/gushi/qixi.aspx	
+title	中秋节古诗	url	https://so.gushiwen.org/gushi/zhongqiu.aspx	
+title	重阳节古诗	url	https://so.gushiwen.org/gushi/chongyang.aspx	
+title	古代抒情诗	url	https://so.gushiwen.org/gushi/shuqing.aspx	
+title	伤怀的古诗	url	https://www.gushiwen.org/gushi/shanghuai.aspx	
+title	咏史怀古诗	url	https://so.gushiwen.org/gushi/huaigu.aspx	
+title	爱国古诗	url	https://so.gushiwen.org/gushi/aiguo.aspx	
+title	送别诗	url	https://so.gushiwen.org/gushi/songbie.aspx	
+title	离别诗	url	https://so.gushiwen.org/gushi/libie.aspx	
+title	思乡诗	url	https://so.gushiwen.org/gushi/sixiang.aspx	
+title	思念的诗	url	https://www.gushiwen.org/gushi/sinian.aspx	
+title	爱情古诗	url	https://www.gushiwen.org/gushi/aiqing.aspx	
+title	励志古诗	url	https://www.gushiwen.org/gushi/lizhi.aspx	
+title	哲理诗	url	https://www.gushiwen.org/gushi/zheli.aspx	
+title	闺怨诗	url	https://www.gushiwen.org/gushi/guiyuan.aspx	
+title	赞美老师的古诗	url	https://www.gushiwen.org/gushi/laoshi.aspx	
+title	赞美母亲的古诗	url	https://www.gushiwen.org/gushi/muqin.aspx	
+title	关于友情的古诗	url	https://www.gushiwen.org/gushi/youqing.aspx	
+title	关于战争的古诗	url	https://www.gushiwen.org/gushi/zhanzheng.aspx	
+title	忧国忧民的古诗	url	https://www.gushiwen.org/gushi/youguo.aspx	
+title	婉约诗词	url	https://www.gushiwen.org/gushi/wanyue.aspx	
+title	豪放诗词	url	https://www.gushiwen.org/gushi/haofang.aspx	
+title	人生必背古诗	url	https://www.gushiwen.org/gushi/bibei.aspx	
+title	辞赋精选	url	https://so.gushiwen.org/gushi/cifu.aspx	
+title	全唐诗	url	https://www.gushiwen.org/gushi/quantang.aspx	
