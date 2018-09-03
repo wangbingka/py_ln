@@ -1,0 +1,157 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| maizi              |
+| mv                 |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> use maizi;
+Database changed
+mysql> show tables;
++-----------------+
+| Tables_in_maizi |
++-----------------+
+| cms_cate        |
+| cms_news        |
+| courses         |
+| test1           |
+| test10          |
+| test11          |
+| test2           |
+| test3           |
+| test4           |
+| test5           |
+| test6           |
+| test7           |
+| test8           |
+| test9           |
+| user            |
+| user1           |
+| user10          |
+| user2           |
+| user3           |
+| user4           |
+| user6           |
+| user7           |
+| user8           |
+| user9           |
++-----------------+
+24 rows in set (0.00 sec)
+
+mysql> select * from cms_cate;
+Empty set (0.03 sec)
+
+mysql> desc * from cms_cate;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '* from cms_cate' at line 1
+mysql> desc cms_cate;
++----------+-------------------------------------------------------------------------------------------------------+------+-----+---------+-------+
+| Field    | Type                                                                                                  | Null | Key | Default | Extra |
++----------+-------------------------------------------------------------------------------------------------------+------+-----+---------+-------+
+| id       | tinyint(4)                                                                                            | YES  |     | NULL    |       |
+| cateName | enum('绀句細','绉戞妧','浣撹偛','鏂囪壓','璐㈢粡','鍋ュ悍','姹借溅','鍏朵粬')                         | YES  |     | NULL    |       |
+| cateDesc | varchar(100)                                                                                          | YES  |     | NULL    |       |
++----------+-------------------------------------------------------------------------------------------------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> desc cms_news;
++-------------+-------------------------------------------------------------------------------------------------------+------+-----+---------+-------+
+| Field       | Type                                                                                                  | Null | Key | Default | Extra |
++-------------+-------------------------------------------------------------------------------------------------------+------+-----+---------+-------+
+| id          | tinyint(4)                                                                                            | YES  |     | NULL    |       |
+| newsTitle   | varchar(20)                                                                                           | YES  |     | NULL    |       |
+| newsComment | varchar(1000)                                                                                         | YES  |     | NULL    |       |
+| newsTime    | int(11)                                                                                               | YES  |     | NULL    |       |
+| clickNumber | int(11)                                                                                               | YES  |     | NULL    |       |
+| isTop       | tinyint(4)                                                                                            | YES  |     | NULL    |       |
+| news_cate   | enum('绀句細','绉戞妧','浣撹偛','鏂囪壓','璐㈢粡','鍋ュ悍','姹借溅','鍏朵粬')                         | YES  |     | NULL    |       |
+| newsAuthor  | varchar(20)                                                                                           | YES  |     | NULL    |       |
++-------------+-------------------------------------------------------------------------------------------------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> desc cms_news \g;
++-------------+-------------------------------------------------------------------------------------------------------+------+-----+---------+-------+
+| Field       | Type                                                                                                  | Null | Key | Default | Extra |
++-------------+-------------------------------------------------------------------------------------------------------+------+-----+---------+-------+
+| id          | tinyint(4)                                                                                            | YES  |     | NULL    |       |
+| newsTitle   | varchar(20)                                                                                           | YES  |     | NULL    |       |
+| newsComment | varchar(1000)                                                                                         | YES  |     | NULL    |       |
+| newsTime    | int(11)                                                                                               | YES  |     | NULL    |       |
+| clickNumber | int(11)                                                                                               | YES  |     | NULL    |       |
+| isTop       | tinyint(4)                                                                                            | YES  |     | NULL    |       |
+| news_cate   | enum('绀句細','绉戞妧','浣撹偛','鏂囪壓','璐㈢粡','鍋ュ悍','姹借溅','鍏朵粬')                         | YES  |     | NULL    |       |
+| newsAuthor  | varchar(20)                                                                                           | YES  |     | NULL    |       |
++-------------+-------------------------------------------------------------------------------------------------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+ERROR: 
+No query specified
+
+mysql> desc cms_news \G;
+*************************** 1. row ***************************
+  Field: id
+   Type: tinyint(4)
+   Null: YES
+    Key: 
+Default: NULL
+  Extra: 
+*************************** 2. row ***************************
+  Field: newsTitle
+   Type: varchar(20)
+   Null: YES
+    Key: 
+Default: NULL
+  Extra: 
+*************************** 3. row ***************************
+  Field: newsComment
+   Type: varchar(1000)
+   Null: YES
+    Key: 
+Default: NULL
+  Extra: 
+*************************** 4. row ***************************
+  Field: newsTime
+   Type: int(11)
+   Null: YES
+    Key: 
+Default: NULL
+  Extra: 
+*************************** 5. row ***************************
+  Field: clickNumber
+   Type: int(11)
+   Null: YES
+    Key: 
+Default: NULL
+  Extra: 
+*************************** 6. row ***************************
+  Field: isTop
+   Type: tinyint(4)
+   Null: YES
+    Key: 
+Default: NULL
+  Extra: 
+*************************** 7. row ***************************
+  Field: news_cate
+   Type: enum('绀句細','绉戞妧','浣撹偛','鏂囪壓','璐㈢粡','鍋ュ悍','姹借溅','鍏朵粬')
+   Null: YES
+    Key: 
+Default: NULL
+  Extra: 
+*************************** 8. row ***************************
+  Field: newsAuthor
+   Type: varchar(20)
+   Null: YES
+    Key: 
+Default: NULL
+  Extra: 
+8 rows in set (0.00 sec)
+
+ERROR: 
+No query specified
+
+mysql> Terminal close -- exit!
