@@ -12,7 +12,7 @@ result = os.getcwd()
 print(result)
 
 #chdir()改变当前工作目录
-os.chdir('/home/sy')
+os.chdir('/home/sys')
 result = os.getcwd()
 print(result)
 
