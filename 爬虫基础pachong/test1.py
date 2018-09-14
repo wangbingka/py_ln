@@ -7,3 +7,4 @@
 a = [1,1,1]
 for i in range(0,3):
     print(a[i])
+b = [1]

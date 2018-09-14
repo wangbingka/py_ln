@@ -63,7 +63,7 @@ while cols <sheet1.nrows:
         # print(len(sheet2_list))
         if sheet2_list[i][0] == sheet1_list[cols][0] and sheet2_list[i][2] == sheet1_list[cols][2]:
             newcols = sheet1_list[cols] +sheet2_list[i]
-            print(newcols)
+            # print(newcols)
             newsheet_list.append(newcols)
             # sheet1_list.remove(sheet1_list[cols])
             newcols = []
@@ -73,31 +73,43 @@ while cols <sheet1.nrows:
 print(newsheet_list)
 print(len(newsheet_list))
 
+
 cols = 0
+del_list = []
 while cols <len(newsheet_list):
     for i in range(0,len(sheet1_list)):
-        print(len(sheet1_list))
         if sheet1_list[i][0] == newsheet_list[cols][0] and sheet1_list[i][2] == newsheet_list[cols][2]:
             # newsheet_list.append(newcols)
-            sheet1_list.remove(sheet1_list[i])
+            del_list.append(sheet1_list[i])
         else:
             continue
     cols += 1
-newsheet_list +=sheet1_list
+print(len(sheet1_list))
+print(len(del_list))
+ret = [ i for i in sheet1_list if i not in del_list ]
+print(len(ret))
+newsheet_list +=ret
 print(newsheet_list)
 print(len(newsheet_list))
 
 
+def write_data(self,txt_name):
+    with open('{}.txt'.format(txt_name),'a+',encoding='utf8') as f:
+        f.write(self)
+
+
+for i in newsheet_list:
+    for a in i:
+        write_data(str(a)+'\t','diff_count')
+    write_data('\n', 'diff_count')
 
 
 
 
-print(sheet1.name,sheet1.ncols,sheet1.nrows)
-print(sheet2.name,sheet2.ncols,sheet2.nrows)
-print(sheet3.name,sheet3.ncols,sheet3.nrows)
-
-rows = sheet1.row_values(1)
-cols = sheet2.col_values(2)
-
-print(rows)
-print(cols)
+# print(sheet1.name,sheet1.ncols,sheet1.nrows)
+# print(sheet2.name,sheet2.ncols,sheet2.nrows)
+# print(sheet3.name,sheet3.ncols,sheet3.nrows)
+# rows = sheet1.row_values(1)
+# cols = sheet2.col_values(2)
+# print(rows)
+# print(cols)
