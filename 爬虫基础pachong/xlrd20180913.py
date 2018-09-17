@@ -41,6 +41,53 @@ sheet3_rows = sheet3.nrows
 
 '''
 
+def union_list(self1,self2)
+    sheet1_list = []
+    sheet2_list = []
+    newsheet_list = []
+    for i in range(0, self1.nrows):
+        cols = self1.row_values(i)
+        sheet1_list.append(cols)
+    for i in range(0, self2.nrows):
+        cols = self2.row_values(i)
+        sheet2_list.append(cols)
+
+    cols = 0
+    while cols < self1.nrows:
+        for i in range(0, self2.nrows):
+            # print(sheet2.nrows)
+            # print(len(sheet2_list))
+            if sheet2_list[i][0] == sheet1_list[cols][0] and sheet2_list[i][2] == sheet1_list[cols][2]:
+                newcols = sheet1_list[cols] + sheet2_list[i]
+                # print(newcols)
+                newsheet_list.append(newcols)
+                # sheet1_list.remove(sheet1_list[cols])
+                newcols = []
+            else:
+                continue
+        cols += 1
+    print(newsheet_list)
+    print(len(newsheet_list))
+
+
+    cols = 0
+    del_list = []
+    while cols < len(newsheet_list):
+        for i in range(0, len(sheet1_list)):
+            if sheet1_list[i][0] == newsheet_list[cols][0] and sheet1_list[i][2] == newsheet_list[cols][2]:
+                # newsheet_list.append(newcols)
+                del_list.append(sheet1_list[i])
+            else:
+                continue
+        cols += 1
+    print(len(sheet1_list))
+    print(len(del_list))
+    ret = [i for i in sheet1_list if i not in del_list]
+    print(len(ret))
+    newsheet_list += ret
+    print(newsheet_list)
+    print(len(newsheet_list))
+    return newsheet_list
 
 sheet1_list = []
 sheet2_list = []
@@ -91,6 +138,8 @@ print(len(ret))
 newsheet_list +=ret
 print(newsheet_list)
 print(len(newsheet_list))
+
+
 
 
 def write_data(self,txt_name):

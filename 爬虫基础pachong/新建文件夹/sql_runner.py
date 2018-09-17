@@ -20,6 +20,7 @@ INVALID_STATUS = ['FAILED', "Skip", "KILLED"]
 END_STATUS = ["KILLED", 'FAILED', "SUCCEEDED"]
 
 ClusterJobPending = {}
+
 nginx_proxy_session = "ZyEZrzVFWW-v1XFzuCH3vg..|1930844679|emUxL-bmQjPsMT1YdC653TLHKgI." # 每日更新
 
 session = requests.session()

@@ -77,6 +77,8 @@ def _download_image(url, folder='image'):
     print('downloading %s' % url)
     if not os.path.isdir(folder):
         os.mkdir(folder)
+    else:
+        pass
 
     def _fname():
         return os.path.join(folder, os.path.split(url)[1])
