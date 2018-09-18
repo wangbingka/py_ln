@@ -16,18 +16,16 @@ import re
 from lxml import html
 from lxml import etree
 import json
+import sys
 import hashlib
+
+
 
 
 
 headers = {
 'User-Agent':'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.104 Safari/537.36',
 'Connection':'keep-alive',}
-cookies = {
-'nginx_proxy_session':'UkfGw3Yp2Ae-ik1oLU6suw..|1537236802|OuK6zuELNCYvDU3kXTC0FMNwzKQ.',
-'session':'A72HI6WZ7KR72II6O6X7QOF3AQKZRIVYGTYZIM7QS2OXI27JCO55HPXVXEVHG7D2ZO2O2W7OQRAGQNIJHEEHKOF7K73ILULXOAFUCC6YVPOAYNHTDZIFIVMRMRXET63M6KEJSLEGTZTIQKQKWMRA6C6YQM======',
-'uid':'5eb6491e1b8e-0b59-5e54-902c-41a16b56',
-}
 
 cookies = {
 
@@ -51,7 +49,7 @@ params = {
 'versionType':1,
 }
 
-nginx_proxy_session = "hKzIkwebFFfsPj0rvsSsKw..|1537270168|YGUx9NlwmsrK9NklbVBKox671Co." # 每日更新
+nginx_proxy_session = "Zm8M0XNiBixi8GjB3wRgWg..|1537323095|2OXyzeqpQIOY2RQtrjBwsRpiWF0." # 每日更新
 
 session = requests.session()
 session.headers.update(headers)
@@ -67,7 +65,8 @@ def gen_md5(str):
 
 print(gen_md5('Za598521'))
 print(gen_md5('Za598521'))
-print(gen_md5('Za598521'))
+print(gen_md5('bingka.wang'))
+print(gen_md5('bingka.wang'))
 
 
 login_url = 'http://passport.dp.yiducloud.cn/api/iam/authenticate/password'
@@ -79,7 +78,10 @@ payload = {
 Jsondata = '[{"password":"Za598521","username":"bingka.wang"}]'
 j=json.loads(Jsondata)
 
+payload = {'password':'Za598521','username':'bingka.wang'}
+
 l = session.post(login_url,json=j)
+l = session.post(login_url,data=json.dumps(payload))
 print(l.text)
 
 comment_url = 'http://deming.dp.yiducloud.cn/api/dm/hospital/getIndexHospital'

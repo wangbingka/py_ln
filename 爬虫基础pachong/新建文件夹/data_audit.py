@@ -10,29 +10,34 @@ import re
 import requests
 import hashlib
 import logger
+from imp import reload
+
+# 防止非utf-8的中文解码显示问题
 reload(sys)                         
 sys.setdefaultencoding('utf-8') 
 
 def usage():
-    print '功能：病历审核工具'
-    print 'usage:', sys.argv[0],'options'
-    print "options:"
-    print '\t-f <data file> : Mandatory, 指定输入文件, 支持excel和文本'
-    print '\t-cluster <cluster> : Mandatory, 指定集群'
-    print '\t-user <user> : Mandatory, 用户名'
+    print('功能：病历审核工具')
+    print('usage:', sys.argv[0],'options')
+    print("options:")
+    print('\t-f <data file> : Mandatory, 指定输入文件, 支持excel和文本')
+    print('\t-cluster <cluster> : Mandatory, 指定集群')
+    print('\t-user <user> : Mandatory, 用户名')
     #print '\t-ext_dict <ext_dict> : Optional, 指定扩展文件，默认为ext.dict'
-    print '\t-passwd <passwd> : Mandatory, 密码'
-    print '\t-o <output file> : Optional, 指定输出文件, 默认为data_audit_<cluster>.xls'
-    print '\t-limit <limit> : Optional, 仅处理前limit条数据, 默认全部'
-    print '\t-lb_warning <ratio> : Optional, 下界warning比率，默认0.5'
-    print '\t-lb_critical <ratio> : Optional, 下界critical比率，默认0.25'
-    print '\t-ub_warning <ratio> : Optional, 上界warning比率，默认2.0'
-    print '\t-ub_critical <ratio> : Optional, 上界critical比率，默认4.0'
+    print('\t-passwd <passwd> : Mandatory, 密码')
+    print('\t-o <output file> : Optional, 指定输出文件, 默认为data_audit_<cluster>.xls')
+    print('\t-limit <limit> : Optional, 仅处理前limit条数据, 默认全部')
+    print('\t-lb_warning <ratio> : Optional, 下界warning比率，默认0.5')
+    print('\t-lb_critical <ratio> : Optional, 下界critical比率，默认0.25')
+    print('\t-ub_warning <ratio> : Optional, 上界warning比率，默认2.0')
+    print('\t-ub_critical <ratio> : Optional, 上界critical比率，默认4.0')
 
 
 class QueryParser(object):
     def __init__(self, service_util):
         self.service_util = service_util
+
+        # 各种关系字符转换使用
         self.op_mapping = {
                 '包含' : 'include',
                 '不包含' : 'exclude',
@@ -48,13 +53,20 @@ class QueryParser(object):
                 '并且' : 'and',
                 'and' : 'and'
                 }
-
+    # 规则拆分与转换
     def parse(self, rule, search_aspect=None):
+
+        # 清洗空格之类的
         rule = rule.strip()
+
+        # 包含括号中的关系字符，实例化
         p = re.compile(r'或者|OR|并且|AND')
+
         m = [ v for v in p.finditer(rule)]
         if len(m) >= 1:
+
             #AND/OR关系优先级从左到右,从右往左递归
+            # reversed，返回一个反转的迭代器
             m = [(v.start(), v.end()) for v in m]
             for (op_start, op_end) in list(reversed(m)):
                 op = rule[op_start:op_end].strip().lower()
@@ -97,9 +109,13 @@ class QueryParser(object):
             return query
 
 def genMd5Val(src):
-    if not isinstance(src, basestring):
+
+    # 判断是否不是字符串，如果不是则...，防止显示问题
+    if not isinstance(src, str):
         src = json.dumps(src, ensure_ascii=False, sort_keys=True)
 
+
+# 规则类
 class Rule(object):
     """
     规则
@@ -112,13 +128,21 @@ class Rule(object):
         else:
             self.search_aspect = 'patient'
 
+        # rstrip() 删除 string 字符串末尾的指定字符（默认为空格）.
         self.range_lb = float(range_lb.rstrip('%'))
         self.range_ub = float(range_ub.rstrip('%'))
+
+
         self.query_parser = QueryParser(service_util)
         self.parse_rule(rule)
 
+    # 规则拆分
     def parse_rule(self, cond):
+
+        # 将中文；替换成英文;并且切分；
         arr = cond.replace('；', ';').split(';')
+
+        # 列表中元素不是2，则报错，调出logger
         if len(arr) != 2:
             logger.error('cond format error: %s', cond)
             raise Exception('cond format error: %s' % cond)
@@ -131,6 +155,7 @@ class Rule(object):
                         self.q2 
                     ]
                 }
+
 
     def rule_to_query(self, rule):
         """
@@ -192,7 +217,7 @@ class ServiceUtil(object):
 							       "password": hashed_pwd})
 
 	    if ret.status_code == 200:
-                print 'login succeed'
+                print('login succeed')
 		self.cookies = ret.cookies
 	    else:
                 ret.raise_for_status()
@@ -209,6 +234,7 @@ class ServiceUtil(object):
         cluster_info = self.http_get('http://openapi.intra.yiducloud.cn/openapi/cluster/get?cluster=%s' % cluster)
         self.base_uri = cluster_info.get('value',{}).get('info', {}).get('nova')
         #self.base_uri = 'http://nova.%s.yiducloud.cn' % cluster
+
 
     def http_get(self, uri):
         hash_key = genMd5Val({'uri':uri})
