@@ -49,11 +49,12 @@ sheet1_list = []
 
 for i in range(0, sheet1.nrows):
     cols = sheet1.row_values(i)
-    if isinstance(cols[-1],int) or isinstance(cols[-1],float):
+    if isinstance(cols[-1],int) or isinstance(cols[-1],float) and \
+            (isinstance(cols[3], int) or isinstance(cols[4], float) ) and cols[3] in range(1990, 2019) and cols[4] in range(0, 13):
         sheet1_list.append(cols)
     else:
         pass
-# print(sheet1_list)
+print('sheet1_list长度:%s,内容:%s'%(len(sheet1_list),sheet1_list))
 
 visit_type = set()
 for i in sheet1_list:
@@ -90,25 +91,30 @@ def avarage_month(self):
     result_list.append(wrong_list)
     return result_list
 
-def near_month(self):
-    print('self:%s'%self)
+def near_twolist(self):
     list1 = []
     for i in range(0,len(self)-1):
-        if (isinstance(self[i][3], int) or isinstance(self[i][4], float) ) and int(self[i][3]) in range(1990, 2019) and int(self[i][4]) in range(0, 13):
-            # print ('i%s'%i, end=':')
+        # if (isinstance(self[i][3], int) or isinstance(self[i][4], float) ) and int(self[i][3]) in range(1990, 2019) and int(self[i][4]) in range(0, 13):
             list5 = []
             list5.append(self[i])
-            # print('i:%s' % i)
-            # print('i+1:%s'%(i))
-            # print('self[i]:%s'%(self[i]))
-            # print('self[i+1]:%s'%(self[i+1]))
             list5.append(self[i+1])
-            # list5.append(self[i + 2])
-            # print(list5)
             list1.append(list5)
+    return list1
 
-    list2 = list(reversed(list1))
-    print('list2:%s'%list2)
+
+def near_month(self):
+    print('self,长度:%s,内容:%s' % (len(self), self))
+    # list1 = []
+    # for i in range(0,len(self)-1):
+    #     # if (isinstance(self[i][3], int) or isinstance(self[i][4], float) ) and int(self[i][3]) in range(1990, 2019) and int(self[i][4]) in range(0, 13):
+    #         list5 = []
+    #         list5.append(self[i])
+    #         list5.append(self[i+1])
+    #         list1.append(list5)
+
+    list2 = list(reversed(near_twolist(self)))
+    print('list2,长度:%s,内容:%s'%(len(list2),list2))
+
     common_month = []
     while list2 != []:
         # print('list2:%s'%list2)
@@ -117,26 +123,22 @@ def near_month(self):
         if now_list[0][-1] >  (now_list[1][-1])/2 and now_list[0][-1] <  (now_list[1][-1])*2:
             if now_list[0] not in common_month:
                 common_month.append(now_list[0])
+            if now_list[1] not in common_month:
                 common_month.append(now_list[1])
         else:
             pass
-    print('common_month:%s'%common_month)
+    print('common_month,长度:%s,内容:%s'%(len(common_month),common_month))
 
-    year_month = []
-    for i in range(0,len(common_month)-1):
-        # print ('i%s'%i, end=':')
-        list5 = []
-        list5.append(self[i])
-        list5.append(self[i + 1])
-        # list5.append(self[i + 2])
-        # print(list5)
-        year_month.append(list5)
-    # print('year_month:%s'%year_month)
+    # year_month = []
+    # for i in range(0,len(common_month)-1):
+    #     list5 = []
+    #     list5.append(self[i])
+    #     list5.append(self[i + 1])
+    #     year_month.append(list5)
 
-    start_end_year_month_list = []
-    year_month1 = list(reversed(year_month))
+    year_month1 = list(reversed(near_twolist(common_month)))
 
-    print(year_month1)
+    print('year_month1,长度:%s,内容:%s' % (len(year_month1), year_month1))
 
     num = 0
     start_num =1
@@ -146,37 +148,89 @@ def near_month(self):
         # print('start_end_year_month:%s'%start_end_year_month)
         if num==0:
             # print('num:0')
+            current_list = []
+            current_list.append(start_end_year_month[0][3])
+            current_list.append(start_end_year_month[0][4])
             start_year_month['start%s_year_month'%start_num] = '%s_%s'%(start_end_year_month[0][3],start_end_year_month[0][4])
+            start_year_month['start%s_year_month' % start_num] = current_list
 
 
         else:
             if (start_end_year_month[0][3] == start_end_year_month[1][3] and start_end_year_month[0][4]+1 == start_end_year_month[1][4]) or (start_end_year_month[0][3]+1 == start_end_year_month[1][3] and start_end_year_month[0][4]-11 == start_end_year_month[1][4]):
                 start_year_month['end%s_year_month'%start_num] = '%s_%s' % (start_end_year_month[1][3],start_end_year_month[1][4])
-
+                current_list = []
+                current_list.append(start_end_year_month[1][3])
+                current_list.append(start_end_year_month[1][4])
+                start_year_month['end%s_year_month' % start_num] = current_list
 
 
             else:
                 start_num +=1
                 start_year_month['start%s_year_month'%start_num] = '%s_%s' % (start_end_year_month[1][3],start_end_year_month[1][4])
 
-                # a = 'start%s_year_month' % start_num
-                # key_list = []
-                # for i in range(0, len(start_end_year_month_lists) - 1):
-                #     key_list.append(start_end_year_month_lists[i][0])
-                # print('key_list:%s'%key_list)
-                # print(a)
-                # if a not in key_list:
-                #     start_end_year_month_list = []
-                #     start_end_year_month_list.append('end%s_year_month' % start_num)
-                #     start_end_year_month_list.append(start_end_year_month[1][3])
-                #     start_end_year_month_list.append(start_end_year_month[1][4])
-                #     start_end_year_month_lists.append(start_end_year_month_list)
-                # else:
-                #     pass
+                current_list = []
+                current_list.append(start_end_year_month[1][3])
+                current_list.append(start_end_year_month[1][4])
+                start_year_month['start%s_year_month' % start_num] = current_list
+
         num +=1
 
-    # start_end_year_month_list.append(start_year_month)
-    print(start_year_month)
+    print('start_year_month,长度:%s,内容:%s' % (len(start_year_month), start_year_month))
+
+    start_end_year_month_list = []
+    for a in start_year_month.keys():
+        start_end_year_month = []
+        start_end_year_month.append(a)
+        start_end_year_month.append(start_year_month[a])
+        # print(a)
+        # print(i[a])
+        start_end_year_month_list.append(start_end_year_month)
+
+
+    print('start_end_year_month_list,长度:%s,内容:%s' % (len(start_end_year_month_list), start_end_year_month_list))
+
+    start_end_year_month_list_neartwo = near_twolist(start_end_year_month_list)
+
+    print('start_end_year_month_list_neartwo,长度:%s,内容:%s' % (len(start_end_year_month_list_neartwo), start_end_year_month_list_neartwo))
+
+    wrong_month = []
+    for i in start_end_year_month_list_neartwo:
+
+        if i[0][0].startswith('end') and i[0][1][0] == i[1][1][0]:
+            # print(i[0][0])
+            # print(i[0][1][0])
+            # print(int(i[0][1][1])+1)
+            # print(int(i[1][1][1]))
+            for a in range(int(i[0][1][1])+1,int(i[1][1][1])):
+                year_month_list = []
+                year_month_list.append(i[0][1][0])
+                year_month_list.append(a)
+                wrong_month.append(year_month_list)
+        elif i[0][0].startswith('end') and i[0][1][0] != i[1][1][0]:
+            for a in range(int(i[0][1][0]),int(i[1][1][0])+1):
+                year_month_list = []
+                b = i[0][1][1]
+                while a < int(i[1][1][0]) and b < 12:
+                    year_month_list = []
+                    year_month_list.append(a)
+                    b +=1
+                    year_month_list.append(b)
+                    wrong_month.append(year_month_list)
+                c = i[1][1][1]
+                d = 1
+                while a == int(i[1][1][0]) and d <i[1][1][1]:
+                    year_month_list = []
+                    year_month_list.append(a)
+                    d += 1
+                    year_month_list.append(b)
+                    wrong_month.append(year_month_list)
+
+        else:
+            pass
+
+    print(wrong_month)
+
+
 
     return start_year_month
 
@@ -237,5 +291,6 @@ if __name__ == '__main__':
          # ['检验记录日期年份分布', '住院', '微生物', 2017.0, 11.0, 3467.0], ['检验记录日期年份分布', '住院', '微生物', 2017.0, 12.0, 3186.0],
          ['检验记录日期年份分布', '住院', '微生物', 2018.0, 1.0, 3600.0], ['检验记录日期年份分布', '住院', '微生物', 2018.0, 2.0, 2746.0],
          ['检验记录日期年份分布', '住院', '微生物', 2018.0, 3.0, 3263.0], ['检验记录日期年份分布', '住院', '微生物', 2018.0, 4.0, 3317.0],
-         ['检验记录日期年份分布', '住院', '微生物', 2018.0, 5.0, 3458.0], ['检验记录日期年份分布', '住院', '微生物', 2018.0, 6.0, 3031.0]]
+         # ['检验记录日期年份分布', '住院', '微生物', 2018.0, 5.0, 3458.0],
+         ['检验记录日期年份分布', '住院', '微生物', 2018.0, 6.0, 3031.0]]
     near_month(a)
