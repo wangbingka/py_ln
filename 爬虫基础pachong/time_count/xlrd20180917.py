@@ -1,4 +1,3 @@
-#!usr/bin/python
 #!/usr/bin/python
 # -*- coding:utf-8 -*-
 # @Time :  2018/9/17 15:31
@@ -54,7 +53,7 @@ for i in range(0, sheet1.nrows):
         sheet1_list.append(cols)
     else:
         pass
-print(sheet1_list)
+# print(sheet1_list)
 
 visit_type = set()
 for i in sheet1_list:
@@ -92,132 +91,151 @@ def avarage_month(self):
     return result_list
 
 def near_month(self):
-    mouth_list = []
+    print('self:%s'%self)
     list1 = []
     for i in range(0,len(self)-1):
-        if i ==0:
-            list2 = []
-            list2.append(self[i])
-            list2.append(self[i+1])
-            print(list2)
-            list1.append(list2)
-        if i == len(self)-2:
-            list3 = []
-            list3.append(self[i])
-            list3.append(self[i + 1])
-            print(list3)
-            list1.append(list3)
+        if (isinstance(self[i][3], int) or isinstance(self[i][4], float) ) and int(self[i][3]) in range(1990, 2019) and int(self[i][4]) in range(0, 13):
+            # print ('i%s'%i, end=':')
+            list5 = []
+            list5.append(self[i])
+            # print('i:%s' % i)
+            # print('i+1:%s'%(i))
+            # print('self[i]:%s'%(self[i]))
+            # print('self[i+1]:%s'%(self[i+1]))
+            list5.append(self[i+1])
+            # list5.append(self[i + 2])
+            # print(list5)
+            list1.append(list5)
+
+    list2 = list(reversed(list1))
+    print('list2:%s'%list2)
+    common_month = []
+    while list2 != []:
+        # print('list2:%s'%list2)
+        now_list = list2.pop()
+        # print('now_list:%s' % now_list)
+        if now_list[0][-1] >  (now_list[1][-1])/2 and now_list[0][-1] <  (now_list[1][-1])*2:
+            if now_list[0] not in common_month:
+                common_month.append(now_list[0])
+                common_month.append(now_list[1])
         else:
-            list4 = []
-            list4.append(self[i])
-            list4.append(self[i + 1])
-            list4.append(self[i+2])
-            print(list4)
-            list1.append(list4)
-    print(list1)
+            pass
+    print('common_month:%s'%common_month)
+
+    year_month = []
+    for i in range(0,len(common_month)-1):
+        # print ('i%s'%i, end=':')
+        list5 = []
+        list5.append(self[i])
+        list5.append(self[i + 1])
+        # list5.append(self[i + 2])
+        # print(list5)
+        year_month.append(list5)
+    # print('year_month:%s'%year_month)
+
+    start_end_year_month_list = []
+    year_month1 = list(reversed(year_month))
+
+    print(year_month1)
+
+    num = 0
+    start_num =1
+    start_year_month = {}
+    while year_month1 != []:
+        start_end_year_month = year_month1.pop()
+        # print('start_end_year_month:%s'%start_end_year_month)
+        if num==0:
+            # print('num:0')
+            start_year_month['start%s_year_month'%start_num] = '%s_%s'%(start_end_year_month[0][3],start_end_year_month[0][4])
+
+
+        else:
+            if (start_end_year_month[0][3] == start_end_year_month[1][3] and start_end_year_month[0][4]+1 == start_end_year_month[1][4]) or (start_end_year_month[0][3]+1 == start_end_year_month[1][3] and start_end_year_month[0][4]-11 == start_end_year_month[1][4]):
+                start_year_month['end%s_year_month'%start_num] = '%s_%s' % (start_end_year_month[1][3],start_end_year_month[1][4])
 
 
 
-a = [1,2,3,4,5,6]
-near_month(a)
+            else:
+                start_num +=1
+                start_year_month['start%s_year_month'%start_num] = '%s_%s' % (start_end_year_month[1][3],start_end_year_month[1][4])
+
+                # a = 'start%s_year_month' % start_num
+                # key_list = []
+                # for i in range(0, len(start_end_year_month_lists) - 1):
+                #     key_list.append(start_end_year_month_lists[i][0])
+                # print('key_list:%s'%key_list)
+                # print(a)
+                # if a not in key_list:
+                #     start_end_year_month_list = []
+                #     start_end_year_month_list.append('end%s_year_month' % start_num)
+                #     start_end_year_month_list.append(start_end_year_month[1][3])
+                #     start_end_year_month_list.append(start_end_year_month[1][4])
+                #     start_end_year_month_lists.append(start_end_year_month_list)
+                # else:
+                #     pass
+        num +=1
+
+    # start_end_year_month_list.append(start_year_month)
+    print(start_year_month)
+
+    return start_year_month
 
 
-
-for a in visit_type:
-    for b in table_type:
-        print(a, b)
-        type_list = []
-        for i in sheet1_list:
-            if i[1] == a and i[2] == b:
-                type_list.append(i)
-        c = avarage_month(type_list)
-        print(c[0])
-        print(c[1])
 
 '''
 1、算出所有月份的平均值
 2、判断当前月份对应的值是否是大于平均值的五分之一，并小于平均值的五倍，如果是则记录，如果不是则正常并且新的纪录
+3、每两个组成一个组合进行对比，前一个要保证大于后一个的2分之一并小于前一个的2倍，否则删除进行下一个操作，直到有满足条件的，一直往下取，形成新的列表
+4、
 3、排列顺序，取出最大的月份，和最小的月份，并且判断最小的月份和后一个月份是连续的，如果不是则继续
 '''
 
-# for i in range(0, sheet2.nrows):
-#     cols = sheet2.row_values(i)
-#     cols_list = []
-#     # 1,2,3,4,6,12,14
-#     cols_list.append(cols[0])
-#     cols_list.append(cols[1])
-#     cols_list.append(cols[2])
-#     cols_list.append(cols[3])
-#     cols_list.append(cols[5])
-#     cols_list.append(cols[11])
-#     cols_list.append(cols[13])
-#     sheet2_list.append(cols_list)
-# for i in range(0, sheet3.nrows):
-#     cols = sheet3.row_values(i)
-#     cols_list = []
-#     # 1,2,3,4,5,6
-#     cols_list.append(cols[0])
-#     cols_list.append(cols[1])
-#     cols_list.append(cols[2])
-#     cols_list.append(cols[3])
-#     cols_list.append(cols[4])
-#     cols_list.append(cols[5])
-#     sheet3_list.append(cols_list)
 
+if __name__ == '__main__':
+    # for a in visit_type:
+    #     for b in table_type:
+    #         print(a, b)
+    #         type_list = []
+    #         for i in sheet1_list:
+    #             if i[1] == a and i[2] == b:
+    #                 type_list.append(i)
+    #         c = avarage_month(type_list)
+    #         print(c[0])
+    #         print(c[1])
 
-'''
-1、表1有100行，每行是一个每列数据组成的列表，再把每行的列表组成一个新的列表
-
-'''
-
-
-def union_list(self1, self2):
-    newsheet_list = []
-    cols = 0
-    while cols < len(self1):
-        for i in range(0, len(self2)):
-
-            if self2[i][0] == self1[cols][0] and self2[i][2] == self1[cols][2]:
-                newcols = self1[cols] + self2[i]
-                newsheet_list.append(newcols)
-            else:
-                continue
-        cols += 1
-    # print(newsheet_list)
-    # print(len(newsheet_list))
-
-    cols = 0
-    del_list = []
-    while cols < len(newsheet_list):
-        for i in range(0, len(sheet1_list)):
-            if self1[i][0] == newsheet_list[cols][0] and self1[i][2] == newsheet_list[cols][2]:
-                # newsheet_list.append(newcols)
-                del_list.append(self1[i])
-            else:
-                continue
-        cols += 1
-    print(len(self1))
-    print(len(del_list))
-    ret = [i for i in self1 if i not in del_list]
-    # print(len(ret))
-    newsheet_list += ret
-    # print(newsheet_list)
-    # print(len(newsheet_list))
-    return newsheet_list
-
-
-def write_data(self,txt_name):
-    with open('{}.txt'.format(txt_name),'a+',encoding='utf8') as f:
-        f.write(self)
-
-
-
-
-# if __name__ == '__main__':
-
-    # newsheet_list = union_list(sheet1_list, sheet2_list)
-    # newsheet_list = union_list(newsheet_list,sheet3_list)
-    # for i in newsheet_list:
-    #     for a in i:
-    #         write_data(str(a) + '\t', 'diff_count')
-    #     write_data('\n', 'diff_count')
+    a = [['检验记录日期年份分布', '住院', '微生物', 2012.0, 9.0, 2510.0], ['检验记录日期年份分布', '住院', '微生物', 2012.0, 10.0, 2539.0],
+         ['检验记录日期年份分布', '住院', '微生物', 2012.0, 11.0, 2668.0], ['检验记录日期年份分布', '住院', '微生物', 2012.0, 12.0, 2814.0],
+         ['检验记录日期年份分布', '住院', '微生物', 2013.0, 1.0, 2899.0], ['检验记录日期年份分布', '住院', '微生物', 2013.0, 2.0, 2080.0],
+         ['检验记录日期年份分布', '住院', '微生物', 2013.0, 3.0, 2617.0], ['检验记录日期年份分布', '住院', '微生物', 2013.0, 4.0, 2627.0],
+         ['检验记录日期年份分布', '住院', '微生物', 2013.0, 5.0, 2896.0], ['检验记录日期年份分布', '住院', '微生物', 2013.0, 6.0, 2598.0],
+         ['检验记录日期年份分布', '住院', '微生物', 2013.0, 7.0, 2783.0], ['检验记录日期年份分布', '住院', '微生物', 2013.0, 8.0, 2853.0],
+         ['检验记录日期年份分布', '住院', '微生物', 2013.0, 9.0, 2658.0], ['检验记录日期年份分布', '住院', '微生物', 2013.0, 10.0, 2651.0],
+         ['检验记录日期年份分布', '住院', '微生物', 2013.0, 11.0, 2632.0], ['检验记录日期年份分布', '住院', '微生物', 2013.0, 12.0, 2873.0],
+         ['检验记录日期年份分布', '住院', '微生物', 2014.0, 1.0, 2595.0], ['检验记录日期年份分布', '住院', '微生物', 2014.0, 2.0, 2021.0],
+         ['检验记录日期年份分布', '住院', '微生物', 2014.0, 3.0, 2571.0], ['检验记录日期年份分布', '住院', '微生物', 2014.0, 4.0, 3089.0],
+         ['检验记录日期年份分布', '住院', '微生物', 2014.0, 5.0, 2968.0], ['检验记录日期年份分布', '住院', '微生物', 2014.0, 6.0, 3068.0],
+         ['检验记录日期年份分布', '住院', '微生物', 2014.0, 7.0, 3304.0], ['检验记录日期年份分布', '住院', '微生物', 2014.0, 8.0, 3087.0],
+         ['检验记录日期年份分布', '住院', '微生物', 2014.0, 9.0, 3031.0], ['检验记录日期年份分布', '住院', '微生物', 2014.0, 10.0, 3329.0],
+         ['检验记录日期年份分布', '住院', '微生物', 2014.0, 11.0, 2958.0], ['检验记录日期年份分布', '住院', '微生物', 2014.0, 12.0, 3416.0],
+         ['检验记录日期年份分布', '住院', '微生物', 2015.0, 1.0, 3302.0], ['检验记录日期年份分布', '住院', '微生物', 2015.0, 2.0, 2721.0],
+         ['检验记录日期年份分布', '住院', '微生物', 2015.0, 3.0, 3245.0], ['检验记录日期年份分布', '住院', '微生物', 2015.0, 4.0, 3384.0],
+         ['检验记录日期年份分布', '住院', '微生物', 2015.0, 5.0, 3269.0], ['检验记录日期年份分布', '住院', '微生物', 2015.0, 6.0, 3445.0],
+         ['检验记录日期年份分布', '住院', '微生物', 2015.0, 7.0, 3891.0], ['检验记录日期年份分布', '住院', '微生物', 2015.0, 8.0, 3672.0],
+         ['检验记录日期年份分布', '住院', '微生物', 2015.0, 9.0, 3893.0], ['检验记录日期年份分布', '住院', '微生物', 2015.0, 10.0, 3079.0],
+         ['检验记录日期年份分布', '住院', '微生物', 2015.0, 11.0, 3604.0], ['检验记录日期年份分布', '住院', '微生物', 2015.0, 12.0, 3706.0],
+         ['检验记录日期年份分布', '住院', '微生物', 2016.0, 1.0, 3223.0], ['检验记录日期年份分布', '住院', '微生物', 2016.0, 2.0, 2900.0],
+         ['检验记录日期年份分布', '住院', '微生物', 2016.0, 3.0, 3378.0], ['检验记录日期年份分布', '住院', '微生物', 2016.0, 4.0, 3138.0],
+         # ['检验记录日期年份分布', '住院', '微生物', 2016.0, 5.0, 3164.0], ['检验记录日期年份分布', '住院', '微生物', 2016.0, 6.0, 3450.0],
+         # ['检验记录日期年份分布', '住院', '微生物', 2016.0, 7.0, 3497.0], ['检验记录日期年份分布', '住院', '微生物', 2016.0, 8.0, 3697.0],
+         # ['检验记录日期年份分布', '住院', '微生物', 2016.0, 9.0, 3252.0], ['检验记录日期年份分布', '住院', '微生物', 2016.0, 10.0, 3045.0],
+         # ['检验记录日期年份分布', '住院', '微生物', 2016.0, 11.0, 3346.0], ['检验记录日期年份分布', '住院', '微生物', 2016.0, 12.0, 3447.0],
+         # ['检验记录日期年份分布', '住院', '微生物', 2017.0, 1.0, 3020.0], ['检验记录日期年份分布', '住院', '微生物', 2017.0, 2.0, 3180.0],
+         # ['检验记录日期年份分布', '住院', '微生物', 2017.0, 3.0, 3816.0], ['检验记录日期年份分布', '住院', '微生物', 2017.0, 4.0, 3321.0],
+         ['检验记录日期年份分布', '住院', '微生物', 2017.0, 5.0, 3619.0], ['检验记录日期年份分布', '住院', '微生物', 2017.0, 6.0, 3402.0],
+         # ['检验记录日期年份分布', '住院', '微生物', 2017.0, 7.0, 3476.0], ['检验记录日期年份分布', '住院', '微生物', 2017.0, 8.0, 3547.0],
+         # ['检验记录日期年份分布', '住院', '微生物', 2017.0, 9.0, 3616.0], ['检验记录日期年份分布', '住院', '微生物', 2017.0, 10.0, 3187.0],
+         # ['检验记录日期年份分布', '住院', '微生物', 2017.0, 11.0, 3467.0], ['检验记录日期年份分布', '住院', '微生物', 2017.0, 12.0, 3186.0],
+         ['检验记录日期年份分布', '住院', '微生物', 2018.0, 1.0, 3600.0], ['检验记录日期年份分布', '住院', '微生物', 2018.0, 2.0, 2746.0],
+         ['检验记录日期年份分布', '住院', '微生物', 2018.0, 3.0, 3263.0], ['检验记录日期年份分布', '住院', '微生物', 2018.0, 4.0, 3317.0],
+         ['检验记录日期年份分布', '住院', '微生物', 2018.0, 5.0, 3458.0], ['检验记录日期年份分布', '住院', '微生物', 2018.0, 6.0, 3031.0]]
+    near_month(a)
