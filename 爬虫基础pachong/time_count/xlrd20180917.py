@@ -36,22 +36,29 @@ print(sheets)
 #  对应的方法有多个，name指sheet的名称，ncols，列数，nrows，行数
 
 sheet1 = data.sheet_by_index(0)
-# sheet2 = data.sheet_by_index(1)
-# sheet3 = data.sheet_by_index(2)
-
 sheet1_rows = sheet1.nrows
-# sheet2_rows = sheet2.nrows
-# sheet3_rows = sheet3.nrows
+
+
+def int_list(self):
+    int_list_str = []
+    for i in self:
+        if isinstance(i, int) or isinstance(i, float):
+            a = int(i)
+            # print(a)
+            int_list_str.append(a)
+        else:
+            int_list_str.append(i)
+    return int_list_str
 
 sheet1_list = []
-# sheet2_list = []
-# sheet3_list = []
 
 for i in range(0, sheet1.nrows):
     cols = sheet1.row_values(i)
     if isinstance(cols[-1],int) or isinstance(cols[-1],float) and \
             (isinstance(cols[3], int) or isinstance(cols[4], float) ) and cols[3] in range(1990, 2019) and cols[4] in range(0, 13):
-        sheet1_list.append(cols)
+
+        cols1 = int_list(cols)
+        sheet1_list.append(cols1)
     else:
         pass
 print('sheet1_list长度:%s,内容:%s'%(len(sheet1_list),sheet1_list))
@@ -62,6 +69,12 @@ for i in sheet1_list:
 table_type = set()
 for i in sheet1_list:
     table_type.add(i[2])
+
+
+
+
+
+
 
 
 def avarage_month(self):
@@ -76,19 +89,20 @@ def avarage_month(self):
         sum +=a
 
     avarage = sum/len(counts)
-    print(sum)
-    print(len(counts))
-    print(avarage)
+    # print(sum)
+    # print(len(counts))
+    # print(avarage)
 
     normal_list = []
-    wrong_list = []
     for i in self:
         if i[-1] < avarage*5 and i[-1] > avarage/5:
             normal_list.append(i)
         else:
-            wrong_list.append(i)
+            pass
+
+    result_list.append(sum)
+    result_list.append(avarage)
     result_list.append(normal_list)
-    result_list.append(wrong_list)
     return result_list
 
 def near_twolist(self):
@@ -103,7 +117,7 @@ def near_twolist(self):
 
 
 def near_month(self):
-    print('self,长度:%s,内容:%s' % (len(self), self))
+    # print('self,长度:%s,内容:%s' % (len(self), self))
     # list1 = []
     # for i in range(0,len(self)-1):
     #     # if (isinstance(self[i][3], int) or isinstance(self[i][4], float) ) and int(self[i][3]) in range(1990, 2019) and int(self[i][4]) in range(0, 13):
@@ -113,7 +127,7 @@ def near_month(self):
     #         list1.append(list5)
 
     list2 = list(reversed(near_twolist(self)))
-    print('list2,长度:%s,内容:%s'%(len(list2),list2))
+    # print('list2,长度:%s,内容:%s'%(len(list2),list2))
 
     common_month = []
     while list2 != []:
@@ -127,18 +141,12 @@ def near_month(self):
                 common_month.append(now_list[1])
         else:
             pass
-    print('common_month,长度:%s,内容:%s'%(len(common_month),common_month))
+    # print('common_month,长度:%s,内容:%s'%(len(common_month),common_month))
 
-    # year_month = []
-    # for i in range(0,len(common_month)-1):
-    #     list5 = []
-    #     list5.append(self[i])
-    #     list5.append(self[i + 1])
-    #     year_month.append(list5)
 
     year_month1 = list(reversed(near_twolist(common_month)))
 
-    print('year_month1,长度:%s,内容:%s' % (len(year_month1), year_month1))
+    # print('year_month1,长度:%s,内容:%s' % (len(year_month1), year_month1))
 
     num = 0
     start_num =1
@@ -175,7 +183,7 @@ def near_month(self):
 
         num +=1
 
-    print('start_year_month,长度:%s,内容:%s' % (len(start_year_month), start_year_month))
+    # print('start_year_month,长度:%s,内容:%s' % (len(start_year_month), start_year_month))
 
     start_end_year_month_list = []
     for a in start_year_month.keys():
@@ -191,16 +199,11 @@ def near_month(self):
 
     start_end_year_month_list_neartwo = near_twolist(start_end_year_month_list)
 
-    print('start_end_year_month_list_neartwo,长度:%s,内容:%s' % (len(start_end_year_month_list_neartwo), start_end_year_month_list_neartwo))
+    # print('start_end_year_month_list_neartwo,长度:%s,内容:%s' % (len(start_end_year_month_list_neartwo), start_end_year_month_list_neartwo))
 
     wrong_month = []
     for i in start_end_year_month_list_neartwo:
-
         if i[0][0].startswith('end') and i[0][1][0] == i[1][1][0]:
-            # print(i[0][0])
-            # print(i[0][1][0])
-            # print(int(i[0][1][1])+1)
-            # print(int(i[1][1][1]))
             for a in range(int(i[0][1][1])+1,int(i[1][1][1])):
                 year_month_list = []
                 year_month_list.append(i[0][1][0])
@@ -231,9 +234,7 @@ def near_month(self):
     print(wrong_month)
 
 
-
     return start_year_month
-
 
 
 '''
@@ -246,16 +247,18 @@ def near_month(self):
 
 
 if __name__ == '__main__':
-    # for a in visit_type:
-    #     for b in table_type:
-    #         print(a, b)
-    #         type_list = []
-    #         for i in sheet1_list:
-    #             if i[1] == a and i[2] == b:
-    #                 type_list.append(i)
-    #         c = avarage_month(type_list)
-    #         print(c[0])
-    #         print(c[1])
+    for a in visit_type:
+        for b in table_type:
+            print(a, ',',b)
+            type_list = []
+            for i in sheet1_list:
+                if i[1] == a and i[2] == b:
+                    type_list.append(i)
+            c = avarage_month(type_list)
+            print(c)
+            near_month(c[2])
+            # print(c[0])
+            # print(c[1])
 
     a = [['检验记录日期年份分布', '住院', '微生物', 2012.0, 9.0, 2510.0], ['检验记录日期年份分布', '住院', '微生物', 2012.0, 10.0, 2539.0],
          ['检验记录日期年份分布', '住院', '微生物', 2012.0, 11.0, 2668.0], ['检验记录日期年份分布', '住院', '微生物', 2012.0, 12.0, 2814.0],
