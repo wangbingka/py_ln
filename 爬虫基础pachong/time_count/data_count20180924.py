@@ -1,9 +1,41 @@
-#!usr/bin/python
 #!/usr/bin/python
 # -*- coding:utf-8 -*-
-# @Time :  2018/9/20 15:18
+# @Time :  2018/9/24 17:29
 # @Author: Bingka.wang
 # @Email:  wangbingka@126.com
+
+
+class dataCount():
+    def __init__(self,filename=''):
+        self.filename = filename
+    def __int_list(self):
+        int_list_str = []
+        for i in self:
+            if isinstance(i, int) or isinstance(i, float) or i.isdigit():
+                a = int(i)
+                # print(a)
+                int_list_str.append(a)
+            else:
+                int_list_str.append(i)
+        return int_list_str
+
+    def datelist(self):
+        with open('self', 'r+') as f:
+            sheet1_list = []
+            for line in f:
+                # print(line)
+                # print(type(line))
+                conts = line.split('\t')
+                conts1 = []
+                for i in conts:
+                    b = i.replace('\n', '')
+                    conts1.append(b)
+                conts2 = __int_list(conts1)
+                if isinstance(conts2[-1], int):
+                    sheet1_list.append(conts2)
+                else:
+                    pass
+        return sheet1_list
 
 
 import xlrd
@@ -14,11 +46,10 @@ print(filepath)
 
 
 
-filename = r'天津血液病检验时间分布.xlsx'
+filename = 'R0019_pris.sql_chinablood_371_1_schema.txt'
 
 filename1 = filepath+'\\'+filename
 
-# print(filename1)
 
 def int_list(self):
     int_list_str = []
@@ -31,32 +62,35 @@ def int_list(self):
             int_list_str.append(i)
     return int_list_str
 
-with open('R0019_pris.sql_chinablood_371_1_schema.txt','r+') as f:
-    sheet1_list = []
-    for line in f:
-        # print(line)
-        # print(type(line))
-        conts = line.split('\t')
-        conts1 = []
-        for i in conts:
-            b = i.replace('\n','')
-            conts1.append(b)
-        conts2 = int_list(conts1)
-        if  isinstance(conts2[-1], int):
-            sheet1_list.append(conts2)
-        else:
-            pass
+def datelist(self):
+    with open('self','r+') as f:
+        sheet1_list = []
+        for line in f:
+            # print(line)
+            # print(type(line))
+            conts = line.split('\t')
+            conts1 = []
+            for i in conts:
+                b = i.replace('\n','')
+                conts1.append(b)
+            conts2 = int_list(conts1)
+            if  isinstance(conts2[-1], int):
+                sheet1_list.append(conts2)
+            else:
+                pass
+    print(sheet1_list)
+    print(len(sheet1_list))
+    return sheet1_list
 
-print(sheet1_list)
-print(len(sheet1_list))
-
-
-visit_type = set()
-for i in sheet1_list:
-    visit_type.add(i[1])
-table_type = set()
-for i in sheet1_list:
-    table_type.add(i[2])
+def typelist(self):
+    type_list = []
+    for i in self:
+        visit_type = []
+        visit_type.append(i[1])
+        visit_type.append(i[2])
+        if visit_type not in type_list:
+            type_list.append(visit_type)
+    return type_list
 
 
 def avarage_month(self):
@@ -208,15 +242,12 @@ def near_month(self):
 
 
 if __name__ == '__main__':
-    for a in visit_type:
-        for b in table_type:
-            print(a, ',',b)
-            type_list = []
-            for i in sheet1_list:
-                if i[1] == a and i[2] == b:
-                    type_list.append(i)
-            c = avarage_month(type_list)
-            print(c)
-            near_month(c[2])
+    sheet1_list = datelist(filename)
+    for i in sheet1_list:
+        if i[1] == type and i[2] == b:
+            type_list.append(i)
+    c = avarage_month(type_list)
+    print(c)
+    near_month(c[2])
             # print(c[0])
             # print(c[1])

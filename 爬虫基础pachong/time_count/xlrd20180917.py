@@ -134,7 +134,7 @@ def near_month(self):
         # print('list2:%s'%list2)
         now_list = list2.pop()
         # print('now_list:%s' % now_list)
-        if now_list[0][-1] >  (now_list[1][-1])/2 and now_list[0][-1] <  (now_list[1][-1])*2:
+        if now_list[0][-1] >  (now_list[1][-1])/3 and now_list[0][-1] <  (now_list[1][-1])*3:
             if now_list[0] not in common_month:
                 common_month.append(now_list[0])
             if now_list[1] not in common_month:
@@ -161,6 +161,10 @@ def near_month(self):
             current_list.append(start_end_year_month[0][4])
             start_year_month['start%s_year_month'%start_num] = '%s_%s'%(start_end_year_month[0][3],start_end_year_month[0][4])
             start_year_month['start%s_year_month' % start_num] = current_list
+            current_list = []
+            current_list.append(start_end_year_month[1][3])
+            current_list.append(start_end_year_month[1][4])
+            start_year_month['end%s_year_month' % start_num] = current_list
 
 
         else:
@@ -180,6 +184,7 @@ def near_month(self):
                 current_list.append(start_end_year_month[1][3])
                 current_list.append(start_end_year_month[1][4])
                 start_year_month['start%s_year_month' % start_num] = current_list
+
 
         num +=1
 
