@@ -14,11 +14,15 @@ import os
 def int_list(self):
     int_list_str = []
     for i in self:
-        if isinstance(i, int) or isinstance(i, float) or i.isdigit():
+        if i == 'NULL':
+            a = 0
+            int_list_str.append(a)
+        elif isinstance(i, int) or isinstance(i, float) or i.isdigit():
             a = int(i)
             int_list_str.append(a)
         else:
             int_list_str.append(i)
+    # print(int_list_str)
     return int_list_str
 
 def datelist(self):
@@ -47,7 +51,6 @@ def typelist(self):
         if visit_type not in type_list:
             type_list.append(visit_type)
     return type_list
-
 
 def avarage_month(self):
     counts = []
@@ -121,8 +124,6 @@ def near_month(self):
         else:
             pass
     year_month1 = list(reversed(near_twolist(common_month)))
-
-
     num = 0
     start_num =1
     start_year_month = {}
@@ -172,11 +173,23 @@ def near_month(self):
         start_end_year_month_list_twonear_list.append(start_end_year_month_list_twonear)
     print('start_end_year_month_list:长度：%s，值：%s' % (len(start_end_year_month_list),start_end_year_month_list))
     print('start_end_year_month_list_twonear_list:长度：%s，值：%s' % (len(start_end_year_month_list_twonear_list), start_end_year_month_list_twonear_list))
-    # print('start_end_year_month_list_twonear_list:%s'%start_end_year_month_list_twonear_list)
 
+    countnum = 0
+    while True and countnum < 10:
+        if start_end_year_month_list_twonear_list[0][0][1] != start_end_year_month_list_twonear_list[0][1][1] and \
+                start_end_year_month_list_twonear_list[-1][0][1] == start_end_year_month_list_twonear_list[-1][0][1]:
+            break
+        elif start_end_year_month_list_twonear_list[0][0][1] == start_end_year_month_list_twonear_list[0][1][1]:
+            del i[0]
+        elif start_end_year_month_list_twonear_list[-1][0][1] == start_end_year_month_list_twonear_list[-1][0][1]:
+            del i[-1]
+        countnum +=1
 
-
-
+    start_end_year_month_list = []
+    for i in start_end_year_month_list_twonear_list:
+        for a in i:
+            start_end_year_month_list.append(a)
+    print('start_end_year_month_list:长度:%s,值：%s.'%(len(start_end_year_month_list),start_end_year_month_list))
     return start_end_year_month_list
 
 
@@ -253,28 +266,49 @@ def write_data(self,filename):
     with open('%s.txt'%filename,'a+',encoding='utf-8') as f:
         f.write(self)
 
+from operator import itemgetter, attrgetter
+
+
 def table_count(self):
+    # 将来自同一张表的数据按照年月进行统计，并排序
+    type_time_list = []
+    for i in self:
+        type_time_content = []
+        type_time_content.append(i[0])
+        type_time_content.append(i[3])
+        type_time_content.append(i[4])
+        if type_time_content not in type_time_list:
+            type_time_list.append(type_time_content)
+
     table_count_list = []
-    table_count_content = []
-    table_count_value = 0
-    for a in typelist[self]:
-        for i in self:
-            if i[0] == a[0]:
-                if i not in table_count_content:
-                    table_count_value.append(i)
-                else:
-                    pass
+    for i in type_time_list:
+        table_count_content = []
+        table_count_value = 0
+        for a in self:
+            if i[0] == a[0] and i[1] == a[3] and i[2] == a[4]:
+                table_count_value += a[5]
             else:
                 pass
+        table_count_content.append(str(i[0]))
+        table_count_content.append('所有就诊类型')
+        table_count_content.append('所有项目类型')
+        table_count_content.append(int(i[1]))
+        table_count_content.append(int(i[2]))
+        table_count_content.append(table_count_value)
+        table_count_list.append(table_count_content)
 
+
+    # 列表排序
+    table_count_list.sort(key=itemgetter(0,3,4))
+    return table_count_list
 
 
 if __name__ == '__main__':
     filepath = os.getcwd()
     filepath = '%s\\result' %filepath
     print(os.walk(filepath))
-    write_data('表类型\t就诊类型\t项目类型\t数据总量\t日期null的数据量\t每个月平均值\t开始时间\t+结束时间\t开始结束之间异常月份的数量\t不正常的月份\t值\t不正常的月份\t值\t不正常的月份\t值\t不正常的月份\t值\t不正常的月份\t值\t不正常的月份\t值\t不正常的月份\t值\t不正常的月份\t值n','type_count')
-    write_data('表类型\t数据总量\t日期null的数据量\t每个月平均值\t开始时间\t结束时间\t开始结束之间异常月份的数量\t不正常的月份\t值\t不正常的月份\t值\t不正常的月份\t值\t不正常的月份\t值\t不正常的月份\t值\t不正常的月份\t值\t不正常的月份\t值\t不正常的月份\t值n', 'table_count')
+    write_data('表类型\t就诊类型\t项目类型\t数据总量\t日期null的数据量\t每个月平均值\t开始时间\t结束时间\t开始结束之间异常月份的数量\t不正常的月份\t值\t不正常的月份\t值\t不正常的月份\t值\n','type_count')
+    write_data('表类型\t数据总量\t日期null的数据量\t每个月平均值\t开始时间\t结束时间\t开始结束之间异常月份的数量\t不正常的月份\t值\t不正常的月份\t值\n', 'table_count')
     write_data_list = []
     write_wrong_month_list = []
     for maindir, subdir, file_name_list in os.walk(filepath):
@@ -293,7 +327,7 @@ if __name__ == '__main__':
                         if i[0] == a[1] and i[1] == a[2]:
                             typecontent_list.append(a)
                             try:
-                                if a[3] == 'NULL' or a[4] == 'NULL':
+                                if a[3] == 0 or a[4] == 0:
                                     type_null_value = a[-1]
                                 else:
                                     pass
@@ -329,13 +363,16 @@ if __name__ == '__main__':
                         '表类型:{},就诊类型:{},项目类型：{},数据总量:{},日期null的数据量:{},每个月平均值:{},时间范围:{}年{}月---{}年{}月。'.format(i[2],i[0], i[1], c1[0],type_null_value, c1[1],near_month_list1[0][1][0],near_month_list1[0][1][1],near_month_list1[-1][1][0],near_month_list1[-1][1][1]))
                     # print('正常数据的时间范围：%s'%near_month_list)
 
+                    typecontent_list1 = table_count(sheet1_list)
+                    print('typecontent_list1:长度:%s，值：%s' % (len(typecontent_list1), typecontent_list1))
+
                     tableconent_list = []
                     table_null_value = 0
-                    for b in sheet1_list:
+                    for b in typecontent_list1:
                         if i[2] == b[0]:
                             tableconent_list.append(b)
                             try:
-                                if a[3] == 'NULL' or a[4] == 'NULL':
+                                if a[3] == 0 or a[4] == 0:
                                     table_null_value = a[-1]
                                 else:
                                     pass
@@ -348,7 +385,7 @@ if __name__ == '__main__':
                     if len(wrong_month_list1) > 0:
                         print('数据不正常的月份数量：{},具体月份以及对应的数据量:{}'.format(len(wrong_month_list1), 0,
                                                                                  wrong_month_list1))
-                        for d in wrong_month_list1:
+                        for d in wrong_month_list2:
                             write_data_content += '{}年{}月\t{}\t'.format(d[0],d[1],d[2])
                     else:
                         pass
