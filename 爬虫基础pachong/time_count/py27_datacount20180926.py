@@ -283,13 +283,13 @@ def table_count(self):
 if __name__ == '__main__':
     filepath = os.getcwd()
     filepath = '%s\\result' % filepath
-    print filepath
+    # print filepath
     for x in os.listdir(filepath):
         if x.endswith('.txt') and 'date' in x:
             apath = apath = os.path.join(filepath,x)
             cluster = re.split('[._]', apath)[-5]
-            print('cluster:%s' % cluster)
-            print('apath:%s' % apath)
+            # print('cluster:%s' % cluster)
+            # print('apath:%s' % apath)
             write_data_list = []
             write_wrong_month_list = []
             write_data(
@@ -377,3 +377,5 @@ if __name__ == '__main__':
                     write_data(write_data_content,'%s\\%s_table_count' % (filepath,cluster))
                 else:
                     pass
+        else:
+            pass

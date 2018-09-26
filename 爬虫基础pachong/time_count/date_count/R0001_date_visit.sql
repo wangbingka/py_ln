@@ -1,22 +1,13 @@
-SELECT '就诊信息表',affair_info.visit_type as visit_type,affair_info.register_status as outstatus,
-affair_info.adt_status as instatus,substring(affair_info.admission_date,1,4) AS inyear,
-substring(affair_info.visit_date,1,4) AS outyear,count(*) AS yearcount 
-FROM 
-
-
-
-medical_visit_summary 
-GROUP BY  affair_info.visit_type ,affair_info.register_status,affair_info.adt_status, 
-substring(affair_info.admission_date,1,4),substring(affair_info.visit_date,1,4) 
-ORDER BY visit_type,outstatus,instatus,inyear,outyear desc;
-
-
-select '就诊日期年份分布',affair_info.visit_type,
-year( affair_info.visit_date) as year1,year(affair_info.admission_date) as year2,count(*) from 
-
-select affair_info.visit_type,case
-
-
-medical_visit_summary a 
-group by affair_info.visit_type,year( affair_info.visit_date),year(affair_info.admission_date) 
-order by affair_info.visit_type,year1,year2 
+use %s;
+	select '就诊日期年份分布',visit_type,table_status,year(table_time) as year1,month(table_time) as month1,count(*) from 
+	(select affair_info.visit_type,
+	(case when affair_info.visit_date is not null or affair_info.visit_date <> '' then affair_info.visit_date
+		 when affair_info.admission_date is not null or affair_info.admission_date <> '' then affair_info.admission_date
+		 else affair_info.register_time end ) as table_time,
+	(case when affair_info.register_status is not null or affair_info.register_status <> '' then affair_info.register_status
+		 when affair_info.adt_status is not null or affair_info.adt_status <> '' then affair_info.adt_status
+		 else affair_info.checkup_status end ) as table_status
+	from medical_visit_summary a ) b1
+	group by visit_type,table_status,year(table_time),month(table_time)
+	order by visit_type,table_status,year1,month1
+	limit 5000;
